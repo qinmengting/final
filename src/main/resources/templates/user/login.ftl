@@ -9,7 +9,7 @@
 
 <style>
     body {
-        background-image: url("/static/images/main-back.png");
+        background-image: url("/static/images/icons/main.png");
         background-repeat: no-repeat;
         background-size: 100% 150%;
         background-attachment: fixed;
@@ -79,22 +79,22 @@
         <div class="layui-header" style="background-color: #2066CE">
             <div style="padding-left: 5px; width: 600px; height: 60px">
                 <!-- 在这里替换具体的LOGO和标语 -->
-                <img width="120px" src="static/images/logos/diandian-logo.png" style="float: left; margin-top: 5px">
+                <img width="50px" src="static/images/logos/logo.jpg" style="float: left; margin-top: 5px">
                 <!-- color:#009688-->
-                <div style="color: #E6E6E6; margin-left:20px;float:left;width:300px;height:100%;line-height:60px;text-align:left;font-size:16px;">SpringBoot+LayUI后台管理系统</div>
+                <div style="color: #E6E6E6; margin-left:20px;float:left;width:300px;height:100%;line-height:60px;text-align:left;font-size:16px;">中国地质大学艺术团管理系统</div>
             </div>
 
             <ul class="layui-nav layui-layout-right" style="background-color: #2066CE">
                 <li class="layui-nav-item">
                     <a id="name-a" href="javascript:;">
-                        <img src="static/images/icons/diandian-icon.png" class="layui-nav-img">
+                        <img src="/static/images/icons/main.png" class="layui-nav-img">
                     </a>
                     <dl class="layui-nav-child">
                         <dd><a href="">基本资料</a></dd>
                         <dd><a href="">更改密码</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="http://diandian2.cn">点点OJ</a></li>
+                <li class="layui-nav-item"><a href="">hello</a></li>
             </ul>
         </div>
     </div>
@@ -126,7 +126,7 @@
 
 </div>
 <div style="color: black;font-size: 18px; position: fixed; bottom: 20px; right: 20px" class="layui-footer">
-    © Copyright BruceYan
+    © qinmengting
 </div>
 
 
