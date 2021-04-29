@@ -6,6 +6,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurationSupport;
 
 @SpringBootApplication
@@ -31,4 +32,10 @@ public class Application extends WebMvcConfigurationSupport {
         super.addResourceHandlers(registry);
     }
 
+    @Override
+    protected void addViewControllers(ViewControllerRegistry registry) {
+        super.addViewControllers(registry);
+        registry.addViewController("/index.ftl").setViewName("index");
+        registry.addViewController("/login.ftl").setViewName("login");
+    }
 }

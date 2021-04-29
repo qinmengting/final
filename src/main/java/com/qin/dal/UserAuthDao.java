@@ -13,7 +13,7 @@ import java.util.Map;
  */
 @Repository
 public class UserAuthDao extends BaseRepository {
-    private final String namespace = "cn.geek51.domain.UserAuth.";
+    private final String namespace = "com.qin.domain.UserAuth.";
     //执行登录,查看用户是否合法
     public UserAuth checkLogin(String username, String password) {
         if (username == null || password == null) return null;

@@ -9,7 +9,7 @@
 
 <style>
     body {
-        background-image: url("/static/images/icons/main.png");
+        background-image: url("/static/images/bg.png");
         background-repeat: no-repeat;
         background-size: 100% 150%;
         background-attachment: fixed;
@@ -46,9 +46,9 @@
                 success: function (res) {
                     console.log(res);
                     if (res.code == 200) {
-                        parent.window.location.href = "/index";
+                        parent.window.location.href = "/index.ftl";
                     } else {
-                        parent.window.location.href = "/login";
+                        parent.window.location.href = "/login.ftl";
                     }
                     //parent.window.location.href = "/";
                 }
@@ -94,7 +94,7 @@
                         <dd><a href="">更改密码</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="">hello</a></li>
+                <li class="layui-nav-item"><a href="">hello,welcome</a></li>
             </ul>
         </div>
     </div>
@@ -117,7 +117,7 @@
             <div class="layui-form-item" style="font-size: 16px; margin-left: 5px; margin-top: 10px">
                 <label class="layui-form-label" style="width: 100px"></label>
                 <div class="layui-input-inline" style="width: 200px">
-                    <button type="submit" class="layui-btn" style="background-color: #0084ff; outline: none" id="login" lay-submit="">登录</button>
+                    <button type="submit" class="layui-btn" style="background-color: #0084ff; outline: none" id="login" lay-submit="" >登录</button>
                     <button type="button" class="layui-btn" style="background-color: #0084ff; outline: none" id="reset">重置</button>
                 </div>
             </div>
