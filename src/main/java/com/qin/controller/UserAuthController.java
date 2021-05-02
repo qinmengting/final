@@ -6,8 +6,10 @@ import com.qin.service.IUserAuthService;
 import com.qin.util.ResponseUtil;
 import com.qin.util.UserContext;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -18,13 +20,14 @@ public class UserAuthController {
     IUserAuthService service;
 
     @PostMapping("/auths/login")
-    public Object login(String username, String password) {
+    public Object login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
         UserAuth auth = null;
         try {
             auth = service.login(username, password);
         } catch (RuntimeException e) {
             return ResponseUtil.general_response("login fail!", ResponseUtil.CODE_ERROR);
         }
+        session.setAttribute("auth",auth);
         return ResponseUtil.general_response("login success!", auth);
     }
 

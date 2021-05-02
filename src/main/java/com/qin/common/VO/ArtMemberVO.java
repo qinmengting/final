@@ -1,20 +1,16 @@
-package com.qin.domain;
-
-import org.springframework.stereotype.Component;
+package com.qin.common.VO;
 
 import java.util.Date;
 
-@Component
-public class ArtMember {
-    private Long id;
+public class ArtMemberVO {
 
     private String username;
 
     private String password;
 
-    private Byte accountType;
-
     private String accountName;
+
+    private Byte accountType;
 
     private String mobile;
 
@@ -34,24 +30,12 @@ public class ArtMember {
 
     private String remark;
 
-    private Date gmtCreate;
-
-    private Date gmtModify;
-
-    public Long getId() {
-        return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
-        this.username = username == null ? null : username.trim();
+        this.username = username;
     }
 
     public String getPassword() {
@@ -59,7 +43,15 @@ public class ArtMember {
     }
 
     public void setPassword(String password) {
-        this.password = password == null ? null : password.trim();
+        this.password = password;
+    }
+
+    public String getAccountName() {
+        return accountName;
+    }
+
+    public void setAccountName(String accountName) {
+        this.accountName = accountName;
     }
 
     public Byte getAccountType() {
@@ -70,20 +62,12 @@ public class ArtMember {
         this.accountType = accountType;
     }
 
-    public String getAccountName() {
-        return accountName;
-    }
-
-    public void setAccountName(String accountName) {
-        this.accountName = accountName == null ? null : accountName.trim();
-    }
-
     public String getMobile() {
         return mobile;
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile == null ? null : mobile.trim();
+        this.mobile = mobile;
     }
 
     public String getStudentId() {
@@ -91,7 +75,7 @@ public class ArtMember {
     }
 
     public void setStudentId(String studentId) {
-        this.studentId = studentId == null ? null : studentId.trim();
+        this.studentId = studentId;
     }
 
     public String getSubgroup() {
@@ -99,7 +83,15 @@ public class ArtMember {
     }
 
     public void setSubgroup(String subgroup) {
-        this.subgroup = subgroup == null ? null : subgroup.trim();
+        this.subgroup = subgroup;
+    }
+
+    public Byte getSex() {
+        return sex;
+    }
+
+    public void setSex(Byte sex) {
+        this.sex = sex;
     }
 
     public String getTeacher() {
@@ -107,7 +99,7 @@ public class ArtMember {
     }
 
     public void setTeacher(String teacher) {
-        this.teacher = teacher == null ? null : teacher.trim();
+        this.teacher = teacher;
     }
 
     public Byte getSpecialtyType() {
@@ -139,52 +131,44 @@ public class ArtMember {
     }
 
     public void setRemark(String remark) {
-        this.remark = remark == null ? null : remark.trim();
-    }
-
-    public Date getGmtCreate() {
-        return gmtCreate;
-    }
-
-    public void setGmtCreate(Date gmtCreate) {
-        this.gmtCreate = gmtCreate;
-    }
-
-    public Date getGmtModify() {
-        return gmtModify;
-    }
-
-    public void setGmtModify(Date gmtModify) {
-        this.gmtModify = gmtModify;
-    }
-
-    public Byte getSex() {
-        return sex;
-    }
-
-    public void setSex(Byte sex) {
-        this.sex = sex;
+        this.remark = remark;
     }
 
     @Override
     public String toString() {
-        return "ArtMember{" +
-                "id=" + id +
-                ", username='" + username + '\'' +
+        return "ArtMemberVO{" +
+                "username='" + username + '\'' +
                 ", password='" + password + '\'' +
-                ", accountType=" + accountType +
                 ", accountName='" + accountName + '\'' +
+                ", accountType=" + accountType +
                 ", mobile='" + mobile + '\'' +
                 ", studentId='" + studentId + '\'' +
                 ", subgroup='" + subgroup + '\'' +
-                ", sex=" + sex + '\'' +
+                ", sex=" + sex +
                 ", teacher='" + teacher + '\'' +
                 ", specialtyType=" + specialtyType +
                 ", joinTime=" + joinTime +
                 ", inGroupTime=" + inGroupTime +
                 ", remark='" + remark + '\'' +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModify=" + gmtModify +
                 '}';
+    }
+
+    public ArtMemberVO(String username, String password, String accountName, Byte accountType, String mobile, String studentId, String subgroup, Byte sex, String teacher, Byte specialtyType, Date joinTime, Byte inGroupTime, String remark) {
+        this.username = username;
+        this.password = password;
+        this.accountName = accountName;
+        this.accountType = accountType;
+        this.mobile = mobile;
+        this.studentId = studentId;
+        this.subgroup = subgroup;
+        this.sex = sex;
+        this.teacher = teacher;
+        this.specialtyType = specialtyType;
+        this.joinTime = joinTime;
+        this.inGroupTime = inGroupTime;
+        this.remark = remark;
+    }
+
+    public ArtMemberVO() {
     }
 }

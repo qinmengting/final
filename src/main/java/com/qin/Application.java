@@ -32,10 +32,12 @@ public class Application extends WebMvcConfigurationSupport {
         super.addResourceHandlers(registry);
     }
 
-    @Override
-    protected void addViewControllers(ViewControllerRegistry registry) {
-        super.addViewControllers(registry);
-        registry.addViewController("/index.ftl").setViewName("index");
-        registry.addViewController("/login.ftl").setViewName("login");
-    }
+
+    //addViewControllers 在RedirectController中已经重定向过了
+//    @Override
+//    protected void addViewControllers(ViewControllerRegistry registry) {
+//        super.addViewControllers(registry);
+//        registry.addViewController("/index.ftl").setViewName("index_view");
+//        registry.addViewController("/login.ftl").setViewName("user/login");
+//    }
 }

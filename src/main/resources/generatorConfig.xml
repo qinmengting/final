@@ -17,6 +17,10 @@
                         password="root12">
         </jdbcConnection>
 
+        <javaTypeResolver>
+            <property name="forceBigDecimals" value="false" />
+        </javaTypeResolver>
+
         <!-- 生成模型的包名和位置-->
         <javaModelGenerator targetPackage="com.qin.domain" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>

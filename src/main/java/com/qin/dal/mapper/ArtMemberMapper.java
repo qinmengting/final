@@ -3,8 +3,11 @@ package com.qin.dal.mapper;
 import com.qin.domain.ArtMember;
 import com.qin.domain.ArtMemberExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface ArtMemberMapper {
     long countByExample(ArtMemberExample example);
 

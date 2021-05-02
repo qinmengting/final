@@ -23,7 +23,7 @@
             <li class="layui-nav-item">
                 <a id="name-a" href="javascript:;">
                     <img src="static/images/icons/logo.png" class="layui-nav-img">
-                    ${(user.username)!"未登陆"}
+                    ${(user.username)!"欢迎您!"}
                 </a>
                 <dl class="layui-nav-child">
                     <dd><a href="">更改密码</a></dd>
@@ -34,15 +34,29 @@
         </ul>
     </div>
 
-    <div class="layui-side layui-bg-black">
+    <div class=" layui-side layui-bg-black">
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-this"><a href="/auth" target="admin-list">权限管理</a></li>
                 <li class="layui-nav-item"><a href="/department" target="admin-list">分团管理</a></li>
-                <li class="layui-nav-item"><a href="/employee" target="admin-list">成员管理</a></li>
-                <li class="layui-nav-item"><a href="/position" target="admin-list">考勤管理</a></li>
-                <li class="layui-nav-item"><a href="#" target="admin-list">绩效管理</a></li>
+                <li class="layui-nav-item">
+                    <a href="/employee" target="admin-list">成员管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/allmembers" target="admin-list">所有成员</a></dd>
+                        <dd><a href="javascript:;" target="admin-list">选项2</a></dd>
+                        <dd><a href="/employee" target="admin-list">跳转</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item">
+                    <a href="/position" target="admin-list">考勤管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="javascript:;">选项1</a></dd>
+                        <dd><a href="javascript:;">选项2</a></dd>
+                        <dd><a href="/employee" target="admin-list">跳转</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="/performance" target="admin-list">绩效管理</a></li>
                 <li class="layui-nav-item"><a href="/post" target="admin-list">公告管理</a></li>
                 <li class="layui-nav-item"><a href="/download" target="admin-list">下载中心</a></li>
             </ul>

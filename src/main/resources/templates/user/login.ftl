@@ -104,14 +104,14 @@
             <div class="layui-form-item" style="font-size: 16px; opacity: 1">
                 <label class="layui-form-label" style="width: 100px; margin-bottom: 10px">帐号</label>
                 <div class="layui-input-inline" style="width: 200px">
-                    <input type="text" id="username" required  lay-verify="required" placeholder="请输入帐号" autocomplete="off" class="layui-input">
+                    <input type="text" id="username" name="username" required  lay-verify="required" placeholder="请输入帐号" autocomplete="off" class="layui-input">
                 </div>
             </div>
 
             <div class="layui-form-item" style="font-size: 16px; margin-bottom: 30px; opacity: 1">
                 <label class="layui-form-label" style="width: 100px">密码</label>
                 <div class="layui-input-inline" style="width: 200px">
-                    <input type="password" id="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
+                    <input type="password" id="password" name="password" required lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
                 </div>
             </div>
             <div class="layui-form-item" style="font-size: 16px; margin-left: 5px; margin-top: 10px">

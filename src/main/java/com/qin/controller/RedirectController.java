@@ -95,4 +95,14 @@ public class RedirectController {
         model.addAttribute("user", user);
         return "index_view";
     }
+
+    @GetMapping("/performance")
+    public String toPerformance(Model model) {
+        return "performance_view";
+    }
+
+    @GetMapping("/allmembers")
+    public String toAllMembers(Model model) {
+        return "members/allmembers_view";
+    }
 }
