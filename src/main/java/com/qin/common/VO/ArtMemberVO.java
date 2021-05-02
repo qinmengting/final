@@ -1,5 +1,8 @@
 package com.qin.common.VO;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 public class ArtMemberVO {
@@ -10,19 +13,21 @@ public class ArtMemberVO {
 
     private String accountName;
 
-    private Byte accountType;
+    private String accountType;
 
     private String mobile;
 
     private String studentId;
 
+    private String school;
+
     private String subgroup;
 
-    private Byte sex;
+    private String sex;
 
     private String teacher;
 
-    private Byte specialtyType;
+    private String specialtyType;
 
     private Date joinTime;
 
@@ -54,11 +59,11 @@ public class ArtMemberVO {
         this.accountName = accountName;
     }
 
-    public Byte getAccountType() {
+    public String getAccountType() {
         return accountType;
     }
 
-    public void setAccountType(Byte accountType) {
+    public void setAccountType(String accountType) {
         this.accountType = accountType;
     }
 
@@ -78,6 +83,14 @@ public class ArtMemberVO {
         this.studentId = studentId;
     }
 
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
+
     public String getSubgroup() {
         return subgroup;
     }
@@ -86,11 +99,11 @@ public class ArtMemberVO {
         this.subgroup = subgroup;
     }
 
-    public Byte getSex() {
+    public String getSex() {
         return sex;
     }
 
-    public void setSex(Byte sex) {
+    public void setSex(String sex) {
         this.sex = sex;
     }
 
@@ -102,18 +115,22 @@ public class ArtMemberVO {
         this.teacher = teacher;
     }
 
-    public Byte getSpecialtyType() {
+    public String getSpecialtyType() {
         return specialtyType;
     }
 
-    public void setSpecialtyType(Byte specialtyType) {
+    public void setSpecialtyType(String specialtyType) {
         this.specialtyType = specialtyType;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     public Date getJoinTime() {
         return joinTime;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     public void setJoinTime(Date joinTime) {
         this.joinTime = joinTime;
     }
@@ -134,32 +151,17 @@ public class ArtMemberVO {
         this.remark = remark;
     }
 
-    @Override
-    public String toString() {
-        return "ArtMemberVO{" +
-                "username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", accountName='" + accountName + '\'' +
-                ", accountType=" + accountType +
-                ", mobile='" + mobile + '\'' +
-                ", studentId='" + studentId + '\'' +
-                ", subgroup='" + subgroup + '\'' +
-                ", sex=" + sex +
-                ", teacher='" + teacher + '\'' +
-                ", specialtyType=" + specialtyType +
-                ", joinTime=" + joinTime +
-                ", inGroupTime=" + inGroupTime +
-                ", remark='" + remark + '\'' +
-                '}';
+    public ArtMemberVO() {
     }
 
-    public ArtMemberVO(String username, String password, String accountName, Byte accountType, String mobile, String studentId, String subgroup, Byte sex, String teacher, Byte specialtyType, Date joinTime, Byte inGroupTime, String remark) {
+    public ArtMemberVO(String username, String password, String accountName, String accountType, String mobile, String studentId, String school, String subgroup, String sex, String teacher, String specialtyType, Date joinTime, Byte inGroupTime, String remark) {
         this.username = username;
         this.password = password;
         this.accountName = accountName;
         this.accountType = accountType;
         this.mobile = mobile;
         this.studentId = studentId;
+        this.school = school;
         this.subgroup = subgroup;
         this.sex = sex;
         this.teacher = teacher;
@@ -169,6 +171,23 @@ public class ArtMemberVO {
         this.remark = remark;
     }
 
-    public ArtMemberVO() {
+    @Override
+    public String toString() {
+        return "ArtMemberVO{" +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", accountName='" + accountName + '\'' +
+                ", accountType=" + accountType +
+                ", mobile='" + mobile + '\'' +
+                ", studentId='" + studentId + '\'' +
+                ", school='" + school + '\'' +
+                ", subgroup='" + subgroup + '\'' +
+                ", sex='" + sex + '\'' +
+                ", teacher='" + teacher + '\'' +
+                ", specialtyType='" + specialtyType + '\'' +
+                ", joinTime=" + joinTime +
+                ", inGroupTime=" + inGroupTime +
+                ", remark='" + remark + '\'' +
+                '}';
     }
 }

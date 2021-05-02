@@ -1,16 +1,24 @@
 package com.qin.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import lombok.Builder;
+import lombok.Data;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
+@Builder
+@Data
 @Component
 public class ArtMember {
     private Long id;
 
-    private String username;
+    private String studentId = "";
 
-    private String password;
+    private String username = studentId;
+
+    private String password = "123456";
 
     private Byte accountType;
 
@@ -18,7 +26,7 @@ public class ArtMember {
 
     private String mobile;
 
-    private String studentId;
+    private String school;
 
     private String subgroup;
 
@@ -37,6 +45,14 @@ public class ArtMember {
     private Date gmtCreate;
 
     private Date gmtModify;
+
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school;
+    }
 
     public Long getId() {
         return id;
@@ -118,10 +134,14 @@ public class ArtMember {
         this.specialtyType = specialtyType;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     public Date getJoinTime() {
         return joinTime;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     public void setJoinTime(Date joinTime) {
         this.joinTime = joinTime;
     }
@@ -166,6 +186,29 @@ public class ArtMember {
         this.sex = sex;
     }
 
+    public ArtMember(Long id, String username, String password, Byte accountType, String accountName, String mobile, String studentId, String school, String subgroup, Byte sex, String teacher, Byte specialtyType, Date joinTime, Byte inGroupTime, String remark, Date gmtCreate, Date gmtModify) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.accountType = accountType;
+        this.accountName = accountName;
+        this.mobile = mobile;
+        this.studentId = studentId;
+        this.school = school;
+        this.subgroup = subgroup;
+        this.sex = sex;
+        this.teacher = teacher;
+        this.specialtyType = specialtyType;
+        this.joinTime = joinTime;
+        this.inGroupTime = inGroupTime;
+        this.remark = remark;
+        this.gmtCreate = gmtCreate;
+        this.gmtModify = gmtModify;
+    }
+
+    public ArtMember() {
+    }
+
     @Override
     public String toString() {
         return "ArtMember{" +
@@ -176,8 +219,9 @@ public class ArtMember {
                 ", accountName='" + accountName + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", studentId='" + studentId + '\'' +
+                ", school='" + school + '\'' +
                 ", subgroup='" + subgroup + '\'' +
-                ", sex=" + sex + '\'' +
+                ", sex=" + sex +
                 ", teacher='" + teacher + '\'' +
                 ", specialtyType=" + specialtyType +
                 ", joinTime=" + joinTime +

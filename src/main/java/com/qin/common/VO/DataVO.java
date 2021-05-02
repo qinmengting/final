@@ -5,7 +5,7 @@ import java.util.List;
 public class DataVO<T> {
     private Integer code;
     private String msg;
-    private Integer count;
+    private long count;
     private List<T> data;
 
     public Integer getCode() {
@@ -24,11 +24,11 @@ public class DataVO<T> {
         this.msg = msg;
     }
 
-    public Integer getCount() {
+    public long getCount() {
         return count;
     }
 
-    public void setCount(Integer count) {
+    public void setCount(long count) {
         this.count = count;
     }
 
@@ -43,7 +43,7 @@ public class DataVO<T> {
     public DataVO() {
     }
 
-    public DataVO(Integer code, String msg, Integer count, List<T> data) {
+    public DataVO(Integer code, String msg, long count, List<T> data) {
         this.code = code;
         this.msg = msg;
         this.count = count;

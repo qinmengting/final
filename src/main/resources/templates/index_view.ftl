@@ -13,10 +13,10 @@
 
 <div class="layui-layout layui-layout-admin" style="height: 100%">
     <div class="layui-header">
-        <div style="padding-left: 5px; width: 600px; height: 60px">
+        <div style="padding-left: 5px; width: 700px; height: 60px">
             <!-- 在这里替换具体的LOGO和标语 -->
             <img width="120px" src="static/images/logos/logo.png" style="float: left; margin-top: 7px; height: 50px; width: 50px">
-            <div style="margin-left:20px;float:left;width:300px;height:100%;line-height:60px;text-align:left;color:#009688;font-size:16px;">中国地质大学（北京）大学生艺术团管理系统</div>
+            <div style="margin-left:20px;float:left;width:400px;height:100%;line-height:60px;text-align:left;color:#009688;font-size:16px;">中国地质大学（北京）大学生艺术团管理系统</div>
         </div>
 
         <ul class="layui-nav layui-layout-right">
@@ -44,7 +44,7 @@
                     <a href="/employee" target="admin-list">成员管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/allmembers" target="admin-list">所有成员</a></dd>
-                        <dd><a href="javascript:;" target="admin-list">选项2</a></dd>
+                        <dd><a href="/addmember" target="admin-list">添加成员</a></dd>
                         <dd><a href="/employee" target="admin-list">跳转</a></dd>
                     </dl>
                 </li>
@@ -66,7 +66,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 - 局部刷新, 使用iframe进行实现 -->
         <div style="padding: 15px; width: 100%; height: 100%">
-            <iframe style="width: 100%; height: 100%;" name="admin-list" scrolling="no" src="/auth" frameborder="0"></iframe>
+            <iframe style="width: 100%; height: 100%;" name="admin-list" scrolling="yes" src="/auth" frameborder="0"></iframe>
         </div>
     </div>
 </div>

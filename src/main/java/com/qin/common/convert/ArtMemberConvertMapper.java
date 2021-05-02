@@ -1,12 +1,13 @@
 package com.qin.common.convert;
 
+import com.qin.common.DTO.ArtMemberDTO;
 import com.qin.common.VO.ArtMemberVO;
 import com.qin.domain.ArtMember;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 import java.util.List;
 
-@Mapper
+@Mapper(uses=DateMapper.class)
 public interface ArtMemberConvertMapper {
 
     ArtMemberConvertMapper INSTANCES = Mappers.getMapper(ArtMemberConvertMapper.class);
@@ -14,4 +15,7 @@ public interface ArtMemberConvertMapper {
     ArtMemberVO memberToVO(ArtMember artMember);
 
     List<ArtMemberVO> membersToVOs(List<ArtMember> artMembers);
+
+    ArtMember DTOtoMember(ArtMemberDTO artMemberDTO);
+
 }

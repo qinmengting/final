@@ -105,4 +105,9 @@ public class RedirectController {
     public String toAllMembers(Model model) {
         return "members/allmembers_view";
     }
+
+    @GetMapping("/addmember")
+    public String toAddMembers(Model model) {
+        return "members/addmember_view";
+    }
 }
