@@ -32,6 +32,7 @@ public class ArtMemberController {
 
     @RequestMapping("/member/add")
     public void addMember(HttpServletResponse response, HttpServletRequest request, @RequestBody ArtMemberDTO artMemberDTO) throws IOException {
+
         artMemberService.addMember(artMemberDTO);
         request.getRequestDispatcher("/allmembers");
     }

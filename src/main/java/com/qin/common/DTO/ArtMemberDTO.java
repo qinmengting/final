@@ -161,4 +161,24 @@ public class ArtMemberDTO {
 
     public ArtMemberDTO() {
     }
+
+    @Override
+    public String toString() {
+        return "ArtMemberDTO{" +
+                "studentId='" + studentId + '\'' +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", accountType=" + accountType +
+                ", accountName='" + accountName + '\'' +
+                ", mobile='" + mobile + '\'' +
+                ", school='" + school + '\'' +
+                ", subgroup='" + subgroup + '\'' +
+                ", sex=" + sex +
+                ", teacher='" + teacher + '\'' +
+                ", specialtyType=" + specialtyType +
+                ", joinTime='" + joinTime + '\'' +
+                ", inGroupTime=" + inGroupTime +
+                ", remark='" + remark + '\'' +
+                '}';
+    }
 }

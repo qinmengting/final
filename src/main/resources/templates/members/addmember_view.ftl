@@ -132,7 +132,7 @@
     </div>
     <div class="layui-form-item">
         <div class="layui-input-block">
-            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1">立即提交</button>
+            <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="add">立即提交</button>
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
@@ -169,7 +169,8 @@
             }
         });
 
-        //监听指定开关
+
+        监听指定开关
         form.on('switch(switchTest)', function(data){
             layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
                 offset: '6px'
@@ -177,41 +178,60 @@
             layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
         });
 
-        //监听提交
+        doAdd = function(artMemberDTO) {
+            layui.use('layer','form', function (artMemberDTO) {
+                $.ajax({
+                    url: '/member/add',
+                    method: 'get',
+                    data: JSON.parse(artMemberDTO),
+                    success: function (res) {
+                        console.log(res);
+                        if (res.code == 200) {
+                            parent.window.location.href = "/index.ftl";
+                        } else {
+                            parent.window.location.href = "/addmember_view.ftl";
+                        }
+                        //parent.window.location.href = "/";
+                    }
+                });
+            });
+
+        }
+        $(document).ready(function (data) {
+            $("#add").click(function (data) {
+               doAdd(data)
+            });
+        });
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // 监听提交
         // form.on('submit(demo1)', function(data){
         //     layer.alert(JSON.stringify(data.field), {
         //         title: '最终的提交信息'
         //     })
         //     return false;
         // });
-
-        var submitForm = form.on('submit(demo1)', function(data){
-            var index = parent.layer.alert.msg('数据提交中，请稍候', {
-                icon:16,time:false,shade:0.8
-            })
-            $.ajax({
-                url : "/member/add"
-                , type :"get"
-                , data : data.field
-                , success : function (data){
-                    if (data == 0) {
-                        parent.layer.close(index);
-                        parent.layer.msg('用户提交成功', {icon:1,time:1800})
-                    }
-                }
-            })
-            // return false;
-        });
-
-        submitForm("#addform",function(data){
-            data = JSON.parse(data);
-            parent.layer.msg(data.msg);
-            if(data.result=="success"){
-                parent.loadCount();
-                closeIframe();
-            }
-        });
-
 
 
 

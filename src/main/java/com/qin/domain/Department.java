@@ -1,7 +1,10 @@
 package com.qin.domain;
 
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+@Component
 public class Department {
     private Integer id;
 

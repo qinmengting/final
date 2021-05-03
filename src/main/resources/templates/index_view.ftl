@@ -39,13 +39,13 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-this"><a href="/auth" target="admin-list">权限管理</a></li>
-                <li class="layui-nav-item"><a href="/department" target="admin-list">分团管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:;" target="admin-list">分团管理</a></li>
                 <li class="layui-nav-item">
-                    <a href="/employee" target="admin-list">成员管理</a>
+                    <a href="/allmembers" target="admin-list">成员管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/allmembers" target="admin-list">所有成员</a></dd>
                         <dd><a href="/addmember" target="admin-list">添加成员</a></dd>
-                        <dd><a href="/employee" target="admin-list">跳转</a></dd>
+                        <dd><a href="/alltest" target="admin-list">跳转</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
