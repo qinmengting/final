@@ -55,7 +55,7 @@ public class ArtMemberController {
     }
 
     // 更新
-    @PutMapping("/member/update/{id}")
+    @GetMapping("/member/update/{id}")
     public Object updateMember(@PathVariable("id") Long id, @RequestBody ArtMemberDTO artMemberDTO,HttpServletRequest request) {
         ArtMemberDTO dto = artMemberService.selectById(id);
         request.setAttribute("dto",dto);

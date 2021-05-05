@@ -146,12 +146,13 @@
             ,layedit = layui.layedit
             ,laydate = layui.laydate;
 
-        form.render
+        form.render()
         //日期
         laydate.render({
             elem: '#joinTime'
             , trigger: 'click'
         });
+        
 
         //创建一个编辑器
         var editIndex = layedit.build('LAY_demo_editor');
@@ -203,7 +204,6 @@
                 }
             });
 
-
             //组织表单提交
             return false;
         })
@@ -222,8 +222,6 @@
         //     layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
         // });
         //
-
-
 
         // doAdd = function(artMemberDTO) {
         //     layui.use('layer','form', function (artMemberDTO) {
@@ -249,28 +247,6 @@
         //        doAdd(data)
         //     });
         // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
         // 监听提交
         // form.on('submit(demo1)', function(data){

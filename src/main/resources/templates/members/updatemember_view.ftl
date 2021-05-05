@@ -48,8 +48,8 @@
         <div class="layui-inline">
             <label class="layui-form-label">所属学院</label>
             <div class="layui-input-inline">
-                <select name="school" value="${(dto.school)!}" lay-verify="required" lay-search="">
-                    <option value="">直接选择或搜索选择</option>
+                <select name="school" lay-verify="required" lay-search="">
+                    <option value="${(dto.school)!}"></option>
                     <option value="地球科学与资源学院">地球科学与资源学院</option>
                     <option value="工程技术学院">工程技术学院</option>
                     <option value="材料科学与工程学院">材料科学与工程学院</option>
@@ -72,8 +72,8 @@
         <div class="layui-inline">
             <label class="layui-form-label">所属分团</label>
             <div class="layui-input-inline">
-                <select name="subgroup" value="${(dto.subgroup)!}" lay-verify="required" lay-search="">
-                    <option value="">直接选择或搜索选择</option>
+                <select name="subgroup" lay-verify="required" lay-search="">
+                    <option value="${(dto.subgroup)!}" ></option>
                     <option value="合唱团">合唱团</option>
                     <option value="话剧团">话剧团</option>
                     <option value="舞蹈团">舞蹈团</option>
@@ -140,11 +140,11 @@
 
 <script>
 
-    layui.use(['form', 'layedit', 'laydate'], function(){
+    layui.use(['form', 'layedit', 'laydate'], function() {
         var form = layui.form
-            ,layer = layui.layer
-            ,layedit = layui.layedit
-            ,laydate = layui.laydate;
+            , layer = layui.layer
+            , layedit = layui.layedit
+            , laydate = layui.laydate;
 
         form.render
         //日期
@@ -158,16 +158,16 @@
 
         //自定义验证规则
         form.verify({
-            title: function(value){
-                if(value.length < 5){
+            title: function (value) {
+                if (value.length < 5) {
                     return '标题至少得5个字符啊';
                 }
             }
-            ,pass: [
+            , pass: [
                 /^[\S]{6,12}$/
-                ,'密码必须6到12位，且不能出现空格'
+                , '密码必须6到12位，且不能出现空格'
             ]
-            ,content: function(value){
+            , content: function (value) {
                 layedit.sync(editIndex);
             }
         })
@@ -176,7 +176,7 @@
          * 监听表单的submit事件
          * form.on('submit(按钮元素的lay-filter属性值)',function (data){    })
          */
-        form.on('submit(demo1)',function (data){
+        form.on('submit(demo1)', function (data) {
             var index = layer.msg("数据提交中，请稍候...", {
                 icon: 16,   //图标
                 time: false,  //不关闭
@@ -185,12 +185,12 @@
 
             //发送ajax请求
             var url = ctx + "/member/update/{id}";   //添加操作
-            $.put(url,data.field,function (result){
+            $.put(url, data.field, function (result) {
                 //判断操作是否执行成功 200=成功
-                if (result.code == 200){
+                if (result.code == 200) {
                     //成功
                     //提示成功
-                    layer.msg("操作成功！",{icon:6})
+                    layer.msg("操作成功！", {icon: 6})
                     //关闭加载层
                     layer.close(index)
                     //关闭弹出层
@@ -199,7 +199,7 @@
                     parent.location.reload()
                 } else {
                     //失败
-                    layer.msg(result.msg,{icon:5})
+                    layer.msg(result.msg, {icon: 5})
                 }
             });
 
@@ -207,100 +207,6 @@
             //组织表单提交
             return false;
         })
-
-
-
-
-
-
-
-        // 监听指定开关
-        // form.on('switch(switchTest)', function(data){
-        //     layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
-        //         offset: '6px'
-        //     });
-        //     layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
-        // });
-        //
-
-
-
-        // doAdd = function(artMemberDTO) {
-        //     layui.use('layer','form', function (artMemberDTO) {
-        //         $.ajax({
-        //             url: '/member/add',
-        //             method: 'get',
-        //             data: JSON.parse(artMemberDTO),
-        //             success: function (res) {
-        //                 console.log(res);
-        //                 if (res.code == 200) {
-        //                     parent.window.location.href = "/index.ftl";
-        //                 } else {
-        //                     parent.window.location.href = "/addmember_view.ftl";
-        //                 }
-        //                 //parent.window.location.href = "/";
-        //             }
-        //         });
-        //     });
-        //
-        // }
-        // $(document).ready(function (data) {
-        //     $("#add").click(function (data) {
-        //        doAdd(data)
-        //     });
-        // });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // 监听提交
-        // form.on('submit(demo1)', function(data){
-        //     layer.alert(JSON.stringify(data.field), {
-        //         title: '最终的提交信息'
-        //     })
-        //     return false;
-        // });
-
-
-        //
-        // //表单赋值
-        // layui.$('#LAY-component-form-setval').on('click', function(){
-        //     form.val('example', {
-        //         "username": "贤心" // "name": "value"
-        //         ,"password": "123456"
-        //         ,"interest": 1
-        //         ,"like[write]": true //复选框选中状态
-        //         ,"close": true //开关状态
-        //         ,"sex": "女"
-        //         ,"desc": "我爱 layui"
-        //     });
-        // });
-
-        //表单取值
-    //     layui.$('#LAY-component-form-getval').on('click', function(){
-    //         var data = form.val('example');
-    //         alert(JSON.stringify(data));
-    //     });
-
     });
 </script>
 
