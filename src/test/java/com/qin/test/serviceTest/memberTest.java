@@ -47,4 +47,23 @@ public class memberTest {
         artMember.setInGroupTime((byte) 2);
         artMemberService.addMember(artMember);
     }
+
+    @Test
+    public void updateTest() {
+        ArtMemberDTO artMember = new ArtMemberDTO();
+        Long id = 23L;
+        artMember.setId(23L);
+        artMember.setJoinTime("2020-9-10");
+        artMember.setStudentId("1007171234");
+        artMember.setAccountType((byte) 0);
+        artMember.setMobile("18812341233");
+        artMember.setSubgroup("舞蹈团");
+        artMember.setSex((byte) 1);
+        artMember.setPassword("123456789");
+        artMember.setAccountName("小张");
+        artMember.setSpecialtyType((byte) 0);
+        artMember.setInGroupTime((byte) 2);
+        int i = artMemberService.updateById(id, artMember);
+        System.out.println(i);
+    }
 }

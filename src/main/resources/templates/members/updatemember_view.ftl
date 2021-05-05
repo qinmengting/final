@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <title>编辑成员信息</title>
     <script src="/static/js/jquery-3.4.1.min.js"></script>
     <script src="/static/layui/layui.js"></script>
     <link rel="stylesheet" href="/static/layui/css/layui.css">
-<#--    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
 </head>
 <body>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
@@ -229,7 +230,7 @@
             });
 
             //发送ajax请求
-            var url = ctx + "/member/update";   //更新操作
+            var url = "/member/update/"+id ;   //更新操作
             $.get(url, data.field, function (result) {
                 //判断操作是否执行成功 200=成功
                 if (result.code == 200) {
@@ -254,6 +255,5 @@
         })
     });
 </script>
-
 </body>
 </html>
