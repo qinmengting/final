@@ -4,7 +4,6 @@
 
 建表语句
 
-```sql
 DROP TABLE IF EXISTS `art_user`;
 CREATE TABLE `art_user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -22,13 +21,11 @@ CREATE TABLE `art_user` (
   KEY `idx_mobile` (`mobile`),
   KEY `idx_student_ID` (`student_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-```
 
 
 
 ### art_member
 
-```sql
 DROP TABLE IF EXISTS `art_member`;
 CREATE TABLE `art_user` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '用户唯一标识',
@@ -50,26 +47,20 @@ CREATE TABLE `art_user` (
   KEY `idx_mobile` (`mobile`)，
   KEY `idx_student_ID` (`student_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
-```
 
 
 
-```sql
 ALTER TABLE art_member
 ADD subgroup char(20) NOT NULL DEFAULT ' ' COMMENT '所属分团'
-```
 
-```sql
 INSERT INTO `art_member`
 (username,`password`,account_type,mobile,student_ID,subgroup,teacher,Specialty_type)
 VALUE('测试5','123464',2,'18810006000','1234567896','打击乐团','王老师',0)
-```
 
 
 
 ### art_role
 
-```sql
 DROP TABLE IF EXISTS `role`;
 CREATE TABLE `art_role` (
   `role_id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -80,13 +71,11 @@ CREATE TABLE `art_role` (
   `gmt_modify` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`role_id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
-```
 
 
 
 ### role_permission
 
-```sql
 DROP TABLE IF EXISTS `role_permission`;
 CREATE TABLE `role_permission` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -96,13 +85,11 @@ CREATE TABLE `role_permission` (
   `gmt_modify` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
-```
 
 
 
 ### user_role
 
-```sql
 DROP TABLE IF EXISTS `user_role`;
 CREATE TABLE `user_role` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -112,13 +99,11 @@ CREATE TABLE `user_role` (
   `gmt_modify` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
-```
 
 
 
 ### art_permission
 
-```sql
 DROP TABLE IF EXISTS `art_permission`;
 CREATE TABLE `art_permission` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -128,13 +113,11 @@ CREATE TABLE `art_permission` (
   `gmt_modify` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
-```
 
 
 
 ### attendance 考勤表
 
-```sql
 DROP TABLE IF EXISTS `attendance`;
 CREATE TABLE `attendance` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
@@ -146,13 +129,12 @@ CREATE TABLE `attendance` (
   KEY `idx_user_name` (`username`),
   KEY `idx_student_ID` (`student_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
-```
+
 
 
 
 ### Subgroup 分团表
 
-```sql
 DROP TABLE IF EXISTS `subgroup`;
 CREATE TABLE `subgroup` (
   `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
@@ -162,5 +144,5 @@ CREATE TABLE `subgroup` (
   `gmt_modify` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
-```
+
 
