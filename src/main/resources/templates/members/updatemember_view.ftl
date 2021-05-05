@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="static/js/jquery-3.4.1.min.js"></script>
-    <script src="static/layui/layui.js"></script>
-    <link rel="stylesheet" href="static/layui/css/layui.css" media="all">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="/static/layui/layui.js"></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
+<#--    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />-->
 </head>
 <body>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>添加成员信息</legend>
+    <legend>编辑成员信息</legend>
 </fieldset>
 <form class="layui-form" id="addform" method="get">
     <div class="layui-form-item">
@@ -29,7 +29,7 @@
         <div class="layui-input-block">
             <input type="radio" name="accountType" value="0" title="团长" >
             <input type="radio" name="accountType" value="1" title="副团长">
-            <input type="radio" name="accountType" value="2" title="团员" checked="">
+            <input type="radio" name="accountType" value="2" title="团员" >
         </div>
     </div>
     <div class="layui-form-item">
@@ -48,8 +48,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">所属学院</label>
             <div class="layui-input-inline">
-                <select name="school" lay-verify="required" lay-search="">
-                    <option value="${(dto.school)!}"></option>
+                <select name="school" value="${(dto.school)!}" lay-verify="required" lay-search="">
                     <option value="地球科学与资源学院">地球科学与资源学院</option>
                     <option value="工程技术学院">工程技术学院</option>
                     <option value="材料科学与工程学院">材料科学与工程学院</option>
@@ -72,8 +71,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">所属分团</label>
             <div class="layui-input-inline">
-                <select name="subgroup" lay-verify="required" lay-search="">
-                    <option value="${(dto.subgroup)!}" ></option>
+                <select name="subgroup" value="${(dto.subgroup)!}" lay-verify="required" lay-search="">
                     <option value="合唱团">合唱团</option>
                     <option value="话剧团">话剧团</option>
                     <option value="舞蹈团">舞蹈团</option>
@@ -99,7 +97,7 @@
     <div class="layui-form-item">
         <label class="layui-form-label">性别</label>
         <div class="layui-input-block">
-            <input type="radio" name="sex" value="0" title="男" checked="">
+            <input type="radio" name="sex" value="0" title="男">
             <input type="radio" name="sex" value="1" title="女">
         </div>
     </div>
@@ -107,7 +105,7 @@
         <label class="layui-form-label">特长生</label>
         <div class="layui-input-block">
             <input type="radio" name="specialtyType" value="1" title="是">
-            <input type="radio" name="specialtyType" value="0" title="否" checked="">
+            <input type="radio" name="specialtyType" value="0" title="否">
         </div>
     </div>
     <div class="layui-form-item">
@@ -136,6 +134,12 @@
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
+    <div>
+        <input type="hidden" value="${(dto.accountType)}" id="getAccountType">
+        <input type="hidden" value="${(dto.sex)}" id="getSex">
+        <input type="hidden" value="${(dto.specialtyType)}" id="getSpecialtyType">
+        <input type="hidden" value="${(dto.id)}" id="getId">
+    </div>
 </form>
 
 <script>
@@ -145,6 +149,47 @@
             , layer = layui.layer
             , layedit = layui.layedit
             , laydate = layui.laydate;
+
+        var AccountType = $('#getAccountType').val()
+        var Sex = $('#getSex').val()
+        var SpecialtyType = $('#getSpecialtyType').val()
+        var id = $('#getId').val()
+
+        $('[name=accountType]').each(function (i, item) {
+            if ($(item).val() == AccountType) {
+                //更改选中值
+                $(item).prop('checked', true);
+                //重新渲染
+                layui.use('form', function () {
+                    var form = layui.form;
+                    form.render();
+                });
+            }
+        });
+
+        $('[name=sex]').each(function (i, item) {
+            if ($(item).val() == Sex) {
+                //更改选中值
+                $(item).prop('checked', true);
+                //重新渲染
+                layui.use('form', function () {
+                    var form = layui.form;
+                    form.render();
+                });
+            }
+        });
+
+        $('[name=specialtyType]').each(function (i, item) {
+            if ($(item).val() == SpecialtyType) {
+                //更改选中值
+                $(item).prop('checked', true);
+                //重新渲染
+                layui.use('form', function () {
+                    var form = layui.form;
+                    form.render();
+                });
+            }
+        });
 
         form.render
         //日期
@@ -184,8 +229,8 @@
             });
 
             //发送ajax请求
-            var url = ctx + "/member/update/{id}";   //添加操作
-            $.put(url, data.field, function (result) {
+            var url = ctx + "/member/update";   //更新操作
+            $.get(url, data.field, function (result) {
                 //判断操作是否执行成功 200=成功
                 if (result.code == 200) {
                     //成功

@@ -36,9 +36,10 @@ public class ArtMemberController {
 
     @RequestMapping("/member/add")
     public Object addMember(HttpServletResponse response, HttpServletRequest request, ArtMemberDTO artMemberDTO) throws IOException {
-        String username = artMemberDTO.getStudentId();
-        artMemberDTO.setUsername(username);
-        int i = artMemberService.addMember(artMemberDTO);
+
+        /**
+         * 添加到用户表中，只保留账号密码，默认非管理员
+         */
         UserAuth auth = new UserAuth();
         boolean isAdmin = false;
         auth.setAdmin(isAdmin);
@@ -46,6 +47,15 @@ public class ArtMemberController {
         auth.setPassword(artMemberDTO.getPassword());
         int i1 = userAuthService.insertUser(auth);
 
+        /**
+         * 把用户名和学号一样
+         */
+        String username = artMemberDTO.getStudentId();
+        artMemberDTO.setUsername(username);
+        int i = artMemberService.addMember(artMemberDTO);
+        /**
+         * 返回状态消息
+         */
         if (i != 0) {
             return ResponseUtil.general_response("添加成功!");
         }
@@ -55,13 +65,16 @@ public class ArtMemberController {
     }
 
     // 更新
-    @GetMapping("/member/update/{id}")
-    public Object updateMember(@PathVariable("id") Long id, @RequestBody ArtMemberDTO artMemberDTO,HttpServletRequest request) {
-        ArtMemberDTO dto = artMemberService.selectById(id);
-        request.setAttribute("dto",dto);
+    @GetMapping("/member/update")
+    public Object updateMember( @RequestBody ArtMemberDTO artMemberDTO) {
+        Long id = artMemberDTO.getId();
         artMemberDTO.setId(id);
-        artMemberService.updateById(id, artMemberDTO);
-        return ResponseUtil.general_response("auth update success!");
+        int i = artMemberService.updateById(id, artMemberDTO);
+        if (i != 0 ) {
+            return ResponseUtil.general_response("更新成功!");
+        }
+        else
+            return  ResponseUtil.general_response("更新失败！");
     }
 
     // 删除

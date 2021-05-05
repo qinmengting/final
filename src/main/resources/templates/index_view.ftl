@@ -45,7 +45,7 @@
                     <dl class="layui-nav-child">
                         <dd><a href="/allmembers" target="admin-list">所有成员</a></dd>
                         <dd><a href="/addmember" target="admin-list">添加成员</a></dd>
-                        <dd><a href="/alltest" target="admin-list">跳转</a></dd>
+                        <dd><a href="/updatemember" target="admin-list">跳转</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

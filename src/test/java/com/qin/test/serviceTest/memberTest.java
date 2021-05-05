@@ -1,4 +1,4 @@
-package com.qin.test;
+package com.qin.test.serviceTest;
 
 import com.qin.common.DTO.ArtMemberDTO;
 import com.qin.common.VO.ArtMemberVO;
