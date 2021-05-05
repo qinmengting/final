@@ -5,14 +5,15 @@ import com.qin.common.DTO.ArtMemberDTO;
 import com.qin.common.VO.ArtMemberVO;
 import com.qin.common.VO.DataVO;
 import com.qin.common.base.BaseQuery;
+import com.qin.common.convert.ArtMemberConvertMapper;
 import com.qin.domain.ArtMember;
+import com.qin.domain.UserAuth;
 import com.qin.service.ArtMemberService;
+import com.qin.service.IUserAuthService;
+import com.qin.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -24,6 +25,9 @@ public class ArtMemberController {
     @Autowired
     private ArtMemberService artMemberService;
 
+    @Autowired
+    private IUserAuthService userAuthService;
+
     @RequestMapping("/member/queryAll")
     public Object queryAll(BaseQuery baseQuery) {
         DataVO<ArtMemberVO> all = artMemberService.findAll(baseQuery);
@@ -31,9 +35,39 @@ public class ArtMemberController {
     }
 
     @RequestMapping("/member/add")
-    public void addMember(HttpServletResponse response, HttpServletRequest request, @RequestBody ArtMemberDTO artMemberDTO) throws IOException {
+    public Object addMember(HttpServletResponse response, HttpServletRequest request, ArtMemberDTO artMemberDTO) throws IOException {
+        String username = artMemberDTO.getStudentId();
+        artMemberDTO.setUsername(username);
+        int i = artMemberService.addMember(artMemberDTO);
+        UserAuth auth = new UserAuth();
+        boolean isAdmin = false;
+        auth.setAdmin(isAdmin);
+        auth.setUsername(artMemberDTO.getUsername());
+        auth.setPassword(artMemberDTO.getPassword());
+        int i1 = userAuthService.insertUser(auth);
 
-        artMemberService.addMember(artMemberDTO);
-        request.getRequestDispatcher("/allmembers");
+        if (i != 0) {
+            return ResponseUtil.general_response("添加成功!");
+        }
+        else {
+            return ResponseUtil.general_response("添加失败！");
+        }
+    }
+
+    // 更新
+    @PutMapping("/member/update/{id}")
+    public Object updateMember(@PathVariable("id") Long id, @RequestBody ArtMemberDTO artMemberDTO,HttpServletRequest request) {
+        ArtMemberDTO dto = artMemberService.selectById(id);
+        request.setAttribute("dto",dto);
+        artMemberDTO.setId(id);
+        artMemberService.updateById(id, artMemberDTO);
+        return ResponseUtil.general_response("auth update success!");
+    }
+
+    // 删除
+    @DeleteMapping("/member/{id}")
+    public Object deleteMember(@PathVariable("id") Long id) {
+        artMemberService.deletedById(id);
+        return ResponseUtil.general_response("member delete success!");
     }
 }

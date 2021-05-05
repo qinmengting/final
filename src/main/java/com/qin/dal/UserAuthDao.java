@@ -23,4 +23,14 @@ public class UserAuthDao extends BaseRepository {
         List<UserAuth> list = selectAllByParams(map, namespace);
         return list == null ? null : list.get(0);
     }
+
+    public int insertUser(UserAuth userAuth) {
+        int i = insertSelective(userAuth, namespace);
+        return i;
+    }
+
+    public int updateUser(UserAuth userAuth) {
+        int i = updateByPrimaryKeySelective(userAuth.getUsername(), namespace);
+        return i;
+    }
 }

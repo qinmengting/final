@@ -1,8 +1,10 @@
 package com.qin.controller;
 
+import com.qin.common.DTO.ArtMemberDTO;
 import com.qin.domain.Department;
 import com.qin.domain.Position;
 import com.qin.domain.UserAuth;
+import com.qin.service.ArtMemberService;
 import com.qin.service.IDepartmentService;
 import com.qin.service.IPositionService;
 import com.qin.util.UserContext;
@@ -10,7 +12,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
+import javax.servlet.http.HttpServletRequest;
 import java.util.List;
 
 /**
@@ -23,6 +27,9 @@ public class RedirectController {
 
     @Autowired
     IDepartmentService departmentService;
+
+    @Autowired
+    private ArtMemberService artMemberService;
 
     @GetMapping("/login")
     public String toLogin() {
@@ -111,8 +118,10 @@ public class RedirectController {
         return "members/addmember_view";
     }
 
-    @GetMapping("/alltest")
-    public String toalltest(Model model) {
-        return "members/alltest_view";
+    @GetMapping("/updatemember/{id}")
+    public String toupdate(Model model, @PathVariable("id") Long id, HttpServletRequest request) {
+        ArtMemberDTO dto = artMemberService.selectById(id);
+        request.setAttribute("dto",dto);
+        return "members/updatemember_view";
     }
 }

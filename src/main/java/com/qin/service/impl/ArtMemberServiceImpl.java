@@ -79,7 +79,36 @@ public class ArtMemberServiceImpl implements ArtMemberService {
     @Override
     public int addMember(ArtMemberDTO artMemberDTO) {
         ArtMember artMember = ArtMemberConvertMapper.INSTANCES.DTOtoMember(artMemberDTO);
-        artMemberMapper.insert(artMember);
+        int i = artMemberMapper.insert(artMember);
+        return i;
+    }
+
+    @Override
+    public int update(ArtMemberDTO artMemberDTO) {
         return 0;
+    }
+
+    @Override
+    public int updateById(Long id, ArtMemberDTO artMemberDTO) {
+        artMemberDTO.setId(id);
+        ArtMember artMember = ArtMemberConvertMapper.INSTANCES.DTOtoMember(artMemberDTO);
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andIdEqualTo(id);
+        int i = artMemberMapper.updateByExample(artMember, ex);
+        return i;
+    }
+
+    @Override
+    public int deletedById(Long id) {
+        int i = artMemberMapper.deleteByPrimaryKey(id);
+        return i;
+    }
+
+    @Override
+    public ArtMemberDTO selectById(Long id) {
+        ArtMember artMember = artMemberMapper.selectByPrimaryKey(id);
+        ArtMemberDTO artMemberDTO= ArtMemberConvertMapper.INSTANCES.memberToDTO(artMember);
+        return artMemberDTO;
     }
 }

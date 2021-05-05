@@ -21,4 +21,17 @@ public class UserAuthServiceImpl extends BaseServiceImpl<UserAuth> implements IU
         UserContext.setCurrentUser(currentUser);
         return currentUser;
     }
+
+    @Override
+    public int insertUser(UserAuth userAuth) {
+        int i = dao.insertUser(userAuth);
+        return i;
+    }
+
+    @Override
+    public int updateUser(UserAuth userAuth) {
+        int i = dao.updateUser(userAuth);
+        return i;
+    }
+
 }

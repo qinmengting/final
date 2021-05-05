@@ -2,11 +2,13 @@ package com.qin.common.DTO;
 
 public class ArtMemberDTO {
 
+    private Long id;
+
     private String studentId = "";
 
-    private String username = studentId;
-
     private String password = "123456";
+
+    private String username = studentId;
 
     private Byte accountType;
 
@@ -18,9 +20,9 @@ public class ArtMemberDTO {
 
     private String subgroup;
 
-    private Byte sex;
-
     private String teacher;
+
+    private Byte sex;
 
     private Byte specialtyType;
 
@@ -30,6 +32,14 @@ public class ArtMemberDTO {
 
     private String remark;
 
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
     public String getStudentId() {
         return studentId;
     }
@@ -38,20 +48,20 @@ public class ArtMemberDTO {
         this.studentId = studentId;
     }
 
-    public String getUsername() {
-        return username;
-    }
-
-    public void setUsername(String username) {
-        this.username = username;
-    }
-
     public String getPassword() {
         return password;
     }
 
     public void setPassword(String password) {
         this.password = password;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Byte getAccountType() {
@@ -142,43 +152,45 @@ public class ArtMemberDTO {
         this.remark = remark;
     }
 
-    public ArtMemberDTO(String studentId, String username, String password, Byte accountType, String accountName, String mobile, String school, String subgroup, Byte sex, String teacher, Byte specialtyType, String joinTime, Byte inGroupTime, String remark) {
+    public ArtMemberDTO(Long id, String studentId, String password, String username, Byte accountType, String accountName, String mobile, String school, String subgroup, String teacher, Byte sex, Byte specialtyType, String joinTime, Byte inGroupTime, String remark) {
+        this.id = id;
         this.studentId = studentId;
-        this.username = username;
         this.password = password;
+        this.username = username;
         this.accountType = accountType;
         this.accountName = accountName;
         this.mobile = mobile;
         this.school = school;
         this.subgroup = subgroup;
-        this.sex = sex;
         this.teacher = teacher;
+        this.sex = sex;
         this.specialtyType = specialtyType;
         this.joinTime = joinTime;
         this.inGroupTime = inGroupTime;
         this.remark = remark;
     }
 
-    public ArtMemberDTO() {
-    }
-
     @Override
     public String toString() {
         return "ArtMemberDTO{" +
-                "studentId='" + studentId + '\'' +
-                ", username='" + username + '\'' +
+                "id=" + id +
+                ", studentId='" + studentId + '\'' +
                 ", password='" + password + '\'' +
+                ", username='" + username + '\'' +
                 ", accountType=" + accountType +
                 ", accountName='" + accountName + '\'' +
                 ", mobile='" + mobile + '\'' +
                 ", school='" + school + '\'' +
                 ", subgroup='" + subgroup + '\'' +
-                ", sex=" + sex +
                 ", teacher='" + teacher + '\'' +
+                ", sex=" + sex +
                 ", specialtyType=" + specialtyType +
                 ", joinTime='" + joinTime + '\'' +
                 ", inGroupTime=" + inGroupTime +
                 ", remark='" + remark + '\'' +
                 '}';
+    }
+
+    public ArtMemberDTO() {
     }
 }

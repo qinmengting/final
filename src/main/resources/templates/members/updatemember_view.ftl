@@ -14,20 +14,20 @@
     <div class="layui-form-item">
         <label class="layui-form-label">学号</label>
         <div class="layui-input-block">
-            <input type="text" name="studentId" lay-verify="required" lay-reqtext="学号是必填项，不能为空！" placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" name="studentId" value="${(dto.studentId)!}" lay-verify="required" lay-reqtext="学号是必填项，不能为空！" placeholder="请输入" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-inline">
-            <input type="password" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            <input type="password" name="password" value="${(dto.password)!}" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
         </div>
         <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">学生类型</label>
         <div class="layui-input-block">
-            <input type="radio" name="accountType" value="0" title="团长">
+            <input type="radio" name="accountType" value="0" title="团长" >
             <input type="radio" name="accountType" value="1" title="副团长">
             <input type="radio" name="accountType" value="2" title="团员" checked="">
         </div>
@@ -35,20 +35,20 @@
     <div class="layui-form-item">
         <label class="layui-form-label">姓名</label>
         <div class="layui-input-block">
-            <input type="text" name="accountName" lay-verify="required" lay-reqtext="姓名是必填项，不能为空！" placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" name="accountName" value="${(dto.accountName)!}" lay-verify="required" lay-reqtext="姓名是必填项，不能为空！" placeholder="请输入" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">手机号</label>
             <div class="layui-input-inline">
-                <input type="tel" name="mobile" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                <input type="tel" name="mobile" value="${(dto.mobile)!}" lay-verify="required|phone" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">所属学院</label>
             <div class="layui-input-inline">
-                <select name="school" lay-verify="required" lay-search="">
+                <select name="school" value="${(dto.school)!}" lay-verify="required" lay-search="">
                     <option value="">直接选择或搜索选择</option>
                     <option value="地球科学与资源学院">地球科学与资源学院</option>
                     <option value="工程技术学院">工程技术学院</option>
@@ -72,7 +72,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">所属分团</label>
             <div class="layui-input-inline">
-                <select name="subgroup" lay-verify="required" lay-search="">
+                <select name="subgroup" value="${(dto.subgroup)!}" lay-verify="required" lay-search="">
                     <option value="">直接选择或搜索选择</option>
                     <option value="合唱团">合唱团</option>
                     <option value="话剧团">话剧团</option>
@@ -92,7 +92,7 @@
         <div class="layui-inline">
             <label class="layui-form-label">指导老师</label>
             <div class="layui-input-block">
-                <input type="text" name="teacher" placeholder="请输入" autocomplete="off" class="layui-input">
+                <input type="text" name="teacher" value="${(dto.teacher)!}" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
         </div>
     </div>
@@ -114,20 +114,20 @@
         <div class="layui-inline">
             <label class="layui-form-label">入团时间</label>
             <div class="layui-input-inline">
-                <input type="text" name="joinTime" id="joinTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+                <input type="text" name="joinTime" value="${(dto.joinTime)!}" id="joinTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">在团学期数</label>
             <div class="layui-input-inline">
-                <input type="text" name="inGroupTime" lay-verify="required|number" autocomplete="off" class="layui-input">
+                <input type="text" name="inGroupTime" value="${(dto.inGroupTime)!}" lay-verify="required|number" autocomplete="off" class="layui-input">
             </div>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <textarea name="remark" placeholder="请输入内容" class="layui-textarea"></textarea>
+            <textarea name="remark" value="${(dto.remark)!}" placeholder="请输入内容" class="layui-textarea"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
@@ -184,8 +184,8 @@
             });
 
             //发送ajax请求
-            var url = ctx + "/member/add";   //添加操作
-            $.post(url,data.field,function (result){
+            var url = ctx + "/member/update/{id}";   //添加操作
+            $.put(url,data.field,function (result){
                 //判断操作是否执行成功 200=成功
                 if (result.code == 200){
                     //成功

@@ -112,7 +112,7 @@
 <script>
 
     var tableContent = [];
-    layui.use('table', function(){
+    layui.use('table', 'elment', function(){
 
         var table = layui.table;
         table.render({

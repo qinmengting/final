@@ -15,19 +15,19 @@
         <div class="layui-form-item" style="padding-right: 50px">
             <label class="layui-form-label">登录名</label>
             <div class="layui-input-block">
-                <input id="post-username" type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                <input id="post-username" type="text" name="title" required  lay-verify="required" placeholder="请输登录名" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="padding-right: 50px">
             <label class="layui-form-label">姓名</label>
             <div class="layui-input-block">
-                <input id="post-name" type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                <input id="post-name" type="text" name="title" required  lay-verify="required" placeholder="请输入姓名" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="padding-right: 50px">
             <label class="layui-form-label">密码</label>
             <div class="layui-input-block">
-                <input id="post-password" type="text" name="title" required  lay-verify="required" placeholder="请输入标题" autocomplete="off" class="layui-input">
+                <input id="post-password" type="text" name="title" required  lay-verify="required" placeholder="请输入密码" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-form-item" style="padding-right: 50px">
@@ -63,6 +63,7 @@
     layui.use(['table', 'form'], function(){
         var table = layui.table;
         var form = layui.form;
+        form.render()
         table.render({
             elem: '#auth-table',
             url:'/auths',
@@ -88,11 +89,15 @@
                     }},
                 {field:'password', width:150, title: '密码', edit: 'text'},
 
-                {field:'isAdmin', width:130, title: '是否为管理员', templet:function (row) {
-                        return [
-                            '<input type="checkbox" lay-filter="admin_switch" lay-skin="switch" lay-text="是|否" ',
-                            row.isAdmin == true ? "checked />" : " />"
-                        ].join('');
+                {field:'isAdmin', width:130, title: '是否为管理员', templet : function (row) {
+                    if (row.isAdmin){
+                        return '<input type="checkbox" lay-filter="isAdmin_switch" name="isAdmin_switch" id="isAdmin_switch" lay-skin="switch" lay-text="是|否" checked/>'
+                    }
+                    else return '<input type="checkbox" lay-filter="isAdmin_switch" name="isAdmin_switch" id="isAdmin_switch" lay-skin="switch" lay-text="是|否"/>'
+                        // return [
+                        //     '<input type="checkbox" lay-filter="admin_switch" lay-skin="switch" lay-text="是|否" ',
+                        //     row.isAdmin == true ? 'checked=""  >' : ' >'
+                        // ].join('');
                         /*return [
                             '<input type="checkbox" name="admin_switch" id="admin_switch" lay-skin="switch" lay-text="是|否"/>'
                         ].join('');*/
@@ -104,7 +109,7 @@
         });
 
         var temp;
-        form.on('switch(admin_switch)', function (obj) {
+        form.on('switch(isAdmin_switch)', function (obj) {
             temp = obj.elem.checked;
         });
 

@@ -56,7 +56,7 @@
                 data: {
                     username: $("#auth-username").val(),
                     password: $("#auth-password").val(),
-                    isAdmin: $("#auth-isAdmin").prop("checked"),
+                    isAdmin: $("input[type='checkbox']").prop("checked"),
                     createdTime: nowDate
                 },
                 success: function (res) {
@@ -64,7 +64,7 @@
                         callbackData = {
                             username: $("#auth-username").val(),
                             password: $("#auth-password").val(),
-                            isAdmin: $("#auth-isAdmin").prop("checked"),
+                            isAdmin: $("input[type='checkbox']").prop("checked"),
                             createdTime: nowDate
                         }
                         parent.layerCallback(callbackData);

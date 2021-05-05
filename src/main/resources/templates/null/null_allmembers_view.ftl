@@ -8,20 +8,16 @@
 </head>
 <body>
 <div class="layui-form-item" style="padding-right: 0px">
-
-<#--    原始容器-->
 <table class="layui-hide" id="test" lay-filter="test"></table>
-
-<#--    工具栏-->
 </div>
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
         <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
         <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
         <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
-        <button class="layui-btn layui-btn-sm" lay-event="add">添加成员信息</button>
+        <button class="layui-btn layui-btn-sm" lay-event="add">
+            <a href="/addmember" target="admin-list">添加成员信息</a></button>
     </div>
-
 </script>
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
@@ -40,6 +36,14 @@
             ,toolbar: '#toolbarDemo'
             ,title: '大学生艺术团成员信息表'
             ,totalRow: true
+            // ,page: { //支持传入 laypage 组件的所有参数（某些参数除外，如：jump/elem） - 详见文档
+            //     layout: ['limit', 'count', 'prev', 'page', 'next', 'skip'] //自定义分页布局
+            //     ,curr: 1 //设定初始在第 5 页
+            //     ,groups: 3 //只显示 1 个连续页码
+            //     ,first: false //不显示首页
+            //     ,last: false //不显示尾页
+            //
+            // }
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 // ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true, sort: true, totalRowText: '合计'}
@@ -68,11 +72,6 @@
         });
 
         //工具栏事件
-        //监听数据表格的头部工具栏
-        /**
-         * 格式：
-         *   table.on('toolbar(数据表格的lay-filter属性值)', function(obj){})
-         */
         table.on('toolbar(test)', function(obj){
             var checkStatus = table.checkStatus(obj.config.id);
             switch(obj.event){
@@ -87,29 +86,8 @@
                 case 'isAll':
                     layer.msg(checkStatus.isAll ? '全选': '未全选')
                     break;
-                case 'add':
-                    //添加操作
-                    openAddMember();
             };
         });
-
-        /**
-         * 打开添加成员信息窗口层
-         */
-        function openAddMember() {
-            //iframe层
-            //弹出层标题
-            var title = "<h2>成员管理-添加成员信息</h2>"
-            layer.open({
-                //类型
-                type: 2,
-                title: title,
-                //宽高
-                area: ['500px', '620px'],
-                //url地址
-                content: 'http://www.baidu.com' //iframe的url
-            });
-        }
 
         //监听工具条
         table.on('tool(test)', function(obj){

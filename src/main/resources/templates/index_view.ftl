@@ -80,7 +80,7 @@
 
         //监听导航点击
         element.on('nav(demo)', function(elem){
-            //console.log(elem)
+            // console.log(elem)
             layer.msg(elem.text());
         });
 

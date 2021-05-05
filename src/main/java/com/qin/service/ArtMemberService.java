@@ -32,5 +32,12 @@ public interface ArtMemberService {
 
     public int addMember(ArtMemberDTO artMemberDTO);
 
+    public int update(ArtMemberDTO artMemberDTO);
+
+    public int updateById(Long id, ArtMemberDTO artMemberDTO);
+
+    public int deletedById(Long id);
+
+    public ArtMemberDTO selectById(Long id);
 
 }
