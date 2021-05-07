@@ -124,4 +124,14 @@ public class RedirectController {
         request.setAttribute("dto",dto);
         return "members/updatemember_view";
     }
+
+    @GetMapping("/querymember")
+    public String toquery(Model model) {
+        return "members/querymember_view";
+    }
+
+    @GetMapping("/addattendance")
+    public String toAddAttendance(Model model) {
+        return "attendance/addattendance_view";
+    }
 }

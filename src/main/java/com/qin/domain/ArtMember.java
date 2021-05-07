@@ -40,6 +40,8 @@ public class ArtMember {
 
     private Byte inGroupTime;
 
+    private Integer attendanceCount;
+
     private String remark;
 
     private Date gmtCreate;
@@ -186,14 +188,14 @@ public class ArtMember {
         this.sex = sex;
     }
 
-    public ArtMember(Long id, String username, String password, Byte accountType, String accountName, String mobile, String studentId, String school, String subgroup, Byte sex, String teacher, Byte specialtyType, Date joinTime, Byte inGroupTime, String remark, Date gmtCreate, Date gmtModify) {
+    public ArtMember(Long id, String studentId, String username, String password, Byte accountType, String accountName, String mobile, String school, String subgroup, Byte sex, String teacher, Byte specialtyType, Date joinTime, Byte inGroupTime, Integer attendanceCount, String remark, Date gmtCreate, Date gmtModify) {
         this.id = id;
+        this.studentId = studentId;
         this.username = username;
         this.password = password;
         this.accountType = accountType;
         this.accountName = accountName;
         this.mobile = mobile;
-        this.studentId = studentId;
         this.school = school;
         this.subgroup = subgroup;
         this.sex = sex;
@@ -201,6 +203,7 @@ public class ArtMember {
         this.specialtyType = specialtyType;
         this.joinTime = joinTime;
         this.inGroupTime = inGroupTime;
+        this.attendanceCount = attendanceCount;
         this.remark = remark;
         this.gmtCreate = gmtCreate;
         this.gmtModify = gmtModify;
@@ -213,12 +216,12 @@ public class ArtMember {
     public String toString() {
         return "ArtMember{" +
                 "id=" + id +
+                ", studentId='" + studentId + '\'' +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", accountType=" + accountType +
                 ", accountName='" + accountName + '\'' +
                 ", mobile='" + mobile + '\'' +
-                ", studentId='" + studentId + '\'' +
                 ", school='" + school + '\'' +
                 ", subgroup='" + subgroup + '\'' +
                 ", sex=" + sex +
@@ -226,9 +229,18 @@ public class ArtMember {
                 ", specialtyType=" + specialtyType +
                 ", joinTime=" + joinTime +
                 ", inGroupTime=" + inGroupTime +
+                ", attendanceCount=" + attendanceCount +
                 ", remark='" + remark + '\'' +
                 ", gmtCreate=" + gmtCreate +
                 ", gmtModify=" + gmtModify +
                 '}';
+    }
+
+    public Integer getAttendanceCount() {
+        return attendanceCount;
+    }
+
+    public void setAttendanceCount(Integer attendanceCount) {
+        this.attendanceCount = attendanceCount;
     }
 }

@@ -30,4 +30,5 @@ public interface ArtMemberMapper {
     int updateByPrimaryKeySelective(ArtMember record);
 
     int updateByPrimaryKey(ArtMember record);
+
 }

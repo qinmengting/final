@@ -6,6 +6,7 @@ import com.qin.common.VO.ArtMemberVO;
 import com.qin.common.VO.DataVO;
 import com.qin.common.base.BaseQuery;
 import com.qin.common.convert.ArtMemberConvertMapper;
+import com.qin.common.query.ArtMemberQuery;
 import com.qin.domain.ArtMember;
 import com.qin.domain.UserAuth;
 import com.qin.service.ArtMemberService;
@@ -81,4 +82,11 @@ public class ArtMemberController {
         artMemberService.deletedById(id);
         return ResponseUtil.general_response("member delete success!");
     }
+
+    @RequestMapping("/member/queryBySelect")
+    public Object queryBySelect(ArtMemberQuery artMemberQuery){
+        DataVO<ArtMemberVO> vo = artMemberService.queryBySelect(artMemberQuery);
+        return vo;
+    }
+
 }

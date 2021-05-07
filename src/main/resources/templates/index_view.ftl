@@ -45,14 +45,14 @@
                     <dl class="layui-nav-child">
                         <dd><a href="/allmembers" target="admin-list">所有成员</a></dd>
                         <dd><a href="/addmember" target="admin-list">添加成员</a></dd>
-                        <dd><a href="/updatemember" target="admin-list">跳转</a></dd>
+                        <dd><a href="/querymember" target="admin-list">查询</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/position" target="admin-list">考勤管理</a>
+                    <a href="/addattendance" target="admin-list">考勤管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="javascript:;">选项1</a></dd>
-                        <dd><a href="javascript:;">选项2</a></dd>
+                        <dd><a href="/addattendance" target="admin-list">添加考勤</a></dd>
+                        <dd><a href="javascript:;">考勤记录查询</a></dd>
                         <dd><a href="/employee" target="admin-list">跳转</a></dd>
                     </dl>
                 </li>

@@ -21,8 +21,8 @@
         <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
         <button class="layui-btn layui-btn-sm" lay-event="add">添加成员信息</button>
     </div>
-
 </script>
+
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
     <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
@@ -43,11 +43,11 @@
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 // , sort: true, totalRowText: '合计'
-                ,{field:'id', title:'ID', width:80, fixed: 'left', unresize: true}
+                ,{field:'id', title:'ID', width:80, fixed: 'left',sort: true, unresize: true}
                 ,{field:'username', title:'用户名', width:120}
                 ,{field:'password', title:'密码', width:120}
                 ,{field:'accountName', title:'姓名', width:100}
-                ,{field:'accountType', title:'学生类型', width:80}
+                ,{field:'accountType', title:'学生类型', sort: true,width:80}
                 ,{field:'mobile', title:'手机号', width:150
                     // totalRow: true, edit: 'text', templet: function(res){
                     //     return '<em>'+ res.email +'</em>'}
@@ -56,7 +56,7 @@
                 ,{field:'studentId', title:'学号', width:120, sort: true}
                 ,{field:'subgroup', title:'所属分团', width:120, sort: true}
                 ,{field:'sex', title:'性别', width:100, sort: true}
-                ,{field:'teacher', title:'指导老师', sort: true}
+                ,{field:'teacher', title:'指导老师', width:100, sort: true}
                 ,{field:'specialtyType', title:'是否为特长生', width:100, sort: true}
                 ,{field:'joinTime', title:'入团时间', width:120 ,sort: true}
                 ,{field:'inGroupTime', title:'在团学期', width:120, sort: true}

@@ -1,11 +1,13 @@
 package com.qin.service.impl;
 
 import com.github.pagehelper.PageInfo;
+import com.mysql.jdbc.StringUtils;
 import com.qin.common.DTO.ArtMemberDTO;
 import com.qin.common.VO.ArtMemberVO;
 import com.qin.common.VO.DataVO;
 import com.qin.common.base.BaseQuery;
 import com.qin.common.convert.ArtMemberConvertMapper;
+import com.qin.common.query.ArtMemberQuery;
 import com.qin.dal.mapper.ArtMemberMapper;
 import com.qin.domain.ArtMember;
 import com.qin.domain.ArtMemberExample;
@@ -110,5 +112,72 @@ public class ArtMemberServiceImpl implements ArtMemberService {
         ArtMember artMember = artMemberMapper.selectByPrimaryKey(id);
         ArtMemberDTO artMemberDTO= ArtMemberConvertMapper.INSTANCES.memberToDTO(artMember);
         return artMemberDTO;
+    }
+
+    @Override
+    public DataVO<ArtMemberVO> queryBySelect(ArtMemberQuery artMemberQuery) {
+        PageHelper.startPage(artMemberQuery.getPage(),artMemberQuery.getLimit());
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        if (artMemberQuery.getAccountName() != null && artMemberQuery.getAccountName() != ""){
+            cr.andAccountNameEqualTo(artMemberQuery.getAccountName());
+        }
+        else if (artMemberQuery.getMobile() != null && artMemberQuery.getMobile() != ""){
+            cr.andMobileEqualTo(artMemberQuery.getMobile());
+        }
+        else if (artMemberQuery.getStudentId() != null && artMemberQuery.getStudentId() != ""){
+            cr.andStudentIdEqualTo(artMemberQuery.getStudentId());
+        }
+        else if (artMemberQuery.getSubgroup() != null && artMemberQuery.getSubgroup() != ""){
+            cr.andSubgroupEqualTo(artMemberQuery.getSubgroup());
+        }
+        else if (artMemberQuery.getSchool() != null && artMemberQuery.getSchool() != ""){
+            cr.andSchoolEqualTo(artMemberQuery.getSchool())
+;        }
+        else if (artMemberQuery.getTeacher() != null && artMemberQuery.getTeacher() != ""){
+            cr.andTeacherEqualTo(artMemberQuery.getTeacher());
+        }
+        long count = artMemberMapper.countByExample(ex);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        List<ArtMemberVO> vos = ArtMemberConvertMapper.INSTANCES.membersToVOs(members);
+        PageInfo pageInfo = new PageInfo(vos,artMemberQuery.getLimit());
+        DataVO dataVO = new DataVO();
+        dataVO.setCode(0);
+        dataVO.setMsg("");
+        dataVO.setCount(count);
+        dataVO.setData(pageInfo.getList());
+        return dataVO;
+    }
+
+    @Override
+    public int updateCount(List<ArtMemberVO> vos) {
+        for (ArtMemberVO vo : vos) {
+            ArtMemberExample ex = new ArtMemberExample();
+            ArtMemberExample.Criteria cr = ex.createCriteria();
+            cr.andStudentIdEqualTo(vo.getStudentId());
+
+            List<ArtMember> members = artMemberMapper.selectByExample(ex);
+            ArtMember member = members.get(0);
+            Integer count = member.getAttendanceCount() + 1;
+            member.setAttendanceCount(count);
+            int i = artMemberMapper.updateByExample(member, ex);
+        }
+        return 0;
+    }
+
+    @Override
+    public int deleteCount(List<ArtMemberVO> vos) {
+        for (ArtMemberVO vo : vos) {
+            ArtMemberExample ex = new ArtMemberExample();
+            ArtMemberExample.Criteria cr = ex.createCriteria();
+            cr.andStudentIdEqualTo(vo.getStudentId());
+
+            List<ArtMember> members = artMemberMapper.selectByExample(ex);
+            ArtMember member = members.get(0);
+            Integer count = member.getAttendanceCount() - 1;
+            member.setAttendanceCount(count);
+            int i = artMemberMapper.updateByExample(member, ex);
+        }
+        return 0;
     }
 }

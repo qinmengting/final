@@ -20,4 +20,6 @@ public interface ArtMemberConvertMapper {
 
     ArtMemberDTO memberToDTO(ArtMember artMember);
 
+    ArtMember VOToMember(ArtMemberVO artMemberVO);
+
 }

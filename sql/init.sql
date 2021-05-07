@@ -44,11 +44,12 @@ CREATE TABLE `art_user` (
   `gmt_modify` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
   PRIMARY KEY (`id`),
   KEY `idx_user_name` (`username`),
-  KEY `idx_mobile` (`mobile`)，
+  KEY `idx_mobile` (`mobile`),
   KEY `idx_student_ID` (`student_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
-
+ALTER TABLE art_member
+    ADD attendance_count int NOT NULL DEFAULT 0 COMMENT '考勤次数'
 
 ALTER TABLE art_member
 ADD subgroup char(20) NOT NULL DEFAULT ' ' COMMENT '所属分团'
@@ -120,14 +121,15 @@ CREATE TABLE `art_permission` (
 
 DROP TABLE IF EXISTS `attendance`;
 CREATE TABLE `attendance` (
-  `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
-  `username` varchar(63) NOT NULL DEFAULT ' ' COMMENT '用户名',
-  `student_ID` char(10) DEFAULT '' COMMENT '学号',
-  `gmt_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '考勤时间',
-  `gmt_modify` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
-  PRIMARY KEY (`id`),
-  KEY `idx_user_name` (`username`),
-  KEY `idx_student_ID` (`student_ID`)
+                              `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT COMMENT '主键',
+                              `account_ame` varchar(63) NOT NULL DEFAULT '' COMMENT '姓名',
+                              `student_ID` char(10) DEFAULT '' COMMENT '学号',
+                              `subgroup` varchar(63) DEFAULT '' COMMENT '所属分团',
+                              `gmt_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '考勤时间',
+                              `gmt_modify` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+                              PRIMARY KEY (`id`),
+                              KEY `idx_、subgroup` (`subgroup`),
+                              KEY `idx_student_ID` (`student_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
 
