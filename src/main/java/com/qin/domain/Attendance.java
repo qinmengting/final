@@ -1,10 +1,7 @@
 package com.qin.domain;
 
-import org.springframework.stereotype.Component;
-
 import java.util.Date;
 
-@Component
 public class Attendance {
     private Long id;
 
@@ -64,17 +61,5 @@ public class Attendance {
 
     public void setGmtModify(Date gmtModify) {
         this.gmtModify = gmtModify;
-    }
-
-    public Attendance(Long id, String accountName, String studentId, String subgroup, Date gmtCreate, Date gmtModify) {
-        this.id = id;
-        this.accountName = accountName;
-        this.studentId = studentId;
-        this.subgroup = subgroup;
-        this.gmtCreate = gmtCreate;
-        this.gmtModify = gmtModify;
-    }
-
-    public Attendance() {
     }
 }

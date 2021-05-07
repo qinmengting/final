@@ -1,12 +1,13 @@
 package com.qin.service.impl;
 
+import com.github.pagehelper.PageHelper;
+import com.github.pagehelper.PageInfo;
 import com.qin.common.VO.ArtMemberVO;
-import com.qin.common.convert.ArtMemberConvertMapper;
-import com.qin.dal.mapper.ArtMemberMapper;
+import com.qin.common.VO.DataVO;
+import com.qin.common.query.AttendanceQuery;
 import com.qin.dal.mapper.AttendanceMapper;
-import com.qin.domain.ArtMember;
-import com.qin.domain.ArtMemberExample;
 import com.qin.domain.Attendance;
+import com.qin.domain.AttendanceExample;
 import com.qin.service.ArtMemberService;
 import com.qin.service.AttendanceService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -45,6 +46,30 @@ public class AttendanceServiceImpl implements AttendanceService {
         for (Attendance attendance : list) {
             attendanceMapper.insert(attendance);
         }
+    }
+
+    @Override
+    public DataVO<Attendance> queryByParams(AttendanceQuery attendanceQuery) {
+        PageHelper.startPage(attendanceQuery.getPage(),attendanceQuery.getLimit());
+        AttendanceExample ex = new AttendanceExample();
+        AttendanceExample.Criteria cr = ex.createCriteria();
+        if (attendanceQuery.getAccountName() !=null && attendanceQuery.getAccountName() != ""){
+            cr.andAccountNameEqualTo(attendanceQuery.getAccountName());
+        }
+        else if (attendanceQuery.getStudentId() !=null && attendanceQuery.getStudentId() != ""){
+            cr.andStudentIdEqualTo(attendanceQuery.getStudentId());
+        }
+        else if (attendanceQuery.getSubgroup() !=null && attendanceQuery.getSubgroup() != ""){
+            cr.andSubgroupEqualTo(attendanceQuery.getSubgroup());
+        }
+        List<Attendance> attendances = attendanceMapper.selectByExample(ex);
+        PageInfo<Object> pageInfo = new PageInfo(attendances,attendanceQuery.getLimit());
+        DataVO dataVO = new DataVO();
+        dataVO.setCode(0);
+        dataVO.setMsg("");
+        dataVO.setCount(attendanceMapper.countByExample(ex));
+        dataVO.setData(pageInfo.getList());
+        return dataVO;
     }
 
     public AttendanceMapper getAttendanceMapper() {

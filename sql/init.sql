@@ -132,6 +132,8 @@ CREATE TABLE `attendance` (
                               KEY `idx_student_ID` (`student_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
+ALTER TABLE attendance
+ADD `remark` varchar(255) DEFAULT NULL COMMENT '备注',
 
 
 

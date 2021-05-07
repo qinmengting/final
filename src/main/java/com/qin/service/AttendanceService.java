@@ -1,6 +1,8 @@
 package com.qin.service;
 
 import com.qin.common.VO.ArtMemberVO;
+import com.qin.common.VO.DataVO;
+import com.qin.common.query.AttendanceQuery;
 import com.qin.domain.Attendance;
 
 import java.util.List;
@@ -18,4 +20,6 @@ public interface AttendanceService {
      * @param list
      */
     public void addList(List<Attendance> list);
+
+    public DataVO<Attendance> queryByParams(AttendanceQuery attendanceQuery);
 }

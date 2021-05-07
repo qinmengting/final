@@ -52,8 +52,8 @@
                     <a href="/addattendance" target="admin-list">考勤管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/addattendance" target="admin-list">添加考勤</a></dd>
-                        <dd><a href="javascript:;">考勤记录查询</a></dd>
-                        <dd><a href="/employee" target="admin-list">跳转</a></dd>
+                        <dd><a href="/queryattendance" target="admin-list">考勤记录查询</a></dd>
+                        <dd><a href="/employee" target="admin-list">考勤记录统计</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item"><a href="/performance" target="admin-list">绩效管理</a></li>

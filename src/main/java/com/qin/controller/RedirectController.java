@@ -134,4 +134,9 @@ public class RedirectController {
     public String toAddAttendance(Model model) {
         return "attendance/addattendance_view";
     }
+
+    @GetMapping("/queryattendance")
+    public String toQueryAttendance(Model model) {
+        return "attendance/queryattendance_view";
+    }
 }

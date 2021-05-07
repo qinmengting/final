@@ -1,6 +1,5 @@
 package com.qin.dal.mapper;
 
-import com.qin.domain.ArtMemberExample;
 import com.qin.domain.Attendance;
 import com.qin.domain.AttendanceExample;
 import java.util.List;
@@ -20,7 +19,7 @@ public interface AttendanceMapper {
 
     int insertSelective(Attendance record);
 
-    List<Attendance> selectByExample(ArtMemberExample example);
+    List<Attendance> selectByExample(AttendanceExample example);
 
     Attendance selectByPrimaryKey(Long id);
 
