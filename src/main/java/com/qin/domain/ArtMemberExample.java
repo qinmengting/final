@@ -1025,6 +1025,66 @@ public class ArtMemberExample {
             return (Criteria) this;
         }
 
+        public Criteria andAttendanceCountIsNull() {
+            addCriterion("attendance_count is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceCountIsNotNull() {
+            addCriterion("attendance_count is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceCountEqualTo(Integer value) {
+            addCriterion("attendance_count =", value, "attendanceCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceCountNotEqualTo(Integer value) {
+            addCriterion("attendance_count <>", value, "attendanceCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceCountGreaterThan(Integer value) {
+            addCriterion("attendance_count >", value, "attendanceCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("attendance_count >=", value, "attendanceCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceCountLessThan(Integer value) {
+            addCriterion("attendance_count <", value, "attendanceCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceCountLessThanOrEqualTo(Integer value) {
+            addCriterion("attendance_count <=", value, "attendanceCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceCountIn(List<Integer> values) {
+            addCriterion("attendance_count in", values, "attendanceCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceCountNotIn(List<Integer> values) {
+            addCriterion("attendance_count not in", values, "attendanceCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceCountBetween(Integer value1, Integer value2) {
+            addCriterion("attendance_count between", value1, value2, "attendanceCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("attendance_count not between", value1, value2, "attendanceCount");
+            return (Criteria) this;
+        }
+
         public Criteria andRemarkIsNull() {
             addCriterion("remark is null");
             return (Criteria) this;
@@ -1215,63 +1275,303 @@ public class ArtMemberExample {
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountIsNull() {
-            addCriterion("attendance_count is null");
+        public Criteria andPerformanceCountIsNull() {
+            addCriterion("performance_count is null");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountIsNotNull() {
-            addCriterion("attendance_count is not null");
+        public Criteria andPerformanceCountIsNotNull() {
+            addCriterion("performance_count is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountEqualTo(Integer value) {
-            addCriterion("attendance_count =", value, "attendanceCount");
+        public Criteria andPerformanceCountEqualTo(Integer value) {
+            addCriterion("performance_count =", value, "performanceCount");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountNotEqualTo(Integer value) {
-            addCriterion("attendance_count <>", value, "attendanceCount");
+        public Criteria andPerformanceCountNotEqualTo(Integer value) {
+            addCriterion("performance_count <>", value, "performanceCount");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountGreaterThan(Integer value) {
-            addCriterion("attendance_count >", value, "attendanceCount");
+        public Criteria andPerformanceCountGreaterThan(Integer value) {
+            addCriterion("performance_count >", value, "performanceCount");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountGreaterThanOrEqualTo(Integer value) {
-            addCriterion("attendance_count >=", value, "attendanceCount");
+        public Criteria andPerformanceCountGreaterThanOrEqualTo(Integer value) {
+            addCriterion("performance_count >=", value, "performanceCount");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountLessThan(Integer value) {
-            addCriterion("attendance_count <", value, "attendanceCount");
+        public Criteria andPerformanceCountLessThan(Integer value) {
+            addCriterion("performance_count <", value, "performanceCount");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountLessThanOrEqualTo(Integer value) {
-            addCriterion("attendance_count <=", value, "attendanceCount");
+        public Criteria andPerformanceCountLessThanOrEqualTo(Integer value) {
+            addCriterion("performance_count <=", value, "performanceCount");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountIn(List<Integer> values) {
-            addCriterion("attendance_count in", values, "attendanceCount");
+        public Criteria andPerformanceCountIn(List<Integer> values) {
+            addCriterion("performance_count in", values, "performanceCount");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountNotIn(List<Integer> values) {
-            addCriterion("attendance_count not in", values, "attendanceCount");
+        public Criteria andPerformanceCountNotIn(List<Integer> values) {
+            addCriterion("performance_count not in", values, "performanceCount");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountBetween(Integer value1, Integer value2) {
-            addCriterion("attendance_count between", value1, value2, "attendanceCount");
+        public Criteria andPerformanceCountBetween(Integer value1, Integer value2) {
+            addCriterion("performance_count between", value1, value2, "performanceCount");
             return (Criteria) this;
         }
 
-        public Criteria andAttendanceCountNotBetween(Integer value1, Integer value2) {
-            addCriterion("attendance_count not between", value1, value2, "attendanceCount");
+        public Criteria andPerformanceCountNotBetween(Integer value1, Integer value2) {
+            addCriterion("performance_count not between", value1, value2, "performanceCount");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreIsNull() {
+            addCriterion("attendance_score is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreIsNotNull() {
+            addCriterion("attendance_score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreEqualTo(Double value) {
+            addCriterion("attendance_score =", value, "attendanceScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreNotEqualTo(Double value) {
+            addCriterion("attendance_score <>", value, "attendanceScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreGreaterThan(Double value) {
+            addCriterion("attendance_score >", value, "attendanceScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreGreaterThanOrEqualTo(Double value) {
+            addCriterion("attendance_score >=", value, "attendanceScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreLessThan(Double value) {
+            addCriterion("attendance_score <", value, "attendanceScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreLessThanOrEqualTo(Double value) {
+            addCriterion("attendance_score <=", value, "attendanceScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreIn(List<Double> values) {
+            addCriterion("attendance_score in", values, "attendanceScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreNotIn(List<Double> values) {
+            addCriterion("attendance_score not in", values, "attendanceScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreBetween(Double value1, Double value2) {
+            addCriterion("attendance_score between", value1, value2, "attendanceScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andAttendanceScoreNotBetween(Double value1, Double value2) {
+            addCriterion("attendance_score not between", value1, value2, "attendanceScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreIsNull() {
+            addCriterion("usually_score is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreIsNotNull() {
+            addCriterion("usually_score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreEqualTo(Double value) {
+            addCriterion("usually_score =", value, "usuallyScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreNotEqualTo(Double value) {
+            addCriterion("usually_score <>", value, "usuallyScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreGreaterThan(Double value) {
+            addCriterion("usually_score >", value, "usuallyScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreGreaterThanOrEqualTo(Double value) {
+            addCriterion("usually_score >=", value, "usuallyScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreLessThan(Double value) {
+            addCriterion("usually_score <", value, "usuallyScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreLessThanOrEqualTo(Double value) {
+            addCriterion("usually_score <=", value, "usuallyScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreIn(List<Double> values) {
+            addCriterion("usually_score in", values, "usuallyScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreNotIn(List<Double> values) {
+            addCriterion("usually_score not in", values, "usuallyScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreBetween(Double value1, Double value2) {
+            addCriterion("usually_score between", value1, value2, "usuallyScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andUsuallyScoreNotBetween(Double value1, Double value2) {
+            addCriterion("usually_score not between", value1, value2, "usuallyScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreIsNull() {
+            addCriterion("work_score is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreIsNotNull() {
+            addCriterion("work_score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreEqualTo(Double value) {
+            addCriterion("work_score =", value, "workScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreNotEqualTo(Double value) {
+            addCriterion("work_score <>", value, "workScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreGreaterThan(Double value) {
+            addCriterion("work_score >", value, "workScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreGreaterThanOrEqualTo(Double value) {
+            addCriterion("work_score >=", value, "workScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreLessThan(Double value) {
+            addCriterion("work_score <", value, "workScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreLessThanOrEqualTo(Double value) {
+            addCriterion("work_score <=", value, "workScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreIn(List<Double> values) {
+            addCriterion("work_score in", values, "workScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreNotIn(List<Double> values) {
+            addCriterion("work_score not in", values, "workScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreBetween(Double value1, Double value2) {
+            addCriterion("work_score between", value1, value2, "workScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkScoreNotBetween(Double value1, Double value2) {
+            addCriterion("work_score not between", value1, value2, "workScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreIsNull() {
+            addCriterion("total_score is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreIsNotNull() {
+            addCriterion("total_score is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreEqualTo(Double value) {
+            addCriterion("total_score =", value, "totalScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreNotEqualTo(Double value) {
+            addCriterion("total_score <>", value, "totalScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreGreaterThan(Double value) {
+            addCriterion("total_score >", value, "totalScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreGreaterThanOrEqualTo(Double value) {
+            addCriterion("total_score >=", value, "totalScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreLessThan(Double value) {
+            addCriterion("total_score <", value, "totalScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreLessThanOrEqualTo(Double value) {
+            addCriterion("total_score <=", value, "totalScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreIn(List<Double> values) {
+            addCriterion("total_score in", values, "totalScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreNotIn(List<Double> values) {
+            addCriterion("total_score not in", values, "totalScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreBetween(Double value1, Double value2) {
+            addCriterion("total_score between", value1, value2, "totalScore");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalScoreNotBetween(Double value1, Double value2) {
+            addCriterion("total_score not between", value1, value2, "totalScore");
             return (Criteria) this;
         }
     }

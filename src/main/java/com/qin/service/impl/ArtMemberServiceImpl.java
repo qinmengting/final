@@ -1,7 +1,6 @@
 package com.qin.service.impl;
 
 import com.github.pagehelper.PageInfo;
-import com.mysql.jdbc.StringUtils;
 import com.qin.common.DTO.ArtMemberDTO;
 import com.qin.common.VO.ArtMemberVO;
 import com.qin.common.VO.DataVO;
@@ -81,6 +80,12 @@ public class ArtMemberServiceImpl implements ArtMemberService {
     @Override
     public int addMember(ArtMemberDTO artMemberDTO) {
         ArtMember artMember = ArtMemberConvertMapper.INSTANCES.DTOtoMember(artMemberDTO);
+        artMember.setPerformanceCount(0);
+        artMember.setTotalScore(0.0);
+        artMember.setWorkScore(0.0);
+        artMember.setUsuallyScore(0.0);
+        artMember.setAttendanceScore(0.0);
+        artMember.setAttendanceCount(0);
         int i = artMemberMapper.insert(artMember);
         return i;
     }
@@ -92,12 +97,59 @@ public class ArtMemberServiceImpl implements ArtMemberService {
 
     @Override
     public int updateById(Long id, ArtMemberDTO artMemberDTO) {
+        //找到需要更新的成员
+        ArtMember member = artMemberMapper.selectByPrimaryKey(id);
+
+        //讲dto转换为member
         artMemberDTO.setId(id);
+        String studentId = artMemberDTO.getStudentId();
         ArtMember artMember = ArtMemberConvertMapper.INSTANCES.DTOtoMember(artMemberDTO);
+        artMember.setUsername(studentId);
+
+        if (artMember.getStudentId()!=null && artMember.getStudentId()!=""){
+            member.setStudentId(artMember.getStudentId());
+        }
+        else if (artMember.getPassword()!=null && artMember.getPassword()!=""){
+            member.setPassword(artMember.getPassword());
+        }
+        else if (artMember.getAccountType()!=null){
+            member.setAccountType(artMember.getAccountType());
+        }
+        else if (artMember.getAccountName()!=null && artMember.getAccountName()!=""){
+            member.setAccountName(artMember.getAccountName());
+        }
+        else if (artMember.getMobile()!=null && artMember.getMobile()!=""){
+            member.setMobile(artMember.getMobile());
+        }
+        else if (artMember.getSchool()!=null && artMember.getSchool()!=""){
+            member.setSchool(artMember.getSchool());
+        }
+        else if (artMember.getSubgroup()!=null && artMember.getSubgroup()!=""){
+            member.setSubgroup(artMember.getSubgroup());
+        }
+        else if (artMember.getTeacher()!=null && artMember.getTeacher()!=""){
+            member.setTeacher(artMember.getTeacher());
+        }
+        else if (artMember.getSex()!=null){
+            member.setSex(artMember.getSex());
+        }
+        else if (artMember.getSpecialtyType()!=null){
+            member.setSpecialtyType(artMember.getSpecialtyType());
+        }
+        else if (artMember.getJoinTime()!=null){
+            member.setJoinTime(artMember.getJoinTime());
+        }
+        else if (artMember.getInGroupTime()!=null){
+            member.setInGroupTime(artMember.getInGroupTime());
+        }
+        else if (artMember.getRemark()!=null && artMember.getRemark()!=""){
+            member.setRemark(artMember.getRemark());
+        }
+
         ArtMemberExample ex = new ArtMemberExample();
         ArtMemberExample.Criteria cr = ex.createCriteria();
         cr.andIdEqualTo(id);
-        int i = artMemberMapper.updateByExample(artMember, ex);
+        int i = artMemberMapper.updateByExample(member, ex);
         return i;
     }
 
@@ -115,10 +167,12 @@ public class ArtMemberServiceImpl implements ArtMemberService {
     }
 
     @Override
-    public DataVO<ArtMemberVO> queryBySelect(ArtMemberQuery artMemberQuery) {
+    public DataVO<ArtMember> queryBySelect(ArtMemberQuery artMemberQuery) {
         PageHelper.startPage(artMemberQuery.getPage(),artMemberQuery.getLimit());
+
         ArtMemberExample ex = new ArtMemberExample();
         ArtMemberExample.Criteria cr = ex.createCriteria();
+
         if (artMemberQuery.getAccountName() != null && artMemberQuery.getAccountName() != ""){
             cr.andAccountNameEqualTo(artMemberQuery.getAccountName());
         }
@@ -137,14 +191,17 @@ public class ArtMemberServiceImpl implements ArtMemberService {
         else if (artMemberQuery.getTeacher() != null && artMemberQuery.getTeacher() != ""){
             cr.andTeacherEqualTo(artMemberQuery.getTeacher());
         }
-        long count = artMemberMapper.countByExample(ex);
+//        long count = artMemberMapper.countByExample(ex);
+
         List<ArtMember> members = artMemberMapper.selectByExample(ex);
-        List<ArtMemberVO> vos = ArtMemberConvertMapper.INSTANCES.membersToVOs(members);
-        PageInfo pageInfo = new PageInfo(vos,artMemberQuery.getLimit());
+
+//        List<ArtMemberVO> vos = ArtMemberConvertMapper.INSTANCES.membersToVOs(members);
+
+        PageInfo<Object> pageInfo = new PageInfo(members,artMemberQuery.getLimit());
         DataVO dataVO = new DataVO();
         dataVO.setCode(0);
         dataVO.setMsg("");
-        dataVO.setCount(count);
+        dataVO.setCount(artMemberMapper.countByExample(ex));
         dataVO.setData(pageInfo.getList());
         return dataVO;
     }
@@ -179,5 +236,32 @@ public class ArtMemberServiceImpl implements ArtMemberService {
             int i = artMemberMapper.updateByExample(member, ex);
         }
         return 0;
+    }
+
+    @Override
+    public int deleteCountByStudentId(String studentID) {
+        //找到对应的成员
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andStudentIdEqualTo(studentID);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        ArtMember member = members.get(0);
+        //更新
+        Integer count = member.getAttendanceCount() - 1;
+        member.setAttendanceCount(count);
+        System.out.println(member);
+        int i = artMemberMapper.updateByExample(member,ex);
+        return 0;
+    }
+
+    @Override
+    public int updateAttendanceCount(Long id,ArtMember artMember) {
+        ArtMember member = artMemberMapper.selectByPrimaryKey(id);
+        member.setAttendanceCount(artMember.getAttendanceCount());
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andIdEqualTo(id);
+        int i = artMemberMapper.updateByExample(member, ex);
+        return i;
     }
 }

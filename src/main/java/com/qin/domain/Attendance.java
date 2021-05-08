@@ -1,7 +1,12 @@
 package com.qin.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.stereotype.Component;
+
 import java.util.Date;
 
+@Component
 public class Attendance {
     private Long id;
 
@@ -10,6 +15,8 @@ public class Attendance {
     private String studentId;
 
     private String subgroup;
+
+    private String remark;
 
     private Date gmtCreate;
 
@@ -47,10 +54,22 @@ public class Attendance {
         this.subgroup = subgroup == null ? null : subgroup.trim();
     }
 
+    public String getRemark() {
+        return remark;
+    }
+
+    public void setRemark(String remark) {
+        this.remark = remark == null ? null : remark.trim();
+    }
+
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     public Date getGmtCreate() {
         return gmtCreate;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone="GMT+8")
     public void setGmtCreate(Date gmtCreate) {
         this.gmtCreate = gmtCreate;
     }

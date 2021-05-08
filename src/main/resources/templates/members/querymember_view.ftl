@@ -41,6 +41,7 @@
                                     <option value="室内乐团">室内乐团</option>
                                     <option value="主持部">主持部</option>
                                     <option value="礼仪部">礼仪部</option>
+                                    <option value="造型设计部">造型设计部</option>
                                     <option value="办公室">办公室</option>
                                     <option value="演出中心">演出中心</option>
                                     <option value="训练管理">训练管理</option>
@@ -133,7 +134,16 @@
                 ,{field:'username', title:'用户名', width:120}
                 ,{field:'password', title:'密码', width:120}
                 ,{field:'accountName', title:'姓名', width:100}
-                ,{field:'accountType', title:'学生类型',sort: true, width:80}
+                ,{field:'accountType', title:'学生类型', templet:function (res) {
+                    if (res.accountType == 0)
+                        return "团长";
+                    else if (res.accountType == 1)
+                        return  "副团长";
+                    else if (res.accountType == 2)
+                        return "团员"
+                        },
+                        sort: true, width:120}
+                ,{field:'studentId', title:'学号',sort: true, width:120}
                 ,{field:'mobile', title:'手机号', width:150
                     // totalRow: true, edit: 'text', templet: function(res){
                     //     return '<em>'+ res.email +'</em>'}
@@ -143,9 +153,21 @@
                 ,{field:'subgroup', title:'所属分团', width:120, sort: true}
                 ,{field:'sex', title:'性别', width:100, sort: true}
                 ,{field:'teacher', title:'指导老师', width:100, sort: true}
-                ,{field:'specialtyType', title:'是否为特长生', width:100, sort: true}
+                ,{field:'specialtyType', title:'是否为特长生',  templet:function (res) {
+                        if (res.specialtyType == 0)
+                            return "否";
+                        else if (res.specialtyType == 1)
+                            return  "是";
+                    },
+                    width:100, sort: true}
                 ,{field:'joinTime', title:'入团时间', width:120 ,sort: true}
-                ,{field:'inGroupTime', title:'在团学期', width:120, sort: true}
+                ,{field:'inGroupTime', title:'在团学期',templet:function (res) {
+                        if (res.inGroupTime < 4)
+                            return "<a style='color: red'>"+res.inGroupTime+"</a>";
+                        else if (res.inGroupTime >= 4 )
+                            return  "<a style='color: forestgreen'>"+res.inGroupTime+"</a>";
+                    },
+                    width:120, sort: true}
                 ,{field:'remark', title:'备注', width:120}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
             ]]
@@ -170,14 +192,6 @@
                 }
             })
         })
-        // form.on('submit(demo1)',function (data){
-        //     var index = layer.msg("正在查询，请稍候...", {
-        //         icon: 16,   //图标
-        //         time: false,  //不关闭
-        //         shade: 0.8  //设置遮罩的透明度
-        //     });
-        //
-        // })
 
         //工具栏事件
         //监听数据表格的头部工具栏

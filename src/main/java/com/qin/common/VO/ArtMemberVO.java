@@ -37,6 +37,66 @@ public class ArtMemberVO {
 
     private String remark;
 
+    private Integer attendanceCount;
+
+    private Integer performanceCount;
+
+    private Double attendanceScore;
+
+    private Double usuallyScore;
+
+    private Double workScore;
+
+    private Double totalScore;
+
+    public Integer getAttendanceCount() {
+        return attendanceCount;
+    }
+
+    public void setAttendanceCount(Integer attendanceCount) {
+        this.attendanceCount = attendanceCount;
+    }
+
+    public Integer getPerformanceCount() {
+        return performanceCount;
+    }
+
+    public void setPerformanceCount(Integer performanceCount) {
+        this.performanceCount = performanceCount;
+    }
+
+    public Double getAttendanceScore() {
+        return attendanceScore;
+    }
+
+    public void setAttendanceScore(Double attendanceScore) {
+        this.attendanceScore = attendanceScore;
+    }
+
+    public Double getUsuallyScore() {
+        return usuallyScore;
+    }
+
+    public void setUsuallyScore(Double usuallyScore) {
+        this.usuallyScore = usuallyScore;
+    }
+
+    public Double getWorkScore() {
+        return workScore;
+    }
+
+    public void setWorkScore(Double workScore) {
+        this.workScore = workScore;
+    }
+
+    public Double getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(Double totalScore) {
+        this.totalScore = totalScore;
+    }
+
     public Long getId() {
         return id;
     }
@@ -164,7 +224,7 @@ public class ArtMemberVO {
     public ArtMemberVO() {
     }
 
-    public ArtMemberVO(Long id, String username, String password, String accountName, String accountType, String mobile, String studentId, String school, String subgroup, String sex, String teacher, String specialtyType, Date joinTime, Byte inGroupTime, String remark) {
+    public ArtMemberVO(Long id, String username, String password, String accountName, String accountType, String mobile, String studentId, String school, String subgroup, String sex, String teacher, String specialtyType, Date joinTime, Byte inGroupTime, String remark, Integer attendanceCount, Integer performanceCount, Double attendanceScore, Double usuallyScore, Double workScore, Double totalScore) {
         this.id = id;
         this.username = username;
         this.password = password;
@@ -180,6 +240,12 @@ public class ArtMemberVO {
         this.joinTime = joinTime;
         this.inGroupTime = inGroupTime;
         this.remark = remark;
+        this.attendanceCount = attendanceCount;
+        this.performanceCount = performanceCount;
+        this.attendanceScore = attendanceScore;
+        this.usuallyScore = usuallyScore;
+        this.workScore = workScore;
+        this.totalScore = totalScore;
     }
 
     @Override
@@ -200,6 +266,12 @@ public class ArtMemberVO {
                 ", joinTime=" + joinTime +
                 ", inGroupTime=" + inGroupTime +
                 ", remark='" + remark + '\'' +
+                ", attendanceCount=" + attendanceCount +
+                ", performanceCount=" + performanceCount +
+                ", attendanceScore=" + attendanceScore +
+                ", usuallyScore=" + usuallyScore +
+                ", workScore=" + workScore +
+                ", totalScore=" + totalScore +
                 '}';
     }
 }

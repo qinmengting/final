@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.qin.dal.mapper.AttendanceMapper">
-  <resultMap id="BaseResultMap" type="com.qin.domain.Attendance">
+<mapper namespace="com.qin.dal.mapper.ScoreProportionMapper">
+  <resultMap id="BaseResultMap" type="com.qin.domain.ScoreProportion">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="account_name" jdbcType="VARCHAR" property="accountName" />
-    <result column="student_ID" jdbcType="CHAR" property="studentId" />
-    <result column="subgroup" jdbcType="VARCHAR" property="subgroup" />
+    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+    <result column="attendance_prop" jdbcType="DOUBLE" property="attendanceProp" />
+    <result column="usually_prop" jdbcType="DOUBLE" property="usuallyProp" />
+    <result column="work_prop" jdbcType="DOUBLE" property="workProp" />
+    <result column="total_attendance" jdbcType="INTEGER" property="totalAttendance" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
@@ -69,15 +71,16 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, account_name, student_ID, subgroup, remark, gmt_create, gmt_modify
+    id, group_name, attendance_prop, usually_prop, work_prop, total_attendance, remark, 
+    gmt_create, gmt_modify
   </sql>
-  <select id="selectByExample" parameterType="com.qin.domain.AttendanceExample" resultMap="BaseResultMap">
+  <select id="selectByExample" parameterType="com.qin.domain.ScoreProportionExample" resultMap="BaseResultMap">
     select
     <if test="distinct">
       distinct
     </if>
     <include refid="Base_Column_List" />
-    from attendance
+    from score_proportion
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
@@ -88,41 +91,49 @@
   <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
     select 
     <include refid="Base_Column_List" />
-    from attendance
+    from score_proportion
     where id = #{id,jdbcType=BIGINT}
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
-    delete from attendance
+    delete from score_proportion
     where id = #{id,jdbcType=BIGINT}
   </delete>
-  <delete id="deleteByExample" parameterType="com.qin.domain.AttendanceExample">
-    delete from attendance
+  <delete id="deleteByExample" parameterType="com.qin.domain.ScoreProportionExample">
+    delete from score_proportion
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </delete>
-  <insert id="insert" parameterType="com.qin.domain.Attendance">
-    insert into attendance (id, account_name, student_ID, 
-      subgroup, remark, gmt_create, 
-      gmt_modify)
-    values (#{id,jdbcType=BIGINT}, #{accountName,jdbcType=VARCHAR}, #{studentId,jdbcType=CHAR}, 
-      #{subgroup,jdbcType=VARCHAR}, #{remark,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, 
-      #{gmtModify,jdbcType=TIMESTAMP})
+  <insert id="insert" parameterType="com.qin.domain.ScoreProportion">
+    insert into score_proportion (id, group_name, attendance_prop, 
+      usually_prop, work_prop, total_attendance, 
+      remark, gmt_create, gmt_modify
+      )
+    values (#{id,jdbcType=BIGINT}, #{groupName,jdbcType=VARCHAR}, #{attendanceProp,jdbcType=DOUBLE}, 
+      #{usuallyProp,jdbcType=DOUBLE}, #{workProp,jdbcType=DOUBLE}, #{totalAttendance,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}
+      )
   </insert>
-  <insert id="insertSelective" parameterType="com.qin.domain.Attendance">
-    insert into attendance
+  <insert id="insertSelective" parameterType="com.qin.domain.ScoreProportion">
+    insert into score_proportion
     <trim prefix="(" suffix=")" suffixOverrides=",">
       <if test="id != null">
         id,
       </if>
-      <if test="accountName != null">
-        account_name,
+      <if test="groupName != null">
+        group_name,
       </if>
-      <if test="studentId != null">
-        student_ID,
+      <if test="attendanceProp != null">
+        attendance_prop,
       </if>
-      <if test="subgroup != null">
-        subgroup,
+      <if test="usuallyProp != null">
+        usually_prop,
+      </if>
+      <if test="workProp != null">
+        work_prop,
+      </if>
+      <if test="totalAttendance != null">
+        total_attendance,
       </if>
       <if test="remark != null">
         remark,
@@ -138,14 +149,20 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="accountName != null">
-        #{accountName,jdbcType=VARCHAR},
+      <if test="groupName != null">
+        #{groupName,jdbcType=VARCHAR},
       </if>
-      <if test="studentId != null">
-        #{studentId,jdbcType=CHAR},
+      <if test="attendanceProp != null">
+        #{attendanceProp,jdbcType=DOUBLE},
       </if>
-      <if test="subgroup != null">
-        #{subgroup,jdbcType=VARCHAR},
+      <if test="usuallyProp != null">
+        #{usuallyProp,jdbcType=DOUBLE},
+      </if>
+      <if test="workProp != null">
+        #{workProp,jdbcType=DOUBLE},
+      </if>
+      <if test="totalAttendance != null">
+        #{totalAttendance,jdbcType=INTEGER},
       </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
@@ -158,26 +175,32 @@
       </if>
     </trim>
   </insert>
-  <select id="countByExample" parameterType="com.qin.domain.AttendanceExample" resultType="java.lang.Long">
-    select count(*) from attendance
+  <select id="countByExample" parameterType="com.qin.domain.ScoreProportionExample" resultType="java.lang.Long">
+    select count(*) from score_proportion
     <if test="_parameter != null">
       <include refid="Example_Where_Clause" />
     </if>
   </select>
   <update id="updateByExampleSelective" parameterType="map">
-    update attendance
+    update score_proportion
     <set>
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.accountName != null">
-        account_name = #{record.accountName,jdbcType=VARCHAR},
+      <if test="record.groupName != null">
+        group_name = #{record.groupName,jdbcType=VARCHAR},
       </if>
-      <if test="record.studentId != null">
-        student_ID = #{record.studentId,jdbcType=CHAR},
+      <if test="record.attendanceProp != null">
+        attendance_prop = #{record.attendanceProp,jdbcType=DOUBLE},
       </if>
-      <if test="record.subgroup != null">
-        subgroup = #{record.subgroup,jdbcType=VARCHAR},
+      <if test="record.usuallyProp != null">
+        usually_prop = #{record.usuallyProp,jdbcType=DOUBLE},
+      </if>
+      <if test="record.workProp != null">
+        work_prop = #{record.workProp,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalAttendance != null">
+        total_attendance = #{record.totalAttendance,jdbcType=INTEGER},
       </if>
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
@@ -194,11 +217,13 @@
     </if>
   </update>
   <update id="updateByExample" parameterType="map">
-    update attendance
+    update score_proportion
     set id = #{record.id,jdbcType=BIGINT},
-      account_name = #{record.accountName,jdbcType=VARCHAR},
-      student_ID = #{record.studentId,jdbcType=CHAR},
-      subgroup = #{record.subgroup,jdbcType=VARCHAR},
+      group_name = #{record.groupName,jdbcType=VARCHAR},
+      attendance_prop = #{record.attendanceProp,jdbcType=DOUBLE},
+      usually_prop = #{record.usuallyProp,jdbcType=DOUBLE},
+      work_prop = #{record.workProp,jdbcType=DOUBLE},
+      total_attendance = #{record.totalAttendance,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
       gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}
@@ -206,17 +231,23 @@
       <include refid="Update_By_Example_Where_Clause" />
     </if>
   </update>
-  <update id="updateByPrimaryKeySelective" parameterType="com.qin.domain.Attendance">
-    update attendance
+  <update id="updateByPrimaryKeySelective" parameterType="com.qin.domain.ScoreProportion">
+    update score_proportion
     <set>
-      <if test="accountName != null">
-        account_name = #{accountName,jdbcType=VARCHAR},
+      <if test="groupName != null">
+        group_name = #{groupName,jdbcType=VARCHAR},
       </if>
-      <if test="studentId != null">
-        student_ID = #{studentId,jdbcType=CHAR},
+      <if test="attendanceProp != null">
+        attendance_prop = #{attendanceProp,jdbcType=DOUBLE},
       </if>
-      <if test="subgroup != null">
-        subgroup = #{subgroup,jdbcType=VARCHAR},
+      <if test="usuallyProp != null">
+        usually_prop = #{usuallyProp,jdbcType=DOUBLE},
+      </if>
+      <if test="workProp != null">
+        work_prop = #{workProp,jdbcType=DOUBLE},
+      </if>
+      <if test="totalAttendance != null">
+        total_attendance = #{totalAttendance,jdbcType=INTEGER},
       </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
@@ -230,11 +261,13 @@
     </set>
     where id = #{id,jdbcType=BIGINT}
   </update>
-  <update id="updateByPrimaryKey" parameterType="com.qin.domain.Attendance">
-    update attendance
-    set account_name = #{accountName,jdbcType=VARCHAR},
-      student_ID = #{studentId,jdbcType=CHAR},
-      subgroup = #{subgroup,jdbcType=VARCHAR},
+  <update id="updateByPrimaryKey" parameterType="com.qin.domain.ScoreProportion">
+    update score_proportion
+    set group_name = #{groupName,jdbcType=VARCHAR},
+      attendance_prop = #{attendanceProp,jdbcType=DOUBLE},
+      usually_prop = #{usuallyProp,jdbcType=DOUBLE},
+      work_prop = #{workProp,jdbcType=DOUBLE},
+      total_attendance = #{totalAttendance,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}

@@ -72,6 +72,26 @@ public class AttendanceServiceImpl implements AttendanceService {
         return dataVO;
     }
 
+    @Override
+    public int deleteById(Long id) {
+        //删除考勤记录
+        int i = attendanceMapper.deleteByPrimaryKey(id);
+        //用户考勤记录-1
+        Attendance attendance = attendanceMapper.selectByPrimaryKey(id);
+        String studentId = attendance.getStudentId();
+        artMemberService.deleteCountByStudentId(studentId);
+        return i;
+    }
+
+    @Override
+    public int updateAttendance(Attendance attendance) {
+        AttendanceExample ex = new AttendanceExample();
+        AttendanceExample.Criteria cr = ex.createCriteria();
+        cr.andIdEqualTo(attendance.getId());
+        int i = attendanceMapper.updateByExample(attendance, ex);
+        return i;
+    }
+
     public AttendanceMapper getAttendanceMapper() {
         return attendanceMapper;
     }

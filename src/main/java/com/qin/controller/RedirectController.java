@@ -139,4 +139,9 @@ public class RedirectController {
     public String toQueryAttendance(Model model) {
         return "attendance/queryattendance_view";
     }
+
+    @GetMapping("/countattendance")
+    public String toCountAttendance(Model model) {
+        return "attendance/countattendance_view";
+    }
 }

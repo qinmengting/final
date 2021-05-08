@@ -48,6 +48,24 @@ CREATE TABLE `art_user` (
   KEY `idx_student_ID` (`student_ID`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8;
 
+-- 添加字段：表演、比赛次数统计，考勤分，附加分，平时分，小作品分，总分
+
+ALTER TABLE art_member
+    ADD performance_count int DEFAULT 0 COMMENT '比赛和表演次数'
+
+ALTER TABLE art_member
+    ADD attendance_score double DEFAULT 0 COMMENT '考勤分'
+
+ALTER TABLE art_member
+    ADD usually_score double DEFAULT 0 COMMENT '平时分'
+
+ALTER TABLE art_member
+    ADD work_score double DEFAULT 0 COMMENT '小作品分'
+
+ALTER TABLE art_member
+    ADD total_score double DEFAULT 0 COMMENT '总分'
+
+---------
 ALTER TABLE art_member
     ADD attendance_count int NOT NULL DEFAULT 0 COMMENT '考勤次数'
 
@@ -149,4 +167,17 @@ CREATE TABLE `subgroup` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
 
-
+-- score_proportion 绩效比例表
+DROP TABLE IF EXISTS `score_proportion`;
+CREATE TABLE `score_proportion` (
+                                    `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                                    `group_name` varchar(31) NOT NULL DEFAULT '' COMMENT '分团名',
+                                    `attendance_prop` double  DEFAULT 0 COMMENT '考勤分占比',
+                                    `usually_prop` double  DEFAULT 0 COMMENT '平时分占比',
+                                    `work_prop` double  DEFAULT 0 COMMENT '期末考核分占比',
+                                    `total_attendance` int  DEFAULT 0 COMMENT '考勤总次数',
+                                    `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+                                    `gmt_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                                    `gmt_modify` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+                                    PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;

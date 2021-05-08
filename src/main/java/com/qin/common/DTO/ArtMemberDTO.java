@@ -4,11 +4,11 @@ public class ArtMemberDTO {
 
     private Long id;
 
-    private String studentId = "";
+    private String studentId ;
 
-    private String password = "123456";
+    private String password ;
 
-    private String username = studentId;
+    private String username ;
 
     private Byte accountType;
 
@@ -31,6 +31,66 @@ public class ArtMemberDTO {
     private Byte inGroupTime;
 
     private String remark;
+
+    private Integer attendanceCount;
+
+    private Integer performanceCount;
+
+    private Double attendanceScore;
+
+    private Double usuallyScore;
+
+    private Double workScore;
+
+    private Double totalScore;
+
+    public Integer getAttendanceCount() {
+        return attendanceCount;
+    }
+
+    public void setAttendanceCount(Integer attendanceCount) {
+        this.attendanceCount = attendanceCount;
+    }
+
+    public Integer getPerformanceCount() {
+        return performanceCount;
+    }
+
+    public void setPerformanceCount(Integer performanceCount) {
+        this.performanceCount = performanceCount;
+    }
+
+    public Double getAttendanceScore() {
+        return attendanceScore;
+    }
+
+    public void setAttendanceScore(Double attendanceScore) {
+        this.attendanceScore = attendanceScore;
+    }
+
+    public Double getUsuallyScore() {
+        return usuallyScore;
+    }
+
+    public void setUsuallyScore(Double usuallyScore) {
+        this.usuallyScore = usuallyScore;
+    }
+
+    public Double getWorkScore() {
+        return workScore;
+    }
+
+    public void setWorkScore(Double workScore) {
+        this.workScore = workScore;
+    }
+
+    public Double getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(Double totalScore) {
+        this.totalScore = totalScore;
+    }
 
     public Long getId() {
         return id;
@@ -152,7 +212,7 @@ public class ArtMemberDTO {
         this.remark = remark;
     }
 
-    public ArtMemberDTO(Long id, String studentId, String password, String username, Byte accountType, String accountName, String mobile, String school, String subgroup, String teacher, Byte sex, Byte specialtyType, String joinTime, Byte inGroupTime, String remark) {
+    public ArtMemberDTO(Long id, String studentId, String password, String username, Byte accountType, String accountName, String mobile, String school, String subgroup, String teacher, Byte sex, Byte specialtyType, String joinTime, Byte inGroupTime, String remark, Integer attendanceCount, Integer performanceCount, Double attendanceScore, Double usuallyScore, Double workScore, Double totalScore) {
         this.id = id;
         this.studentId = studentId;
         this.password = password;
@@ -168,6 +228,12 @@ public class ArtMemberDTO {
         this.joinTime = joinTime;
         this.inGroupTime = inGroupTime;
         this.remark = remark;
+        this.attendanceCount = attendanceCount;
+        this.performanceCount = performanceCount;
+        this.attendanceScore = attendanceScore;
+        this.usuallyScore = usuallyScore;
+        this.workScore = workScore;
+        this.totalScore = totalScore;
     }
 
     @Override
@@ -188,6 +254,12 @@ public class ArtMemberDTO {
                 ", joinTime='" + joinTime + '\'' +
                 ", inGroupTime=" + inGroupTime +
                 ", remark='" + remark + '\'' +
+                ", attendanceCount=" + attendanceCount +
+                ", performanceCount=" + performanceCount +
+                ", attendanceScore=" + attendanceScore +
+                ", usuallyScore=" + usuallyScore +
+                ", workScore=" + workScore +
+                ", totalScore=" + totalScore +
                 '}';
     }
 

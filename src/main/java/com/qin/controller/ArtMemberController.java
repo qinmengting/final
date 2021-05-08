@@ -85,8 +85,20 @@ public class ArtMemberController {
 
     @RequestMapping("/member/queryBySelect")
     public Object queryBySelect(ArtMemberQuery artMemberQuery){
-        DataVO<ArtMemberVO> vo = artMemberService.queryBySelect(artMemberQuery);
+        DataVO<ArtMember> vo = artMemberService.queryBySelect(artMemberQuery);
         return vo;
+    }
+
+    // 更新
+    @PutMapping("/member/updatecount/{id}")
+    public Object updateAttendanceCount(@PathVariable("id") Long id,@RequestBody ArtMember artMember) {
+        artMember.setId(id);
+        int i = artMemberService.updateAttendanceCount(id, artMember);
+        if (i != 0 ) {
+            return ResponseUtil.general_response("更新成功!");
+        }
+        else
+            return  ResponseUtil.general_response("更新失败！");
     }
 
 }

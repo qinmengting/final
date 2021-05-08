@@ -16,10 +16,15 @@
     <result column="Specialty_type" jdbcType="TINYINT" property="specialtyType" />
     <result column="join_time" jdbcType="TIMESTAMP" property="joinTime" />
     <result column="in_group_time" jdbcType="TINYINT" property="inGroupTime" />
+    <result column="attendance_count" jdbcType="INTEGER" property="attendanceCount" />
     <result column="remark" jdbcType="VARCHAR" property="remark" />
     <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
     <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
-    <result column="attendance_count" jdbcType="INTEGER" property="attendanceCount" />
+    <result column="performance_count" jdbcType="INTEGER" property="performanceCount" />
+    <result column="attendance_score" jdbcType="DOUBLE" property="attendanceScore" />
+    <result column="usually_score" jdbcType="DOUBLE" property="usuallyScore" />
+    <result column="work_score" jdbcType="DOUBLE" property="workScore" />
+    <result column="total_score" jdbcType="DOUBLE" property="totalScore" />
   </resultMap>
   <sql id="Example_Where_Clause">
     <where>
@@ -81,8 +86,9 @@
   </sql>
   <sql id="Base_Column_List">
     id, username, password, account_type, account_name, mobile, student_ID, school, subgroup, 
-    sex, teacher, Specialty_type, join_time, in_group_time, remark, gmt_create, gmt_modify, 
-    attendance_count
+    sex, teacher, Specialty_type, join_time, in_group_time, attendance_count, remark, 
+    gmt_create, gmt_modify, performance_count, attendance_score, usually_score, work_score, 
+    total_score
   </sql>
   <select id="selectByExample" parameterType="com.qin.domain.ArtMemberExample" resultMap="BaseResultMap">
     select
@@ -119,16 +125,18 @@
       account_type, account_name, mobile, 
       student_ID, school, subgroup, 
       sex, teacher, Specialty_type, 
-      join_time, in_group_time, remark, 
-      gmt_create, gmt_modify, attendance_count
-      )
+      join_time, in_group_time, attendance_count, 
+      remark, gmt_create, gmt_modify, 
+      performance_count, attendance_score, usually_score, 
+      work_score, total_score)
     values (#{id,jdbcType=BIGINT}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{accountType,jdbcType=TINYINT}, #{accountName,jdbcType=VARCHAR}, #{mobile,jdbcType=VARCHAR}, 
       #{studentId,jdbcType=CHAR}, #{school,jdbcType=CHAR}, #{subgroup,jdbcType=CHAR}, 
       #{sex,jdbcType=TINYINT}, #{teacher,jdbcType=VARCHAR}, #{specialtyType,jdbcType=TINYINT}, 
-      #{joinTime,jdbcType=TIMESTAMP}, #{inGroupTime,jdbcType=TINYINT}, #{remark,jdbcType=VARCHAR}, 
-      #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, #{attendanceCount,jdbcType=INTEGER}
-      )
+      #{joinTime,jdbcType=TIMESTAMP}, #{inGroupTime,jdbcType=TINYINT}, #{attendanceCount,jdbcType=INTEGER}, 
+      #{remark,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}, 
+      #{performanceCount,jdbcType=INTEGER}, #{attendanceScore,jdbcType=DOUBLE}, #{usuallyScore,jdbcType=DOUBLE}, 
+      #{workScore,jdbcType=DOUBLE}, #{totalScore,jdbcType=DOUBLE})
   </insert>
   <insert id="insertSelective" parameterType="com.qin.domain.ArtMember">
     insert into art_member
@@ -175,6 +183,9 @@
       <if test="inGroupTime != null">
         in_group_time,
       </if>
+      <if test="attendanceCount != null">
+        attendance_count,
+      </if>
       <if test="remark != null">
         remark,
       </if>
@@ -184,8 +195,20 @@
       <if test="gmtModify != null">
         gmt_modify,
       </if>
-      <if test="attendanceCount != null">
-        attendance_count,
+      <if test="performanceCount != null">
+        performance_count,
+      </if>
+      <if test="attendanceScore != null">
+        attendance_score,
+      </if>
+      <if test="usuallyScore != null">
+        usually_score,
+      </if>
+      <if test="workScore != null">
+        work_score,
+      </if>
+      <if test="totalScore != null">
+        total_score,
       </if>
     </trim>
     <trim prefix="values (" suffix=")" suffixOverrides=",">
@@ -231,6 +254,9 @@
       <if test="inGroupTime != null">
         #{inGroupTime,jdbcType=TINYINT},
       </if>
+      <if test="attendanceCount != null">
+        #{attendanceCount,jdbcType=INTEGER},
+      </if>
       <if test="remark != null">
         #{remark,jdbcType=VARCHAR},
       </if>
@@ -240,8 +266,20 @@
       <if test="gmtModify != null">
         #{gmtModify,jdbcType=TIMESTAMP},
       </if>
-      <if test="attendanceCount != null">
-        #{attendanceCount,jdbcType=INTEGER},
+      <if test="performanceCount != null">
+        #{performanceCount,jdbcType=INTEGER},
+      </if>
+      <if test="attendanceScore != null">
+        #{attendanceScore,jdbcType=DOUBLE},
+      </if>
+      <if test="usuallyScore != null">
+        #{usuallyScore,jdbcType=DOUBLE},
+      </if>
+      <if test="workScore != null">
+        #{workScore,jdbcType=DOUBLE},
+      </if>
+      <if test="totalScore != null">
+        #{totalScore,jdbcType=DOUBLE},
       </if>
     </trim>
   </insert>
@@ -296,6 +334,9 @@
       <if test="record.inGroupTime != null">
         in_group_time = #{record.inGroupTime,jdbcType=TINYINT},
       </if>
+      <if test="record.attendanceCount != null">
+        attendance_count = #{record.attendanceCount,jdbcType=INTEGER},
+      </if>
       <if test="record.remark != null">
         remark = #{record.remark,jdbcType=VARCHAR},
       </if>
@@ -305,8 +346,20 @@
       <if test="record.gmtModify != null">
         gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP},
       </if>
-      <if test="record.attendanceCount != null">
-        attendance_count = #{record.attendanceCount,jdbcType=INTEGER},
+      <if test="record.performanceCount != null">
+        performance_count = #{record.performanceCount,jdbcType=INTEGER},
+      </if>
+      <if test="record.attendanceScore != null">
+        attendance_score = #{record.attendanceScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.usuallyScore != null">
+        usually_score = #{record.usuallyScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.workScore != null">
+        work_score = #{record.workScore,jdbcType=DOUBLE},
+      </if>
+      <if test="record.totalScore != null">
+        total_score = #{record.totalScore,jdbcType=DOUBLE},
       </if>
     </set>
     <if test="_parameter != null">
@@ -329,10 +382,15 @@
       Specialty_type = #{record.specialtyType,jdbcType=TINYINT},
       join_time = #{record.joinTime,jdbcType=TIMESTAMP},
       in_group_time = #{record.inGroupTime,jdbcType=TINYINT},
+      attendance_count = #{record.attendanceCount,jdbcType=INTEGER},
       remark = #{record.remark,jdbcType=VARCHAR},
       gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
       gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP},
-      attendance_count = #{record.attendanceCount,jdbcType=INTEGER}
+      performance_count = #{record.performanceCount,jdbcType=INTEGER},
+      attendance_score = #{record.attendanceScore,jdbcType=DOUBLE},
+      usually_score = #{record.usuallyScore,jdbcType=DOUBLE},
+      work_score = #{record.workScore,jdbcType=DOUBLE},
+      total_score = #{record.totalScore,jdbcType=DOUBLE}
     <if test="_parameter != null">
       <include refid="Update_By_Example_Where_Clause" />
     </if>
@@ -379,6 +437,9 @@
       <if test="inGroupTime != null">
         in_group_time = #{inGroupTime,jdbcType=TINYINT},
       </if>
+      <if test="attendanceCount != null">
+        attendance_count = #{attendanceCount,jdbcType=INTEGER},
+      </if>
       <if test="remark != null">
         remark = #{remark,jdbcType=VARCHAR},
       </if>
@@ -388,8 +449,20 @@
       <if test="gmtModify != null">
         gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
       </if>
-      <if test="attendanceCount != null">
-        attendance_count = #{attendanceCount,jdbcType=INTEGER},
+      <if test="performanceCount != null">
+        performance_count = #{performanceCount,jdbcType=INTEGER},
+      </if>
+      <if test="attendanceScore != null">
+        attendance_score = #{attendanceScore,jdbcType=DOUBLE},
+      </if>
+      <if test="usuallyScore != null">
+        usually_score = #{usuallyScore,jdbcType=DOUBLE},
+      </if>
+      <if test="workScore != null">
+        work_score = #{workScore,jdbcType=DOUBLE},
+      </if>
+      <if test="totalScore != null">
+        total_score = #{totalScore,jdbcType=DOUBLE},
       </if>
     </set>
     where id = #{id,jdbcType=BIGINT}
@@ -409,10 +482,15 @@
       Specialty_type = #{specialtyType,jdbcType=TINYINT},
       join_time = #{joinTime,jdbcType=TIMESTAMP},
       in_group_time = #{inGroupTime,jdbcType=TINYINT},
+      attendance_count = #{attendanceCount,jdbcType=INTEGER},
       remark = #{remark,jdbcType=VARCHAR},
       gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
       gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
-      attendance_count = #{attendanceCount,jdbcType=INTEGER}
+      performance_count = #{performanceCount,jdbcType=INTEGER},
+      attendance_score = #{attendanceScore,jdbcType=DOUBLE},
+      usually_score = #{usuallyScore,jdbcType=DOUBLE},
+      work_score = #{workScore,jdbcType=DOUBLE},
+      total_score = #{totalScore,jdbcType=DOUBLE}
     where id = #{id,jdbcType=BIGINT}
   </update>
 </mapper>

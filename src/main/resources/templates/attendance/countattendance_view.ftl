@@ -72,7 +72,7 @@
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs" lay-event="edit">保存</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+<#--    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>-->
 </script>
 
 <script>
@@ -82,9 +82,9 @@
 
         var tableIns = table.render({
             elem: '#test'
-            ,url:'/attendance/queryByParams'
+            ,url:'/member/queryBySelect'
             ,toolbar: '#toolbarDemo'
-            ,title: '大学生艺术团成员信息表'
+            ,title: '考勤信息表'
             // ,totalRow: true
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
@@ -93,8 +93,12 @@
                 ,{field:'accountName', title:'姓名', width:100}
                 ,{field:'studentId', title:'学号', width:120, sort: true}
                 ,{field:'subgroup', title:'所属分团', width:120, sort: true}
-                ,{field:'gmtCreate', title:'考勤时间', edit:'date', width:120, sort: true}
-                ,{field:'remark', title:'备注', edit:'text', width:120}
+                ,{field:'attendanceCount', title:'考勤次数', edit:'text',  templet:function (res) {
+                        if (res.attendanceCount < 4)
+                            return "<a style='color: red'>"+res.attendanceCount+"</a>";
+                        else if (res.attendanceCount >= 4 )
+                            return  "<a style='color: forestgreen'>"+res.attendanceCount+"</a>";
+                    },width:120, sort: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
             ]]
             ,page: true
@@ -109,6 +113,7 @@
                     accountName:$("[name='accountName']").val()
                     , studentId:$("[name='studentId']").val()
                     , subgroup:$("[name='subgroup']").val()
+                    , attendanceCount:$("[name='attendanceCount']").val()
                 }
                 ,page: {
                     curr:1
@@ -120,35 +125,35 @@
             var data = obj.data; //获得当前行数据
             var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
             var tr = obj.tr; //获得当前行 tr 的DOM对象
-            if(layEvent === 'del'){ //删除
-                layer.confirm('删除'+data.gmtCreate + " " + data.accountName + '的考勤记录？?', {skin: 'layui-layer-molv',offset:'c', icon:'0'},function(index){
-                    obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
-                    layer.close(index);
-                    //向服务端发送删除指令
-                    $.ajax({
-                        url: '/attendance/delete/' + data.id,
-                        type: 'delete',
-                        success: function (res) {
-                            console.log(res);
-                            if (res.code == 200) {
-                                layer.msg('删除成功', {icon: 1, skin: 'layui-layer-molv', offset:'c'});
-                            } else {
-                                layer.msg(res.msg(), {icon: 2, skin: 'layui-layer-molv', offset:'c'});
-                            }
-                        }
-                    })
-                });
-            } else if(layEvent === 'edit'){ //编辑
+            // if(layEvent === 'del'){ //删除
+            //     layer.confirm('删除'+data.gmtCreate + " " + data.accountName + '的考勤记录？?', {skin: 'layui-layer-molv',offset:'c', icon:'0'},function(index){
+            //         obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
+            //         layer.close(index);
+            //         //向服务端发送删除指令
+            //         $.ajax({
+            //             url: '/attendance/delete/' + data.id,
+            //             type: 'delete',
+            //             success: function (res) {
+            //                 console.log(res);
+            //                 if (res.code == 200) {
+            //                     layer.msg('删除成功', {icon: 1, skin: 'layui-layer-molv', offset:'c'});
+            //                 } else {
+            //                     layer.msg(res.msg(), {icon: 2, skin: 'layui-layer-molv', offset:'c'});
+            //                 }
+            //             }
+            //         })
+            //     });
+            // } else
+                if(layEvent === 'edit'){ //编辑
                 // 发送更新请求
                 $.ajax({
-                    url: '/attendance/update/' + data.id,
+                    url: '/member/updatecount/' + data.id,
                     method: 'put',
                     data: JSON.stringify({
                         accountName: data.accountName,
                         studentId: data.studentId,
                         subgroup: data.subgroup,
-                        remark: data.remark,
-                        gmtCreate: data.gmtCreate
+                        attendanceCount: data.attendanceCount
                     }),
                     contentType: "application/json",
                     success: function (res) {

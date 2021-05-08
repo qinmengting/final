@@ -21,5 +21,19 @@ public interface AttendanceService {
      */
     public void addList(List<Attendance> list);
 
+    /**
+     * 根据条件查询考勤记录
+     * @param attendanceQuery
+     * @return
+     */
     public DataVO<Attendance> queryByParams(AttendanceQuery attendanceQuery);
+
+    /**
+     * 根据记录id删除考勤记录，并将member的考勤记录数-1
+     * @param id
+     * @return
+     */
+    public int deleteById(Long id);
+
+    public int updateAttendance(Attendance attendance);
 }

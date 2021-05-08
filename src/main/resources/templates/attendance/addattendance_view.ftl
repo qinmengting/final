@@ -27,6 +27,7 @@
                                     <option value="室内乐团">室内乐团</option>
                                     <option value="主持部">主持部</option>
                                     <option value="礼仪部">礼仪部</option>
+                                    <option value="造型设计部">造型设计部</option>
                                     <option value="办公室">办公室</option>
                                     <option value="演出中心">演出中心</option>
                                     <option value="训练管理">训练管理</option>

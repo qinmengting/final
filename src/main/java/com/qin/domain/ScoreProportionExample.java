@@ -4,14 +4,14 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class AttendanceExample {
+public class ScoreProportionExample {
     protected String orderByClause;
 
     protected boolean distinct;
 
     protected List<Criteria> oredCriteria;
 
-    public AttendanceExample() {
+    public ScoreProportionExample() {
         oredCriteria = new ArrayList<Criteria>();
     }
 
@@ -165,213 +165,313 @@ public class AttendanceExample {
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameIsNull() {
-            addCriterion("account_name is null");
+        public Criteria andGroupNameIsNull() {
+            addCriterion("group_name is null");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameIsNotNull() {
-            addCriterion("account_name is not null");
+        public Criteria andGroupNameIsNotNull() {
+            addCriterion("group_name is not null");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameEqualTo(String value) {
-            addCriterion("account_name =", value, "accountName");
+        public Criteria andGroupNameEqualTo(String value) {
+            addCriterion("group_name =", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameNotEqualTo(String value) {
-            addCriterion("account_name <>", value, "accountName");
+        public Criteria andGroupNameNotEqualTo(String value) {
+            addCriterion("group_name <>", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameGreaterThan(String value) {
-            addCriterion("account_name >", value, "accountName");
+        public Criteria andGroupNameGreaterThan(String value) {
+            addCriterion("group_name >", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameGreaterThanOrEqualTo(String value) {
-            addCriterion("account_name >=", value, "accountName");
+        public Criteria andGroupNameGreaterThanOrEqualTo(String value) {
+            addCriterion("group_name >=", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameLessThan(String value) {
-            addCriterion("account_name <", value, "accountName");
+        public Criteria andGroupNameLessThan(String value) {
+            addCriterion("group_name <", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameLessThanOrEqualTo(String value) {
-            addCriterion("account_name <=", value, "accountName");
+        public Criteria andGroupNameLessThanOrEqualTo(String value) {
+            addCriterion("group_name <=", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameLike(String value) {
-            addCriterion("account_name like", value, "accountName");
+        public Criteria andGroupNameLike(String value) {
+            addCriterion("group_name like", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameNotLike(String value) {
-            addCriterion("account_name not like", value, "accountName");
+        public Criteria andGroupNameNotLike(String value) {
+            addCriterion("group_name not like", value, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameIn(List<String> values) {
-            addCriterion("account_name in", values, "accountName");
+        public Criteria andGroupNameIn(List<String> values) {
+            addCriterion("group_name in", values, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameNotIn(List<String> values) {
-            addCriterion("account_name not in", values, "accountName");
+        public Criteria andGroupNameNotIn(List<String> values) {
+            addCriterion("group_name not in", values, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameBetween(String value1, String value2) {
-            addCriterion("account_name between", value1, value2, "accountName");
+        public Criteria andGroupNameBetween(String value1, String value2) {
+            addCriterion("group_name between", value1, value2, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andAccountNameNotBetween(String value1, String value2) {
-            addCriterion("account_name not between", value1, value2, "accountName");
+        public Criteria andGroupNameNotBetween(String value1, String value2) {
+            addCriterion("group_name not between", value1, value2, "groupName");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIsNull() {
-            addCriterion("student_ID is null");
+        public Criteria andAttendancePropIsNull() {
+            addCriterion("attendance_prop is null");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIsNotNull() {
-            addCriterion("student_ID is not null");
+        public Criteria andAttendancePropIsNotNull() {
+            addCriterion("attendance_prop is not null");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdEqualTo(String value) {
-            addCriterion("student_ID =", value, "studentId");
+        public Criteria andAttendancePropEqualTo(Double value) {
+            addCriterion("attendance_prop =", value, "attendanceProp");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotEqualTo(String value) {
-            addCriterion("student_ID <>", value, "studentId");
+        public Criteria andAttendancePropNotEqualTo(Double value) {
+            addCriterion("attendance_prop <>", value, "attendanceProp");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThan(String value) {
-            addCriterion("student_ID >", value, "studentId");
+        public Criteria andAttendancePropGreaterThan(Double value) {
+            addCriterion("attendance_prop >", value, "attendanceProp");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdGreaterThanOrEqualTo(String value) {
-            addCriterion("student_ID >=", value, "studentId");
+        public Criteria andAttendancePropGreaterThanOrEqualTo(Double value) {
+            addCriterion("attendance_prop >=", value, "attendanceProp");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThan(String value) {
-            addCriterion("student_ID <", value, "studentId");
+        public Criteria andAttendancePropLessThan(Double value) {
+            addCriterion("attendance_prop <", value, "attendanceProp");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLessThanOrEqualTo(String value) {
-            addCriterion("student_ID <=", value, "studentId");
+        public Criteria andAttendancePropLessThanOrEqualTo(Double value) {
+            addCriterion("attendance_prop <=", value, "attendanceProp");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdLike(String value) {
-            addCriterion("student_ID like", value, "studentId");
+        public Criteria andAttendancePropIn(List<Double> values) {
+            addCriterion("attendance_prop in", values, "attendanceProp");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotLike(String value) {
-            addCriterion("student_ID not like", value, "studentId");
+        public Criteria andAttendancePropNotIn(List<Double> values) {
+            addCriterion("attendance_prop not in", values, "attendanceProp");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdIn(List<String> values) {
-            addCriterion("student_ID in", values, "studentId");
+        public Criteria andAttendancePropBetween(Double value1, Double value2) {
+            addCriterion("attendance_prop between", value1, value2, "attendanceProp");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotIn(List<String> values) {
-            addCriterion("student_ID not in", values, "studentId");
+        public Criteria andAttendancePropNotBetween(Double value1, Double value2) {
+            addCriterion("attendance_prop not between", value1, value2, "attendanceProp");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdBetween(String value1, String value2) {
-            addCriterion("student_ID between", value1, value2, "studentId");
+        public Criteria andUsuallyPropIsNull() {
+            addCriterion("usually_prop is null");
             return (Criteria) this;
         }
 
-        public Criteria andStudentIdNotBetween(String value1, String value2) {
-            addCriterion("student_ID not between", value1, value2, "studentId");
+        public Criteria andUsuallyPropIsNotNull() {
+            addCriterion("usually_prop is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupIsNull() {
-            addCriterion("subgroup is null");
+        public Criteria andUsuallyPropEqualTo(Double value) {
+            addCriterion("usually_prop =", value, "usuallyProp");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupIsNotNull() {
-            addCriterion("subgroup is not null");
+        public Criteria andUsuallyPropNotEqualTo(Double value) {
+            addCriterion("usually_prop <>", value, "usuallyProp");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupEqualTo(String value) {
-            addCriterion("subgroup =", value, "subgroup");
+        public Criteria andUsuallyPropGreaterThan(Double value) {
+            addCriterion("usually_prop >", value, "usuallyProp");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupNotEqualTo(String value) {
-            addCriterion("subgroup <>", value, "subgroup");
+        public Criteria andUsuallyPropGreaterThanOrEqualTo(Double value) {
+            addCriterion("usually_prop >=", value, "usuallyProp");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupGreaterThan(String value) {
-            addCriterion("subgroup >", value, "subgroup");
+        public Criteria andUsuallyPropLessThan(Double value) {
+            addCriterion("usually_prop <", value, "usuallyProp");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupGreaterThanOrEqualTo(String value) {
-            addCriterion("subgroup >=", value, "subgroup");
+        public Criteria andUsuallyPropLessThanOrEqualTo(Double value) {
+            addCriterion("usually_prop <=", value, "usuallyProp");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupLessThan(String value) {
-            addCriterion("subgroup <", value, "subgroup");
+        public Criteria andUsuallyPropIn(List<Double> values) {
+            addCriterion("usually_prop in", values, "usuallyProp");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupLessThanOrEqualTo(String value) {
-            addCriterion("subgroup <=", value, "subgroup");
+        public Criteria andUsuallyPropNotIn(List<Double> values) {
+            addCriterion("usually_prop not in", values, "usuallyProp");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupLike(String value) {
-            addCriterion("subgroup like", value, "subgroup");
+        public Criteria andUsuallyPropBetween(Double value1, Double value2) {
+            addCriterion("usually_prop between", value1, value2, "usuallyProp");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupNotLike(String value) {
-            addCriterion("subgroup not like", value, "subgroup");
+        public Criteria andUsuallyPropNotBetween(Double value1, Double value2) {
+            addCriterion("usually_prop not between", value1, value2, "usuallyProp");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupIn(List<String> values) {
-            addCriterion("subgroup in", values, "subgroup");
+        public Criteria andWorkPropIsNull() {
+            addCriterion("work_prop is null");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupNotIn(List<String> values) {
-            addCriterion("subgroup not in", values, "subgroup");
+        public Criteria andWorkPropIsNotNull() {
+            addCriterion("work_prop is not null");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupBetween(String value1, String value2) {
-            addCriterion("subgroup between", value1, value2, "subgroup");
+        public Criteria andWorkPropEqualTo(Double value) {
+            addCriterion("work_prop =", value, "workProp");
             return (Criteria) this;
         }
 
-        public Criteria andSubgroupNotBetween(String value1, String value2) {
-            addCriterion("subgroup not between", value1, value2, "subgroup");
+        public Criteria andWorkPropNotEqualTo(Double value) {
+            addCriterion("work_prop <>", value, "workProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPropGreaterThan(Double value) {
+            addCriterion("work_prop >", value, "workProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPropGreaterThanOrEqualTo(Double value) {
+            addCriterion("work_prop >=", value, "workProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPropLessThan(Double value) {
+            addCriterion("work_prop <", value, "workProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPropLessThanOrEqualTo(Double value) {
+            addCriterion("work_prop <=", value, "workProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPropIn(List<Double> values) {
+            addCriterion("work_prop in", values, "workProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPropNotIn(List<Double> values) {
+            addCriterion("work_prop not in", values, "workProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPropBetween(Double value1, Double value2) {
+            addCriterion("work_prop between", value1, value2, "workProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andWorkPropNotBetween(Double value1, Double value2) {
+            addCriterion("work_prop not between", value1, value2, "workProp");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceIsNull() {
+            addCriterion("total_attendance is null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceIsNotNull() {
+            addCriterion("total_attendance is not null");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceEqualTo(Integer value) {
+            addCriterion("total_attendance =", value, "totalAttendance");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceNotEqualTo(Integer value) {
+            addCriterion("total_attendance <>", value, "totalAttendance");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceGreaterThan(Integer value) {
+            addCriterion("total_attendance >", value, "totalAttendance");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceGreaterThanOrEqualTo(Integer value) {
+            addCriterion("total_attendance >=", value, "totalAttendance");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceLessThan(Integer value) {
+            addCriterion("total_attendance <", value, "totalAttendance");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceLessThanOrEqualTo(Integer value) {
+            addCriterion("total_attendance <=", value, "totalAttendance");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceIn(List<Integer> values) {
+            addCriterion("total_attendance in", values, "totalAttendance");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceNotIn(List<Integer> values) {
+            addCriterion("total_attendance not in", values, "totalAttendance");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceBetween(Integer value1, Integer value2) {
+            addCriterion("total_attendance between", value1, value2, "totalAttendance");
+            return (Criteria) this;
+        }
+
+        public Criteria andTotalAttendanceNotBetween(Integer value1, Integer value2) {
+            addCriterion("total_attendance not between", value1, value2, "totalAttendance");
             return (Criteria) this;
         }
 

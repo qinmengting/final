@@ -67,7 +67,7 @@ public interface ArtMemberService {
      * @param artMemberQuery
      * @return
      */
-    public DataVO<ArtMemberVO> queryBySelect(ArtMemberQuery artMemberQuery);
+    public DataVO<ArtMember> queryBySelect(ArtMemberQuery artMemberQuery);
 
     /**
      * 考勤记录加1
@@ -82,4 +82,13 @@ public interface ArtMemberService {
      * @return
      */
     public int deleteCount(List<ArtMemberVO> vos);
+
+    /**
+     * 根据学号将考勤次数-1
+     * @param studentID
+     * @return
+     */
+    public int deleteCountByStudentId(String studentID);
+
+    public int updateAttendanceCount(Long id,ArtMember artMember);
 }

@@ -3,7 +3,9 @@ package com.qin.test.serviceTest;
 import com.qin.common.DTO.ArtMemberDTO;
 import com.qin.common.VO.ArtMemberVO;
 import com.qin.common.VO.DataVO;
+import com.qin.dal.mapper.ArtMemberMapper;
 import com.qin.domain.ArtMember;
+import com.qin.domain.ArtMemberExample;
 import com.qin.service.ArtMemberService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +18,9 @@ import java.util.List;
 public class memberTest {
     @Autowired
     private ArtMemberService artMemberService;
+
+    @Autowired
+    private ArtMemberMapper artMemberMapper;
 
     @Test
     public void queryAllTest(){
@@ -65,5 +70,20 @@ public class memberTest {
         artMember.setInGroupTime((byte) 2);
         int i = artMemberService.updateById(id, artMember);
         System.out.println(i);
+    }
+
+    @Test
+    public void deleteCountByStudentId() {
+        String studentID = "1007171008";
+        artMemberService.deleteCountByStudentId(studentID);
+    }
+
+    @Test
+    public void testMapper() {
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+
+        long l = artMemberMapper.countByExample(ex);
+        System.out.println(l);
     }
 }

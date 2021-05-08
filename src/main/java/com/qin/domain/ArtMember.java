@@ -1,30 +1,24 @@
 package com.qin.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import lombok.Builder;
-import lombok.Data;
-import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
 
-@Builder
-@Data
 @Component
 public class ArtMember {
     private Long id;
 
-    private String studentId = "";
+    private String username;
 
-    private String username = studentId;
-
-    private String password = "123456";
+    private String password;
 
     private Byte accountType;
 
     private String accountName;
 
     private String mobile;
+
+    private String studentId;
 
     private String school;
 
@@ -48,13 +42,15 @@ public class ArtMember {
 
     private Date gmtModify;
 
-    public String getSchool() {
-        return school;
-    }
+    private Integer performanceCount;
 
-    public void setSchool(String school) {
-        this.school = school;
-    }
+    private Double attendanceScore;
+
+    private Double usuallyScore;
+
+    private Double workScore;
+
+    private Double totalScore;
 
     public Long getId() {
         return id;
@@ -112,12 +108,28 @@ public class ArtMember {
         this.studentId = studentId == null ? null : studentId.trim();
     }
 
+    public String getSchool() {
+        return school;
+    }
+
+    public void setSchool(String school) {
+        this.school = school == null ? null : school.trim();
+    }
+
     public String getSubgroup() {
         return subgroup;
     }
 
     public void setSubgroup(String subgroup) {
         this.subgroup = subgroup == null ? null : subgroup.trim();
+    }
+
+    public Byte getSex() {
+        return sex;
+    }
+
+    public void setSex(Byte sex) {
+        this.sex = sex;
     }
 
     public String getTeacher() {
@@ -136,14 +148,10 @@ public class ArtMember {
         this.specialtyType = specialtyType;
     }
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     public Date getJoinTime() {
         return joinTime;
     }
 
-    @DateTimeFormat(pattern = "yyyy-MM-dd")
-    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     public void setJoinTime(Date joinTime) {
         this.joinTime = joinTime;
     }
@@ -154,6 +162,14 @@ public class ArtMember {
 
     public void setInGroupTime(Byte inGroupTime) {
         this.inGroupTime = inGroupTime;
+    }
+
+    public Integer getAttendanceCount() {
+        return attendanceCount;
+    }
+
+    public void setAttendanceCount(Integer attendanceCount) {
+        this.attendanceCount = attendanceCount;
     }
 
     public String getRemark() {
@@ -180,67 +196,43 @@ public class ArtMember {
         this.gmtModify = gmtModify;
     }
 
-    public Byte getSex() {
-        return sex;
+    public Integer getPerformanceCount() {
+        return performanceCount;
     }
 
-    public void setSex(Byte sex) {
-        this.sex = sex;
+    public void setPerformanceCount(Integer performanceCount) {
+        this.performanceCount = performanceCount;
     }
 
-    public ArtMember(Long id, String studentId, String username, String password, Byte accountType, String accountName, String mobile, String school, String subgroup, Byte sex, String teacher, Byte specialtyType, Date joinTime, Byte inGroupTime, Integer attendanceCount, String remark, Date gmtCreate, Date gmtModify) {
-        this.id = id;
-        this.studentId = studentId;
-        this.username = username;
-        this.password = password;
-        this.accountType = accountType;
-        this.accountName = accountName;
-        this.mobile = mobile;
-        this.school = school;
-        this.subgroup = subgroup;
-        this.sex = sex;
-        this.teacher = teacher;
-        this.specialtyType = specialtyType;
-        this.joinTime = joinTime;
-        this.inGroupTime = inGroupTime;
-        this.attendanceCount = attendanceCount;
-        this.remark = remark;
-        this.gmtCreate = gmtCreate;
-        this.gmtModify = gmtModify;
+    public Double getAttendanceScore() {
+        return attendanceScore;
     }
 
-    public ArtMember() {
+    public void setAttendanceScore(Double attendanceScore) {
+        this.attendanceScore = attendanceScore;
     }
 
-    @Override
-    public String toString() {
-        return "ArtMember{" +
-                "id=" + id +
-                ", studentId='" + studentId + '\'' +
-                ", username='" + username + '\'' +
-                ", password='" + password + '\'' +
-                ", accountType=" + accountType +
-                ", accountName='" + accountName + '\'' +
-                ", mobile='" + mobile + '\'' +
-                ", school='" + school + '\'' +
-                ", subgroup='" + subgroup + '\'' +
-                ", sex=" + sex +
-                ", teacher='" + teacher + '\'' +
-                ", specialtyType=" + specialtyType +
-                ", joinTime=" + joinTime +
-                ", inGroupTime=" + inGroupTime +
-                ", attendanceCount=" + attendanceCount +
-                ", remark='" + remark + '\'' +
-                ", gmtCreate=" + gmtCreate +
-                ", gmtModify=" + gmtModify +
-                '}';
+    public Double getUsuallyScore() {
+        return usuallyScore;
     }
 
-    public Integer getAttendanceCount() {
-        return attendanceCount;
+    public void setUsuallyScore(Double usuallyScore) {
+        this.usuallyScore = usuallyScore;
     }
 
-    public void setAttendanceCount(Integer attendanceCount) {
-        this.attendanceCount = attendanceCount;
+    public Double getWorkScore() {
+        return workScore;
+    }
+
+    public void setWorkScore(Double workScore) {
+        this.workScore = workScore;
+    }
+
+    public Double getTotalScore() {
+        return totalScore;
+    }
+
+    public void setTotalScore(Double totalScore) {
+        this.totalScore = totalScore;
     }
 }
