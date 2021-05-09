@@ -144,4 +144,14 @@ public class RedirectController {
     public String toCountAttendance(Model model) {
         return "attendance/countattendance_view";
     }
+
+    @GetMapping("/scoreindex")
+    public String toScoreIndex_view(Model model) {
+        return "score/scoreindex_view";
+    }
+
+    @GetMapping("/addscore")
+    public String toAddScore_view(Model model) {
+        return "score/addscore_view";
+    }
 }

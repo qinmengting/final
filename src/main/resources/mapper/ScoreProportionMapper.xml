@@ -3,7 +3,7 @@
 <mapper namespace="com.qin.dal.mapper.ScoreProportionMapper">
   <resultMap id="BaseResultMap" type="com.qin.domain.ScoreProportion">
     <id column="id" jdbcType="BIGINT" property="id" />
-    <result column="group_name" jdbcType="VARCHAR" property="groupName" />
+    <result column="subgroup" jdbcType="VARCHAR" property="subgroup" />
     <result column="attendance_prop" jdbcType="DOUBLE" property="attendanceProp" />
     <result column="usually_prop" jdbcType="DOUBLE" property="usuallyProp" />
     <result column="work_prop" jdbcType="DOUBLE" property="workProp" />
@@ -71,7 +71,7 @@
     </where>
   </sql>
   <sql id="Base_Column_List">
-    id, group_name, attendance_prop, usually_prop, work_prop, total_attendance, remark, 
+    id, subgroup, attendance_prop, usually_prop, work_prop, total_attendance, remark, 
     gmt_create, gmt_modify
   </sql>
   <select id="selectByExample" parameterType="com.qin.domain.ScoreProportionExample" resultMap="BaseResultMap">
@@ -105,11 +105,11 @@
     </if>
   </delete>
   <insert id="insert" parameterType="com.qin.domain.ScoreProportion">
-    insert into score_proportion (id, group_name, attendance_prop, 
+    insert into score_proportion (id, subgroup, attendance_prop, 
       usually_prop, work_prop, total_attendance, 
       remark, gmt_create, gmt_modify
       )
-    values (#{id,jdbcType=BIGINT}, #{groupName,jdbcType=VARCHAR}, #{attendanceProp,jdbcType=DOUBLE}, 
+    values (#{id,jdbcType=BIGINT}, #{subgroup,jdbcType=VARCHAR}, #{attendanceProp,jdbcType=DOUBLE}, 
       #{usuallyProp,jdbcType=DOUBLE}, #{workProp,jdbcType=DOUBLE}, #{totalAttendance,jdbcType=INTEGER}, 
       #{remark,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}
       )
@@ -120,8 +120,8 @@
       <if test="id != null">
         id,
       </if>
-      <if test="groupName != null">
-        group_name,
+      <if test="subgroup != null">
+        subgroup,
       </if>
       <if test="attendanceProp != null">
         attendance_prop,
@@ -149,8 +149,8 @@
       <if test="id != null">
         #{id,jdbcType=BIGINT},
       </if>
-      <if test="groupName != null">
-        #{groupName,jdbcType=VARCHAR},
+      <if test="subgroup != null">
+        #{subgroup,jdbcType=VARCHAR},
       </if>
       <if test="attendanceProp != null">
         #{attendanceProp,jdbcType=DOUBLE},
@@ -187,8 +187,8 @@
       <if test="record.id != null">
         id = #{record.id,jdbcType=BIGINT},
       </if>
-      <if test="record.groupName != null">
-        group_name = #{record.groupName,jdbcType=VARCHAR},
+      <if test="record.subgroup != null">
+        subgroup = #{record.subgroup,jdbcType=VARCHAR},
       </if>
       <if test="record.attendanceProp != null">
         attendance_prop = #{record.attendanceProp,jdbcType=DOUBLE},
@@ -219,7 +219,7 @@
   <update id="updateByExample" parameterType="map">
     update score_proportion
     set id = #{record.id,jdbcType=BIGINT},
-      group_name = #{record.groupName,jdbcType=VARCHAR},
+      subgroup = #{record.subgroup,jdbcType=VARCHAR},
       attendance_prop = #{record.attendanceProp,jdbcType=DOUBLE},
       usually_prop = #{record.usuallyProp,jdbcType=DOUBLE},
       work_prop = #{record.workProp,jdbcType=DOUBLE},
@@ -234,8 +234,8 @@
   <update id="updateByPrimaryKeySelective" parameterType="com.qin.domain.ScoreProportion">
     update score_proportion
     <set>
-      <if test="groupName != null">
-        group_name = #{groupName,jdbcType=VARCHAR},
+      <if test="subgroup != null">
+        subgroup = #{subgroup,jdbcType=VARCHAR},
       </if>
       <if test="attendanceProp != null">
         attendance_prop = #{attendanceProp,jdbcType=DOUBLE},
@@ -263,7 +263,7 @@
   </update>
   <update id="updateByPrimaryKey" parameterType="com.qin.domain.ScoreProportion">
     update score_proportion
-    set group_name = #{groupName,jdbcType=VARCHAR},
+    set subgroup = #{subgroup,jdbcType=VARCHAR},
       attendance_prop = #{attendanceProp,jdbcType=DOUBLE},
       usually_prop = #{usuallyProp,jdbcType=DOUBLE},
       work_prop = #{workProp,jdbcType=DOUBLE},

@@ -3,8 +3,11 @@ package com.qin.dal.mapper;
 import com.qin.domain.ScoreProportion;
 import com.qin.domain.ScoreProportionExample;
 import java.util.List;
+
+import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+@Mapper
 public interface ScoreProportionMapper {
     long countByExample(ScoreProportionExample example);
 

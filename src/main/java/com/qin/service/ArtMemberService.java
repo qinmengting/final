@@ -6,6 +6,7 @@ import com.qin.common.VO.DataVO;
 import com.qin.common.base.BaseQuery;
 import com.qin.common.query.ArtMemberQuery;
 import com.qin.domain.ArtMember;
+import com.qin.domain.ScoreProportion;
 
 import java.util.List;
 
@@ -91,4 +92,19 @@ public interface ArtMemberService {
     public int deleteCountByStudentId(String studentID);
 
     public int updateAttendanceCount(Long id,ArtMember artMember);
+
+    /**
+     * 计算考勤分
+     * @param scoreProportion
+     * @return
+     */
+    public int countAttendanceScore(ScoreProportion scoreProportion);
+
+    /**
+     * 计算总成绩
+     * @param artMember
+     * @return
+     */
+    public int countTotalScore(ArtMember artMember);
+
 }

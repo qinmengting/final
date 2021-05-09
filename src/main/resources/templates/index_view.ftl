@@ -56,7 +56,16 @@
                         <dd><a href="/countattendance" target="admin-list">考勤记录统计</a></dd>
                     </dl>
                 </li>
-                <li class="layui-nav-item"><a href="/performance" target="admin-list">绩效管理</a></li>
+                <li class="layui-nav-item">
+                    <a href="/scoreindex" target="admin-list">绩效管理</a>
+                    <dl class="layui-nav-child">
+                        <dd><a href="/scoreindex" target="admin-list">绩效比例录入</a></dd>
+                        <dd><a href="/addscore" target="admin-list">成绩录入</a></dd>
+                        <dd><a href="/countattendance" target="admin-list">比例统计</a></dd>
+                    </dl>
+                </li>
+
+<#--                <li class="layui-nav-item"><a href="/scoreindex" target="admin-list">绩效管理</a></li>-->
                 <li class="layui-nav-item"><a href="/post" target="admin-list">公告管理</a></li>
                 <li class="layui-nav-item"><a href="/download" target="admin-list">下载中心</a></li>
             </ul>

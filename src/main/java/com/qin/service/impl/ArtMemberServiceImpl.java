@@ -10,6 +10,7 @@ import com.qin.common.query.ArtMemberQuery;
 import com.qin.dal.mapper.ArtMemberMapper;
 import com.qin.domain.ArtMember;
 import com.qin.domain.ArtMemberExample;
+import com.qin.domain.ScoreProportion;
 import com.qin.service.ArtMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -263,5 +264,19 @@ public class ArtMemberServiceImpl implements ArtMemberService {
         cr.andIdEqualTo(id);
         int i = artMemberMapper.updateByExample(member, ex);
         return i;
+    }
+
+    @Override
+    public int countAttendanceScore(ScoreProportion scoreProportion) {
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andSubgroupEqualTo(scoreProportion.getSubgroup());
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        for (ArtMember member : members) {
+            Double score = (member.getAttendanceCount()*1.00)/(scoreProportion.getTotalAttendance()*1.00)*100;
+            member.setAttendanceScore(score);
+            artMemberMapper.updateByPrimaryKey(member);
+        }
+        return 0;
     }
 }

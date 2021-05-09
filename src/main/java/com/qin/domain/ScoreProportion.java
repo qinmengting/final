@@ -5,7 +5,7 @@ import java.util.Date;
 public class ScoreProportion {
     private Long id;
 
-    private String groupName;
+    private String subgroup;
 
     private Double attendanceProp;
 
@@ -29,12 +29,12 @@ public class ScoreProportion {
         this.id = id;
     }
 
-    public String getGroupName() {
-        return groupName;
+    public String getSubgroup() {
+        return subgroup;
     }
 
-    public void setGroupName(String groupName) {
-        this.groupName = groupName == null ? null : groupName.trim();
+    public void setSubgroup(String subgroup) {
+        this.subgroup = subgroup == null ? null : subgroup.trim();
     }
 
     public Double getAttendanceProp() {
