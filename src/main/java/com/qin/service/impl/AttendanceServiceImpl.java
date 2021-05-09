@@ -4,6 +4,7 @@ import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
 import com.qin.common.VO.ArtMemberVO;
 import com.qin.common.VO.DataVO;
+import com.qin.common.base.BaseQuery;
 import com.qin.common.query.AttendanceQuery;
 import com.qin.dal.mapper.AttendanceMapper;
 import com.qin.domain.Attendance;
@@ -105,5 +106,21 @@ public class AttendanceServiceImpl implements AttendanceService {
     }
 
     public AttendanceServiceImpl() {
+    }
+
+    @Override
+    public DataVO<Attendance> queryByStudentID(String studentId, BaseQuery baseQuery) {
+        PageHelper.startPage(baseQuery.getPage(),baseQuery.getLimit());
+        AttendanceExample ex = new AttendanceExample();
+        AttendanceExample.Criteria cr = ex.createCriteria();
+        cr.andStudentIdEqualTo(studentId);
+        List<Attendance> attendances = attendanceMapper.selectByExample(ex);
+        PageInfo<Object> pageInfo = new PageInfo(attendances,baseQuery.getLimit());
+        DataVO dataVO = new DataVO();
+        dataVO.setCode(0);
+        dataVO.setMsg("");
+        dataVO.setCount(attendanceMapper.countByExample(ex));
+        dataVO.setData(pageInfo.getList());
+        return dataVO;
     }
 }

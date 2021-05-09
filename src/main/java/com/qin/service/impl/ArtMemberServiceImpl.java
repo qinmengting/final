@@ -18,7 +18,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import  com.github.pagehelper.PageHelper;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class ArtMemberServiceImpl implements ArtMemberService {
@@ -354,5 +356,50 @@ public class ArtMemberServiceImpl implements ArtMemberService {
         artMemberMapper.updateByExample(member,example);
 
         return 0;
+    }
+
+    @Override
+    public int updateGeneral(Long id, ArtMember artMember) {
+        ArtMember member = artMemberMapper.selectByPrimaryKey(id);
+        if (artMember.getStudentId()!=null && artMember.getStudentId() != ""){
+            member.setStudentId(artMember.getStudentId());
+        }
+        if (artMember.getAccountName()!=null && artMember.getAccountName() != ""){
+            member.setAccountName(artMember.getAccountName());
+        }
+        if (artMember.getMobile()!=null && artMember.getMobile() != ""){
+            member.setMobile(artMember.getMobile());
+        }
+        if (artMember.getSchool()!=null && artMember.getSchool() != ""){
+            member.setSchool(artMember.getSchool());
+        }
+        if (artMember.getSubgroup()!=null && artMember.getSubgroup() != ""){
+            member.setSubgroup(artMember.getSubgroup());
+        }
+        if (artMember.getTeacher()!=null && artMember.getTeacher() != ""){
+            member.setTeacher(artMember.getTeacher());
+        }
+        if (artMember.getSex()!=null){
+            member.setSex(artMember.getSex());
+        }
+        if (artMember.getRemark()!=null && artMember.getRemark() != ""){
+            member.setRemark(artMember.getRemark());
+        }
+        int i = artMemberMapper.updateByPrimaryKey(member);
+        return i;
+    }
+
+    @Override
+    public DataVO<ArtMember> queryById(Long id) {
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andIdEqualTo(id);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        DataVO dataVO = new DataVO();
+        dataVO.setCode(0);
+        dataVO.setMsg("");
+        dataVO.setCount(artMemberMapper.countByExample(ex));
+        dataVO.setData(members);
+        return dataVO;
     }
 }

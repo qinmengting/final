@@ -2,6 +2,7 @@ package com.qin.service;
 
 import com.qin.common.VO.ArtMemberVO;
 import com.qin.common.VO.DataVO;
+import com.qin.common.base.BaseQuery;
 import com.qin.common.query.AttendanceQuery;
 import com.qin.domain.Attendance;
 
@@ -36,4 +37,6 @@ public interface AttendanceService {
     public int deleteById(Long id);
 
     public int updateAttendance(Attendance attendance);
+
+    public DataVO<Attendance> queryByStudentID(String studentId, BaseQuery baseQuery);
 }

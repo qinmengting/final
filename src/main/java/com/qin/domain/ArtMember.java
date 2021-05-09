@@ -1,5 +1,7 @@
 package com.qin.domain;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -148,10 +150,14 @@ public class ArtMember {
         this.specialtyType = specialtyType;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     public Date getJoinTime() {
         return joinTime;
     }
 
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern="yyyy-MM-dd",timezone="GMT+8")
     public void setJoinTime(Date joinTime) {
         this.joinTime = joinTime;
     }

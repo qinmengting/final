@@ -1,9 +1,8 @@
 package com.qin.controller;
 
 import com.qin.common.DTO.ArtMemberDTO;
-import com.qin.domain.Department;
-import com.qin.domain.Position;
-import com.qin.domain.UserAuth;
+import com.qin.dal.mapper.ArtMemberMapper;
+import com.qin.domain.*;
 import com.qin.service.ArtMemberService;
 import com.qin.service.IDepartmentService;
 import com.qin.service.IPositionService;
@@ -30,6 +29,9 @@ public class RedirectController {
 
     @Autowired
     private ArtMemberService artMemberService;
+
+    @Autowired
+    private ArtMemberMapper artMemberMapper;
 
     @GetMapping("/login")
     public String toLogin() {
@@ -158,5 +160,95 @@ public class RedirectController {
     @GetMapping("/addscore")
     public String toAddScore_view(Model model) {
         return "score/addscore_view";
+    }
+
+
+
+    //普通用户重定向界面
+    @GetMapping("/generalpost")
+    public String togeneralPost_view(Model model) {
+        return "general/generalpost_view";
+    }
+
+    @GetMapping("/generaldownload")
+    public String togeneralDownload_view(Model model) {
+        return "general/generaldownload_view";
+    }
+
+    @GetMapping("/information")
+    public String toinformation_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        ArtMember member = members.get(0);
+        model.addAttribute("member",member);
+        return "general/information_view";
+    }
+
+    @GetMapping("/generalupdate")
+    public String togeneralUpdate_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        ArtMember member = members.get(0);
+        model.addAttribute("member",member);
+        return "general/generalupdate_view";
+    }
+
+    @GetMapping("/generalupdate/{id}")
+    public String toupdategeneral(Model model, @PathVariable("id") Long id, HttpServletRequest request) {
+        ArtMember member = artMemberMapper.selectByPrimaryKey(id);
+        model.addAttribute("member",member);
+        return "general/generalupdate_view";
+    }
+
+    @GetMapping("/generalattendance")
+    public String togeneralAttendance_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        ArtMember member = members.get(0);
+        model.addAttribute("member",member);
+        return "general/generalattendance_view";
+    }
+
+    @GetMapping("/attendancecount")
+    public String toattendancecount_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        ArtMember member = members.get(0);
+        model.addAttribute("member",member);
+        return "general/attendancecount_view";
+    }
+
+    @GetMapping("/generalsocre")
+    public String togeneralsocre_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        ArtMember member = members.get(0);
+        model.addAttribute("member",member);
+        return "general/generalsocre_view";
     }
 }

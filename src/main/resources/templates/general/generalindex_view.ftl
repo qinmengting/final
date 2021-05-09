@@ -30,7 +30,6 @@
                 </dl>
             </li>
             <li class="layui-nav-item"><a id="logout-a" href="/">注销</a></li>
-            <li class="layui-nav-item"><a href="http://diandian2.cn">社区</a></li>
         </ul>
     </div>
 
@@ -38,44 +37,26 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item layui-this"><a href="/post" target="admin-list">艺术团公告</a></li>
-                <li class="layui-nav-item"><a href="javascript:;" target="admin-list">个人信息</a></li>
+                <li class="layui-nav-item layui-this"><a href="/generalpost" target="admin-list">艺术团公告</a></li>
+                <li class="layui-nav-item"><a href="/information" target="admin-list">个人信息</a></li>
                 <li class="layui-nav-item">
-                    <a href="/allmembers" target="admin-list">考勤记录</a>
+                    <a href="/generalattendance" target="admin-list">考勤记录</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="/allmembers" target="admin-list">所有成员</a></dd>
-                        <dd><a href="/addmember" target="admin-list">添加成员</a></dd>
-                        <dd><a href="/querymember" target="admin-list">查询</a></dd>
+                        <dd><a href="/generalattendance" target="admin-list">考勤记录</a></dd>
+                        <dd><a href="/attendancecount" target="admin-list">考勤次数统计</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/addattendance" target="admin-list">成绩</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="/addattendance" target="admin-list">添加考勤</a></dd>
-                        <dd><a href="/queryattendance" target="admin-list">考勤记录查询</a></dd>
-                        <dd><a href="/countattendance" target="admin-list">考勤记录统计</a></dd>
-                    </dl>
+                    <a href="/generalsocre" target="admin-list">成绩查询</a>
                 </li>
-                <li class="layui-nav-item">
-                    <a href="/scoreindex" target="admin-list">绩效管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="/scoreindex" target="admin-list">绩效比例录入</a></dd>
-                        <dd><a href="/addscore" target="admin-list">成绩录入</a></dd>
-                        <dd><a href="/countattendance" target="admin-list">比例统计</a></dd>
-                    </dl>
-                </li>
-
-<#--                <li class="layui-nav-item"><a href="/scoreindex" target="admin-list">绩效管理</a></li>-->
-                <li class="layui-nav-item"><a href="/post" target="admin-list">公告管理</a></li>
-                <li class="layui-nav-item"><a href="/download" target="admin-list">下载中心</a></li>
+                <li class="layui-nav-item"><a href="/generaldownload" target="admin-list">下载中心</a></li>
             </ul>
         </div>
     </div>
 
     <div class="layui-body">
-        <!-- 内容主体区域 - 局部刷新, 使用iframe进行实现 -->
         <div style="padding: 15px; width: 100%; height: 100%">
-            <iframe style="width: 100%; height: 100%;" name="admin-list" scrolling="yes" src="/auth" frameborder="0"></iframe>
+            <iframe style="width: 100%; height: 100%;" name="admin-list" scrolling="yes" src="/generalpost" frameborder="0"></iframe>
         </div>
     </div>
 </div>

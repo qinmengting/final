@@ -9,6 +9,7 @@ import com.qin.domain.ArtMember;
 import com.qin.domain.ScoreProportion;
 
 import java.util.List;
+import java.util.Map;
 
 public interface ArtMemberService {
     /**
@@ -114,5 +115,20 @@ public interface ArtMemberService {
      * @return
      */
     public int countTotalScore(Long id, ArtMember artMember);
+
+    /**
+     * 普通用户更新
+     * @param id
+     * @param artMember
+     * @return
+     */
+    public int updateGeneral(Long id, ArtMember artMember);
+
+    /**
+     * 根据id查询各项信息
+     * @param id
+     * @return ArtMember
+     */
+    public DataVO<ArtMember> queryById(Long id);
 
 }
