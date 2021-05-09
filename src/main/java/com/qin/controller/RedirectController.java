@@ -93,7 +93,12 @@ public class RedirectController {
     public String toIndex(Model model) {
         UserAuth user = UserContext.getCurrentUser();
         model.addAttribute("user", user);
-        return "index_view";
+        if (user.isAdmin()==true){
+            return "index_view";
+        }
+        else{
+            return "general/generalindex_view";
+        }
     }
 
     @GetMapping("/")

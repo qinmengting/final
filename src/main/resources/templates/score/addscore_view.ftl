@@ -93,36 +93,36 @@
                 ,{field:'accountName', title:'姓名', width:100}
                 ,{field:'studentId', title:'学号', width:120, sort: true}
                 ,{field:'subgroup', title:'所属分团', width:120, sort: true}
-                ,{field:'attendanceCount', title:'考勤次数', templet:function (res) {
-                        if (res.attendanceCount < 6)
-                            return "<a style='color: red'>"+res.attendanceCount+"</a>";
-                        else if (res.attendanceCount >= 6 )
-                            return  "<a style='color: forestgreen'>"+res.attendanceCount+"</a>";
-                    },width:80, sort: true}
                 ,{field:'attendanceScore', title:'考勤成绩', templet:function (res) {
                         if (res.attendanceScore < 60)
                             return "<a style='color: red'>"+res.attendanceScore+"</a>";
                         else if (res.attendanceScore >= 60 )
                             return  "<a style='color: forestgreen'>"+res.attendanceScore+"</a>";
-                    },width:80, sort: true}
+                    },width:120, sort: true}
                 ,{field:'usuallyScore', title:'平时成绩', edit:'text',  templet:function (res) {
                         if (res.usuallyScore < 60)
                             return "<a style='color: red'>"+res.usuallyScore+"</a>";
                         else if (res.usuallyScore >= 60 )
                             return  "<a style='color: forestgreen'>"+res.usuallyScore+"</a>";
-                    },width:80, sort: true}
+                    },width:120, sort: true}
                 ,{field:'workScore', title:'期末考核成绩', edit:'text',  templet:function (res) {
                         if (res.workScore < 60)
                             return "<a style='color: red'>"+res.workScore+"</a>";
                         else if (res.workScore >= 60 )
                             return  "<a style='color: forestgreen'>"+res.workScore+"</a>";
-                    },width:80, sort: true}
+                    },width:120, sort: true}
                 ,{field:'totalScore', title:'总成绩',  templet:function (res) {
                         if (res.totalScore < 60)
                             return "<a style='color: red'>"+res.totalScore+"</a>";
                         else if (res.totalScore >= 60 )
                             return  "<a style='color: forestgreen'>"+res.totalScore+"</a>";
-                    },width:80, sort: true}
+                    },width:120, sort: true}
+                ,{field:'attendanceCount', title:'考勤次数', templet:function (res) {
+                        if (res.attendanceCount < 6)
+                            return "<a style='color: red'>"+res.attendanceCount+"</a>";
+                        else if (res.attendanceCount >= 6 )
+                            return  "<a style='color: forestgreen'>"+res.attendanceCount+"</a>";
+                    },width:120, sort: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
             ]]
             ,page: true
