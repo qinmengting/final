@@ -1,12 +1,12 @@
 package com.qin.controller;
 
+import com.qin.domain.ArtMember;
 import com.qin.domain.ScoreProportion;
 import com.qin.service.ArtMemberService;
 import com.qin.service.ScoreService;
 import com.qin.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 public class ScoreController {
@@ -31,5 +31,17 @@ public class ScoreController {
         }else{
             return ResponseUtil.general_response("设置失败");
         }
+    }
+
+    // 更新成绩
+    @PutMapping("/score/updatesocre/{id}")
+    public Object updateScore(@PathVariable("id") Long id, @RequestBody ArtMember artMember) {
+        artMember.setId(id);
+        int i = artMemberService.updateScore(id, artMember);
+        int i1 = artMemberService.countTotalScore(id,artMember);
+        if (i != 0) {
+            return ResponseUtil.general_response("保存成功!");
+        } else
+            return ResponseUtil.general_response("保存失败！");
     }
 }

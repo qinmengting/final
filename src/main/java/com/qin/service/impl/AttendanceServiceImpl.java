@@ -56,10 +56,10 @@ public class AttendanceServiceImpl implements AttendanceService {
         if (attendanceQuery.getAccountName() !=null && attendanceQuery.getAccountName() != ""){
             cr.andAccountNameEqualTo(attendanceQuery.getAccountName());
         }
-        else if (attendanceQuery.getStudentId() !=null && attendanceQuery.getStudentId() != ""){
+        if (attendanceQuery.getStudentId() !=null && attendanceQuery.getStudentId() != ""){
             cr.andStudentIdEqualTo(attendanceQuery.getStudentId());
         }
-        else if (attendanceQuery.getSubgroup() !=null && attendanceQuery.getSubgroup() != ""){
+        if (attendanceQuery.getSubgroup() !=null && attendanceQuery.getSubgroup() != ""){
             cr.andSubgroupEqualTo(attendanceQuery.getSubgroup());
         }
         List<Attendance> attendances = attendanceMapper.selectByExample(ex);

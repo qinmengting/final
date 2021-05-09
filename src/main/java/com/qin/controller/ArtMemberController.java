@@ -90,7 +90,7 @@ public class ArtMemberController {
     }
 
     // 更新
-    @PutMapping("/member/updatesocre/{id}")
+    @PutMapping("/member/updatecount/{id}")
     public Object updateAttendanceCount(@PathVariable("id") Long id,@RequestBody ArtMember artMember) {
         artMember.setId(id);
         int i = artMemberService.updateAttendanceCount(id, artMember);
@@ -99,17 +99,6 @@ public class ArtMemberController {
         }
         else
             return  ResponseUtil.general_response("更新失败！");
-    }
-
-    // 更新成绩
-    @PutMapping("/member/updatesocre/{id}")
-    public Object updateScore(@PathVariable("id") Long id,@RequestBody ArtMember artMember) {
-        artMember.setId(id);
-        int i = artMemberService.updateAttendanceCount(id, artMember);
-        if (i != 0) {
-            return ResponseUtil.general_response("保存成功!");
-        } else
-            return ResponseUtil.general_response("保存失败！");
     }
 
 }

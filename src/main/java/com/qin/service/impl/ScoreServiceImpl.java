@@ -26,16 +26,16 @@ public class ScoreServiceImpl implements ScoreService {
         if (scoreProportion.getAttendanceProp()!=null){
             proportion.setAttendanceProp(scoreProportion.getAttendanceProp());
         }
-        else if (scoreProportion.getTotalAttendance()!=null){
+        if (scoreProportion.getTotalAttendance()!=null){
             proportion.setTotalAttendance(scoreProportion.getTotalAttendance());
         }
-        else if (scoreProportion.getUsuallyProp()!=null){
+        if (scoreProportion.getUsuallyProp()!=null){
             proportion.setUsuallyProp(scoreProportion.getUsuallyProp());
         }
-        else if (scoreProportion.getWorkProp()!=null){
+        if (scoreProportion.getWorkProp()!=null){
             proportion.setWorkProp(scoreProportion.getWorkProp());
         }
-        else if (scoreProportion.getRemark()!=null){
+        if (scoreProportion.getRemark()!=null){
             proportion.setSubgroup(scoreProportion.getRemark());
         }
         int i = scoreProportionMapper.updateByExample(proportion, ex);

@@ -29,7 +29,7 @@
                             </div>
                         </div>
                         <div class="layui-form-item">
-                            <label class="layui-form-label">所属分团</label>
+                            <label class="layui-form-label">请选择</label>
                             <div class="layui-inline">
                                 <select name="subgroup" lay-search="">
                                     <option value="">直接选择或搜索选择</option>
@@ -52,7 +52,6 @@
                         <div class="layui-form-item">
                             <div class="layui-input-block">
                                 <a class="layui-btn search_btn" datatype="reload"><i class="layui-icon">&#xe615</i>搜索</a>
-<#--                                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="add">搜索</button>-->
                             </div>
                         </div>
                     </form>
@@ -80,6 +79,17 @@
         var table = layui.table;
         var form = layui.form;
 
+        var confirmTrans = function(){
+            //配置一个透明的询问框
+            layer.msg('请先进行比例设定再进行成绩录入；<br>总成绩为【各项成绩比例*成员成绩】之和，<br>由系统计算得出，不可直接修改', {
+                time: 20000, //20s后自动关闭
+                btn: ['好的']
+            });
+        }
+
+        // $("#test").click(confirmTrans())
+
+
         var tableIns = table.render({
             elem: '#test'
             ,url:'/member/queryBySelect'
@@ -93,36 +103,30 @@
                 ,{field:'accountName', title:'姓名', width:100}
                 ,{field:'studentId', title:'学号', width:120, sort: true}
                 ,{field:'subgroup', title:'所属分团', width:120, sort: true}
-                ,{field:'attendanceCount', title:'考勤次数', templet:function (res) {
-                        if (res.attendanceCount < 6)
-                            return "<a style='color: red'>"+res.attendanceCount+"</a>";
-                        else if (res.attendanceCount >= 6 )
-                            return  "<a style='color: forestgreen'>"+res.attendanceCount+"</a>";
-                    },width:80, sort: true}
                 ,{field:'attendanceScore', title:'考勤成绩', templet:function (res) {
-                        if (res.attendanceScore < 60)
+                        if (res.attendanceCount < 60)
                             return "<a style='color: red'>"+res.attendanceScore+"</a>";
                         else if (res.attendanceScore >= 60 )
                             return  "<a style='color: forestgreen'>"+res.attendanceScore+"</a>";
-                    },width:80, sort: true}
+                    },width:120, sort: true}
                 ,{field:'usuallyScore', title:'平时成绩', edit:'text',  templet:function (res) {
                         if (res.usuallyScore < 60)
                             return "<a style='color: red'>"+res.usuallyScore+"</a>";
                         else if (res.usuallyScore >= 60 )
                             return  "<a style='color: forestgreen'>"+res.usuallyScore+"</a>";
-                    },width:80, sort: true}
+                    },width:120, sort: true}
                 ,{field:'workScore', title:'期末考核成绩', edit:'text',  templet:function (res) {
                         if (res.workScore < 60)
                             return "<a style='color: red'>"+res.workScore+"</a>";
                         else if (res.workScore >= 60 )
                             return  "<a style='color: forestgreen'>"+res.workScore+"</a>";
-                    },width:80, sort: true}
+                    },width:120, sort: true}
                 ,{field:'totalScore', title:'总成绩',  templet:function (res) {
                         if (res.totalScore < 60)
                             return "<a style='color: red'>"+res.totalScore+"</a>";
                         else if (res.totalScore >= 60 )
                             return  "<a style='color: forestgreen'>"+res.totalScore+"</a>";
-                    },width:80, sort: true}
+                    },width:120, sort: true}
                 ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
             ]]
             ,page: true
@@ -137,11 +141,6 @@
                     accountName:$("[name='accountName']").val()
                     , studentId:$("[name='studentId']").val()
                     , subgroup:$("[name='subgroup']").val()
-                    , attendanceCount:$("[name='attendanceCount']").val()
-                    , attendanceScore:$("[name='attendanceScore']").val()
-                    , usuallyScore:$("[name='usuallyScore']").val()
-                    , workScore:$("[name='workScore']").val()
-                    , totalScore:$("[name='totalScore']").val()
                 }
                 ,page: {
                     curr:1
@@ -149,11 +148,12 @@
             })
         })
 
+
         table.on('tool(test)', function(obj){ //注：tool是工具条事件名，test是table原始容器的属性 lay-filter="对应的值"
             var data = obj.data; //获得当前行数据
             var layEvent = obj.event; //获得 lay-event 对应的值（也可以是表头的 event 参数对应的值）
             var tr = obj.tr; //获得当前行 tr 的DOM对象
-                if(layEvent === 'edit'){ //编辑
+            if(layEvent === 'edit'){ //编辑
                 // 发送更新请求
                 $.ajax({
                     url: '/score/updatesocre/' + data.id,
@@ -162,7 +162,6 @@
                         accountName: data.accountName,
                         studentId: data.studentId,
                         subgroup: data.subgroup,
-                        attendanceCount: data.attendanceCount,
                         attendanceScore: data.attendanceScore,
                         usuallyScore: data.usuallyScore,
                         workScore: data.workScore,
@@ -177,26 +176,10 @@
                                 accountName: data.accountName,
                                 studentId: data.studentId,
                                 subgroup: data.subgroup,
-                                attendanceCount: data.attendanceCount,
                                 attendanceScore: data.attendanceScore,
                                 usuallyScore: data.usuallyScore,
                                 workScore: data.workScore,
                                 totalScore: data.totalScore
-                            })
-                            tableIns.reload({
-                                where: {
-                                    accountName:$("[name='accountName']").val()
-                                    , studentId:$("[name='studentId']").val()
-                                    , subgroup:$("[name='subgroup']").val()
-                                    , attendanceCount:$("[name='attendanceCount']").val()
-                                    , attendanceScore:$("[name='attendanceScore']").val()
-                                    , usuallyScore:$("[name='usuallyScore']").val()
-                                    , workScore:$("[name='workScore']").val()
-                                    , totalScore:$("[name='totalScore']").val()
-                                }
-                                ,page: {
-                                    curr:1
-                                }
                             });
                         } else {
                             layer.msg(res.msg, {icon: 2});

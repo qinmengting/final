@@ -101,10 +101,18 @@ public interface ArtMemberService {
     public int countAttendanceScore(ScoreProportion scoreProportion);
 
     /**
+     * 更新各项成绩
+     * @param artMember
+     * @return
+     */
+    public int updateScore(Long id, ArtMember artMember);
+
+
+    /**
      * 计算总成绩
      * @param artMember
      * @return
      */
-    public int countTotalScore(ArtMember artMember);
+    public int countTotalScore(Long id, ArtMember artMember);
 
 }

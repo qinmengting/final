@@ -49,7 +49,8 @@
         <div class="layui-inline">
             <label class="layui-form-label">所属学院</label>
             <div class="layui-input-inline">
-                <select name="school" value="${(dto.school)!}" lay-verify="required" lay-search="">
+                <select name="school" lay-verify="required" lay-search="">
+                    <option value="${(dto.school)!}">${(dto.school)!}</option>
                     <option value="地球科学与资源学院">地球科学与资源学院</option>
                     <option value="工程技术学院">工程技术学院</option>
                     <option value="材料科学与工程学院">材料科学与工程学院</option>
@@ -72,7 +73,8 @@
         <div class="layui-inline">
             <label class="layui-form-label">所属分团</label>
             <div class="layui-input-inline">
-                <select name="subgroup" value="${(dto.subgroup)!}" lay-verify="required" lay-search="">
+                <select name="subgroup"  lay-verify="required" lay-search="">
+                    <option value="${(dto.subgroup)!}">${(dto.subgroup)!}</option>
                     <option value="合唱团">合唱团</option>
                     <option value="话剧团">话剧团</option>
                     <option value="舞蹈团">舞蹈团</option>
@@ -141,6 +143,8 @@
         <input type="hidden" value="${(dto.sex)}" id="getSex">
         <input type="hidden" value="${(dto.specialtyType)}" id="getSpecialtyType">
         <input type="hidden" value="${(dto.id)}" id="getId">
+        <input type="hidden" value="${(dto.subgroup)}" id="getSubgroup">
+        <input type="hidden" value="${(dto.school)}" id="getSchool">
     </div>
 </form>
 
@@ -157,6 +161,8 @@
         var SpecialtyType = $('#getSpecialtyType').val()
         var id = $('#getId').val()
 
+        //下拉框动态赋值
+        //单选框动态赋值
         $('[name=accountType]').each(function (i, item) {
             if ($(item).val() == AccountType) {
                 //更改选中值

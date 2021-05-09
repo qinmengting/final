@@ -151,7 +151,13 @@
                 ,{field:'school', title:'学院', width:150, sort: true}
                 ,{field:'studentId', title:'学号', width:120, sort: true}
                 ,{field:'subgroup', title:'所属分团', width:120, sort: true}
-                ,{field:'sex', title:'性别', width:100, sort: true}
+                ,{field:'sex', title:'性别', width:100, templet:function (res) {
+                        if (res.sex == 0)
+                            return "男";
+                        else if (res.sex == 1)
+                            return  "女";
+                    },
+                    sort: true}
                 ,{field:'teacher', title:'指导老师', width:100, sort: true}
                 ,{field:'specialtyType', title:'是否为特长生',  templet:function (res) {
                         if (res.specialtyType == 0)

@@ -8,9 +8,11 @@ import com.qin.common.base.BaseQuery;
 import com.qin.common.convert.ArtMemberConvertMapper;
 import com.qin.common.query.ArtMemberQuery;
 import com.qin.dal.mapper.ArtMemberMapper;
+import com.qin.dal.mapper.ScoreProportionMapper;
 import com.qin.domain.ArtMember;
 import com.qin.domain.ArtMemberExample;
 import com.qin.domain.ScoreProportion;
+import com.qin.domain.ScoreProportionExample;
 import com.qin.service.ArtMemberService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,9 @@ import java.util.List;
 public class ArtMemberServiceImpl implements ArtMemberService {
     @Autowired
     private ArtMemberMapper artMemberMapper;
+
+    @Autowired
+    private ScoreProportionMapper scoreProportionMapper;
 
     @Override
     public List<ArtMemberVO> queryAll() {
@@ -102,55 +107,61 @@ public class ArtMemberServiceImpl implements ArtMemberService {
         ArtMember member = artMemberMapper.selectByPrimaryKey(id);
 
         //讲dto转换为member
-        artMemberDTO.setId(id);
-        String studentId = artMemberDTO.getStudentId();
         ArtMember artMember = ArtMemberConvertMapper.INSTANCES.DTOtoMember(artMemberDTO);
-        artMember.setUsername(studentId);
+        artMember.setId(id);
+        artMember.setUsername(artMember.getStudentId());
+        artMember.setAttendanceCount(member.getAttendanceCount());
+        artMember.setAttendanceScore(member.getAttendanceScore());
+        artMember.setWorkScore(member.getWorkScore());
+        artMember.setUsuallyScore(member.getUsuallyScore());
+        artMember.setTotalScore(member.getUsuallyScore());
+        artMember.setPerformanceCount(member.getPerformanceCount());
+        int i = artMemberMapper.updateByPrimaryKey(artMember);
 
-        if (artMember.getStudentId()!=null && artMember.getStudentId()!=""){
-            member.setStudentId(artMember.getStudentId());
-        }
-        else if (artMember.getPassword()!=null && artMember.getPassword()!=""){
-            member.setPassword(artMember.getPassword());
-        }
-        else if (artMember.getAccountType()!=null){
-            member.setAccountType(artMember.getAccountType());
-        }
-        else if (artMember.getAccountName()!=null && artMember.getAccountName()!=""){
-            member.setAccountName(artMember.getAccountName());
-        }
-        else if (artMember.getMobile()!=null && artMember.getMobile()!=""){
-            member.setMobile(artMember.getMobile());
-        }
-        else if (artMember.getSchool()!=null && artMember.getSchool()!=""){
-            member.setSchool(artMember.getSchool());
-        }
-        else if (artMember.getSubgroup()!=null && artMember.getSubgroup()!=""){
-            member.setSubgroup(artMember.getSubgroup());
-        }
-        else if (artMember.getTeacher()!=null && artMember.getTeacher()!=""){
-            member.setTeacher(artMember.getTeacher());
-        }
-        else if (artMember.getSex()!=null){
-            member.setSex(artMember.getSex());
-        }
-        else if (artMember.getSpecialtyType()!=null){
-            member.setSpecialtyType(artMember.getSpecialtyType());
-        }
-        else if (artMember.getJoinTime()!=null){
-            member.setJoinTime(artMember.getJoinTime());
-        }
-        else if (artMember.getInGroupTime()!=null){
-            member.setInGroupTime(artMember.getInGroupTime());
-        }
-        else if (artMember.getRemark()!=null && artMember.getRemark()!=""){
-            member.setRemark(artMember.getRemark());
-        }
-
-        ArtMemberExample ex = new ArtMemberExample();
-        ArtMemberExample.Criteria cr = ex.createCriteria();
-        cr.andIdEqualTo(id);
-        int i = artMemberMapper.updateByExample(member, ex);
+//        if (artMember.getStudentId()!=null && artMember.getStudentId()!=""){
+//            member.setStudentId(artMember.getStudentId());
+//        }
+//        if (artMember.getPassword()!=null && artMember.getPassword()!=""){
+//            member.setPassword(artMember.getPassword());
+//        }
+//        if (artMember.getAccountType()!=null){
+//            member.setAccountType(artMember.getAccountType());
+//        }
+//        if (artMember.getAccountName()!=null && artMember.getAccountName()!=""){
+//            member.setAccountName(artMember.getAccountName());
+//        }
+//        if (artMember.getMobile()!=null && artMember.getMobile()!=""){
+//            member.setMobile(artMember.getMobile());
+//        }
+//        if (artMember.getSchool()!=null && artMember.getSchool()!=""){
+//            member.setSchool(artMember.getSchool());
+//        }
+//        if (artMember.getSubgroup()!=null && artMember.getSubgroup()!=""){
+//            member.setSubgroup(artMember.getSubgroup());
+//        }
+//        if (artMember.getTeacher()!=null && artMember.getTeacher()!=""){
+//            member.setTeacher(artMember.getTeacher());
+//        }
+//        if (artMember.getSex()!=null){
+//            member.setSex(artMember.getSex());
+//        }
+//        if (artMember.getSpecialtyType()!=null){
+//            member.setSpecialtyType(artMember.getSpecialtyType());
+//        }
+//        if (artMember.getJoinTime()!=null){
+//            member.setJoinTime(artMember.getJoinTime());
+//        }
+//        if (artMember.getInGroupTime()!=null){
+//            member.setInGroupTime(artMember.getInGroupTime());
+//        }
+//        if (artMember.getRemark()!=null && artMember.getRemark()!=""){
+//            member.setRemark(artMember.getRemark());
+//        }
+//        ArtMemberExample ex = new ArtMemberExample();
+//        ArtMemberExample.Criteria cr = ex.createCriteria();
+//        cr.andIdEqualTo(id);
+//
+//        int i = artMemberMapper.updateByExample(member,ex);
         return i;
     }
 
@@ -177,19 +188,19 @@ public class ArtMemberServiceImpl implements ArtMemberService {
         if (artMemberQuery.getAccountName() != null && artMemberQuery.getAccountName() != ""){
             cr.andAccountNameEqualTo(artMemberQuery.getAccountName());
         }
-        else if (artMemberQuery.getMobile() != null && artMemberQuery.getMobile() != ""){
+        if (artMemberQuery.getMobile() != null && artMemberQuery.getMobile() != ""){
             cr.andMobileEqualTo(artMemberQuery.getMobile());
         }
-        else if (artMemberQuery.getStudentId() != null && artMemberQuery.getStudentId() != ""){
+        if (artMemberQuery.getStudentId() != null && artMemberQuery.getStudentId() != ""){
             cr.andStudentIdEqualTo(artMemberQuery.getStudentId());
         }
-        else if (artMemberQuery.getSubgroup() != null && artMemberQuery.getSubgroup() != ""){
+        if (artMemberQuery.getSubgroup() != null && artMemberQuery.getSubgroup() != ""){
             cr.andSubgroupEqualTo(artMemberQuery.getSubgroup());
         }
-        else if (artMemberQuery.getSchool() != null && artMemberQuery.getSchool() != ""){
+        if (artMemberQuery.getSchool() != null && artMemberQuery.getSchool() != ""){
             cr.andSchoolEqualTo(artMemberQuery.getSchool())
 ;        }
-        else if (artMemberQuery.getTeacher() != null && artMemberQuery.getTeacher() != ""){
+        if (artMemberQuery.getTeacher() != null && artMemberQuery.getTeacher() != ""){
             cr.andTeacherEqualTo(artMemberQuery.getTeacher());
         }
 //        long count = artMemberMapper.countByExample(ex);
@@ -277,6 +288,71 @@ public class ArtMemberServiceImpl implements ArtMemberService {
             member.setAttendanceScore(score);
             artMemberMapper.updateByPrimaryKey(member);
         }
+        return 0;
+    }
+
+    @Override
+    public int updateScore(Long id, ArtMember artMember) {
+        ArtMember member = artMemberMapper.selectByPrimaryKey(id);
+        if (artMember.getAttendanceScore()!=null){
+            member.setAttendanceScore(artMember.getAttendanceScore());
+        }
+        if (artMember.getUsuallyScore()!=null){
+            member.setUsuallyScore(artMember.getUsuallyScore());
+        }
+        if (artMember.getWorkScore()!=null){
+            member.setWorkScore(artMember.getWorkScore());
+        }
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andIdEqualTo(id);
+        int i = artMemberMapper.updateByExample(member,ex);
+        return i;
+    }
+
+    @Override
+    public int countTotalScore(Long id, ArtMember artMember) {
+        //找到对应的成员
+        ArtMember member = artMemberMapper.selectByPrimaryKey(id);
+
+        ScoreProportionExample ex = new ScoreProportionExample();
+        ScoreProportionExample.Criteria cr = ex.createCriteria();
+        cr.andSubgroupEqualTo(artMember.getSubgroup());
+        List<ScoreProportion> scoreProportions = scoreProportionMapper.selectByExample(ex);
+
+        ScoreProportion proportion = null;
+        if (scoreProportions!=null){
+            proportion = scoreProportions.get(0);
+        }
+        //获得比例
+        Double attendanceProp = proportion.getAttendanceProp();
+        Double usuallyProp = proportion.getUsuallyProp();
+        Double workProp = proportion.getWorkProp();
+        //总考勤次数
+        Integer totalAttendance = proportion.getTotalAttendance();
+
+        //获得成绩
+        Double attendanceScore = member.getAttendanceScore();
+        Double usuallyScore = member.getUsuallyScore();
+        Double workScore = member.getWorkScore();
+        Integer count = member.getAttendanceCount();
+        double newAttendanceScore = (count * 1.00) / (totalAttendance * 1.00) * 100;
+        if (newAttendanceScore!=attendanceScore){
+            member.setAttendanceScore(newAttendanceScore);
+        }
+
+
+
+        //计算总成绩
+        double totalScore = attendanceProp * newAttendanceScore * 0.01 + usuallyProp * usuallyScore * 0.01 + workProp * workScore *0.01;
+        member.setTotalScore(totalScore);
+
+        ArtMemberExample example = new ArtMemberExample();
+        ArtMemberExample.Criteria criteria = example.createCriteria();
+        criteria.andIdEqualTo(id);
+        //更新总成绩
+        artMemberMapper.updateByExample(member,example);
+
         return 0;
     }
 }

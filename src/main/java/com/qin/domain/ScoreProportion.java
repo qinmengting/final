@@ -92,4 +92,34 @@ public class ScoreProportion {
     public void setGmtModify(Date gmtModify) {
         this.gmtModify = gmtModify;
     }
+
+    public ScoreProportion(Long id, String subgroup, Double attendanceProp, Double usuallyProp, Double workProp, Integer totalAttendance, String remark, Date gmtCreate, Date gmtModify) {
+        this.id = id;
+        this.subgroup = subgroup;
+        this.attendanceProp = attendanceProp;
+        this.usuallyProp = usuallyProp;
+        this.workProp = workProp;
+        this.totalAttendance = totalAttendance;
+        this.remark = remark;
+        this.gmtCreate = gmtCreate;
+        this.gmtModify = gmtModify;
+    }
+
+    public ScoreProportion() {
+    }
+
+    @Override
+    public String toString() {
+        return "ScoreProportion{" +
+                "id=" + id +
+                ", subgroup='" + subgroup + '\'' +
+                ", attendanceProp=" + attendanceProp +
+                ", usuallyProp=" + usuallyProp +
+                ", workProp=" + workProp +
+                ", totalAttendance=" + totalAttendance +
+                ", remark='" + remark + '\'' +
+                ", gmtCreate=" + gmtCreate +
+                ", gmtModify=" + gmtModify +
+                '}';
+    }
 }
