@@ -95,8 +95,17 @@ public class RedirectController {
     public String toIndex(Model model) {
         UserAuth user = UserContext.getCurrentUser();
         model.addAttribute("user", user);
-        if (user.isAdmin()==true){
+        if (user.isAdmin()==true&&user.getId()==1){
             return "index_view";
+        }
+        else if (user.isAdmin()==true){
+            ArtMemberExample ex = new ArtMemberExample();
+            ArtMemberExample.Criteria cr = ex.createCriteria();
+            cr.andStudentIdEqualTo(user.getUsername());
+            List<ArtMember> members = artMemberMapper.selectByExample(ex);
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "subadmin/subadminindex_view";
         }
         else{
             return "general/generalindex_view";
@@ -271,5 +280,107 @@ public class RedirectController {
             return "general/generalsocre_view";
         }
         else return "general/generalnull_view";
+    }
+
+    @GetMapping("/subdaminmember")
+    public String tosubadminmember_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "subadmin/subdaminmember_view";
+        }
+        else return "subadmin/subdaminmember_view";
+    }
+
+    @GetMapping("/subadminaddattendance")
+    public String tosubadminaddattendance_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "subadmin/attendance/subadminaddattendance_view";
+        }
+        else return "subadmin/attendance/subadminaddattendance_view";
+    }
+
+    @GetMapping("/subadmincountattendance")
+    public String tosubadmincountattendance_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "subadmin/attendance/subadmincountattendance_view";
+        }
+        else return "subadmin/attendance/subadmincountattendance_view";
+    }
+
+    @GetMapping("/subadminqueryattendance")
+    public String tosubadminqueryattendance_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "subadmin/attendance/subadminqueryattendance_view";
+        }
+        else return "subadmin/attendance/subadminqueryattendance_view";
+    }
+
+    @GetMapping("/subadminaddscore")
+    public String tosubadminaddscore_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "subadmin/score/subadminaddscore_view";
+        }
+        else return "subadmin/score/subadminaddscore_view";
+    }
+
+    @GetMapping("/subadminscoreindex")
+    public String tosubadminscoreindex_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "subadmin/score/subadminscoreindex_view";
+        }
+        else return "subadmin/score/subadminscoreindex_view";
     }
 }

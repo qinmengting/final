@@ -38,30 +38,22 @@
         <div class="layui-side-scroll">
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
-                <li class="layui-nav-item layui-this"><a href="/auth" target="admin-list">权限管理</a></li>
-                <li class="layui-nav-item"><a href="javascript:;" target="admin-list">分团管理</a></li>
+                <li class="layui-nav-item layui-this">
+                    <a href="/subdaminmember" target="admin-list">成员管理</a>
+                </li>
                 <li class="layui-nav-item">
-                    <a href="/allmembers" target="admin-list">成员管理</a>
+                    <a href="/subadminaddattendance" target="admin-list">考勤管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="/allmembers" target="admin-list">所有成员</a></dd>
-                        <dd><a href="/addmember" target="admin-list">添加成员</a></dd>
-                        <dd><a href="/querymember" target="admin-list">条件查询</a></dd>
+                        <dd><a href="/subadminaddattendance" target="admin-list">添加考勤</a></dd>
+                        <dd><a href="/subadminqueryattendance" target="admin-list">考勤记录查询</a></dd>
+                        <dd><a href="/subadmincountattendance" target="admin-list">考勤记录统计</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/addattendance" target="admin-list">考勤管理</a>
+                    <a href="/subadminscoreindex" target="admin-list">绩效管理</a>
                     <dl class="layui-nav-child">
-                        <dd><a href="/addattendance" target="admin-list">添加考勤</a></dd>
-                        <dd><a href="/queryattendance" target="admin-list">考勤记录查询</a></dd>
-                        <dd><a href="/countattendance" target="admin-list">考勤记录统计</a></dd>
-                    </dl>
-                </li>
-                <li class="layui-nav-item">
-                    <a href="/scoreindex" target="admin-list">绩效管理</a>
-                    <dl class="layui-nav-child">
-                        <dd><a href="/scoreindex" target="admin-list">绩效比例录入</a></dd>
-                        <dd><a href="/addscore" target="admin-list">成绩录入</a></dd>
-                        <dd><a href="/countattendance" target="admin-list">比例统计</a></dd>
+                        <dd><a href="/subadminscoreindex" target="admin-list">绩效比例录入</a></dd>
+                        <dd><a href="/subadminaddscore" target="admin-list">成绩录入</a></dd>
                     </dl>
                 </li>
 
@@ -75,7 +67,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 - 局部刷新, 使用iframe进行实现 -->
         <div style="padding: 15px; width: 100%; height: 100%">
-            <iframe style="width: 100%; height: 100%;" name="admin-list" scrolling="yes" src="/auth" frameborder="0"></iframe>
+            <iframe style="width: 100%; height: 100%;" name="admin-list" scrolling="yes" src="/subdaminmember" frameborder="0"></iframe>
         </div>
     </div>
 </div>
