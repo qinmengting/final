@@ -45,7 +45,7 @@
                     <dl class="layui-nav-child">
                         <dd><a href="/allmembers" target="admin-list">所有成员</a></dd>
                         <dd><a href="/addmember" target="admin-list">添加成员</a></dd>
-                        <dd><a href="/querymember" target="admin-list">查询</a></dd>
+                        <dd><a href="/querymember" target="admin-list">条件查询</a></dd>
                     </dl>
                 </li>
                 <li class="layui-nav-item">

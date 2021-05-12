@@ -131,4 +131,11 @@ public interface ArtMemberService {
      */
     public DataVO<ArtMember> queryById(Long id);
 
+    /**
+     * 添加信息（已有账户）
+     * @param artMember
+     * @return
+     */
+    public int addGeneral(ArtMember artMember);
+
 }

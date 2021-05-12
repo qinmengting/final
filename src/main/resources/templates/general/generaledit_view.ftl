@@ -1,48 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>个人信息</title>
-    <script src="/static/js/jquery-3.4.1.min.js"></script>
-    <script src="/static/layui/layui.js"></script>
-    <link rel="stylesheet" href="/static/layui/css/layui.css">
+    <script src="static/js/jquery-3.4.1.min.js"></script>
+    <script src="static/layui/layui.js"></script>
+    <link rel="stylesheet" href="static/layui/css/layui.css" media="all">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 </head>
 <body>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>编辑成员信息</legend>
+    <legend>添加成员信息</legend>
 </fieldset>
 <form class="layui-form" id="addform" method="get">
     <div class="layui-form-item">
         <label class="layui-form-label">学号</label>
         <div class="layui-input-block">
-            <input type="text" name="studentId" value="${(member.studentId)!}" lay-verify="required" lay-reqtext="学号是必填项，不能为空！" placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" name="studentId" lay-verify="required" lay-reqtext="学号是必填项，不能为空！" placeholder="请输入" autocomplete="off" class="layui-input">
         </div>
     </div>
-<#--    <div class="layui-form-item">-->
-<#--        <label class="layui-form-label">密码</label>-->
-<#--        <div class="layui-input-inline">-->
-<#--            <input type="password" name="password" value="${(member.password)!}" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">-->
-<#--        </div>-->
-<#--        <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>-->
-<#--    </div>-->
+    <div class="layui-form-item">
+        <label class="layui-form-label">密码</label>
+        <div class="layui-input-inline">
+            <input type="password" name="password" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+        </div>
+        <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
+    </div>
     <div class="layui-form-item">
         <label class="layui-form-label">姓名</label>
         <div class="layui-input-block">
-            <input type="text" name="accountName" value="${(member.accountName)!}" lay-verify="required" lay-reqtext="姓名是必填项，不能为空！" placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" name="accountName" lay-verify="required" lay-reqtext="姓名是必填项，不能为空！" placeholder="请输入" autocomplete="off" class="layui-input">
         </div>
     </div>
     <div class="layui-form-item">
         <div class="layui-inline">
             <label class="layui-form-label">手机号</label>
             <div class="layui-input-inline">
-                <input type="tel" name="mobile" value="${(member.mobile)!}" lay-verify="required|phone" autocomplete="off" class="layui-input">
+                <input type="tel" name="mobile" lay-verify="required|phone" autocomplete="off" class="layui-input">
             </div>
         </div>
         <div class="layui-inline">
             <label class="layui-form-label">所属学院</label>
             <div class="layui-input-inline">
                 <select name="school" lay-verify="required" lay-search="">
-                    <option value="${(member.school)!}">${(member.school)!}</option>
+                    <option value="">直接选择或搜索选择</option>
                     <option value="地球科学与资源学院">地球科学与资源学院</option>
                     <option value="工程技术学院">工程技术学院</option>
                     <option value="材料科学与工程学院">材料科学与工程学院</option>
@@ -65,8 +64,8 @@
         <div class="layui-inline">
             <label class="layui-form-label">所属分团</label>
             <div class="layui-input-inline">
-                <select name="subgroup"  lay-verify="required" lay-search="">
-                    <option value="${(member.subgroup)!}">${(member.subgroup)!}</option>
+                <select name="subgroup" lay-verify="required" lay-search="">
+                    <option value="">直接选择或搜索选择</option>
                     <option value="合唱团">合唱团</option>
                     <option value="话剧团">话剧团</option>
                     <option value="舞蹈团">舞蹈团</option>
@@ -86,27 +85,21 @@
         <div class="layui-inline">
             <label class="layui-form-label">指导老师</label>
             <div class="layui-input-block">
-                <input type="text" name="teacher" value="${(member.teacher)!}" placeholder="请输入" autocomplete="off" class="layui-input">
+                <input type="text" name="teacher" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">性别</label>
         <div class="layui-input-block">
-            <input type="radio" name="sex" value="0" title="男">
+            <input type="radio" name="sex" value="0" title="男" checked="">
             <input type="radio" name="sex" value="1" title="女">
-        </div>
-    </div>
-    <div class="layui-form-item">
-        <div class="layui-inline">
-            <label class="layui-form-label">在团时间</label>
-            <label class="layui-form-label">${(member.inGroupTime)!}学期</label>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <textarea name="remark" value="${(member.remark)!}" placeholder="请输入内容" class="layui-textarea"></textarea>
+            <textarea name="remark" placeholder="请输入内容" class="layui-textarea"></textarea>
         </div>
     </div>
     <div class="layui-form-item">
@@ -115,88 +108,41 @@
             <button type="reset" class="layui-btn layui-btn-primary">重置</button>
         </div>
     </div>
-    <div>
-        <input type="hidden" value="${(member.accountType)}" id="getAccountType">
-        <input type="hidden" value="${(member.sex)}" id="getSex">
-        <input type="hidden" value="${(member.specialtyType)}" id="getSpecialtyType">
-        <input type="hidden" value="${(member.id)}" id="getId">
-        <input type="hidden" value="${(member.subgroup)}" id="getSubgroup">
-        <input type="hidden" value="${(member.school)}" id="getSchool">
-    </div>
 </form>
-
+<input type="hidden" value="${(user.id)}" id="getId">
 <script>
 
-    layui.use(['form', 'layedit', 'laydate'], function() {
+    layui.use(['form', 'layedit', 'laydate'], function(){
         var form = layui.form
-            , layer = layui.layer
-            , layedit = layui.layedit
-            , laydate = layui.laydate;
+            ,layer = layui.layer
+            ,layedit = layui.layedit
+            ,laydate = layui.laydate;
 
-        var AccountType = $('#getAccountType').val()
-        var Sex = $('#getSex').val()
-        var SpecialtyType = $('#getSpecialtyType').val()
         var id = $('#getId').val()
 
-        //单选框动态赋值
-        $('[name=accountType]').each(function (i, item) {
-            if ($(item).val() == AccountType) {
-                //更改选中值
-                $(item).prop('checked', true);
-                //重新渲染
-                layui.use('form', function () {
-                    var form = layui.form;
-                    form.render();
-                });
-            }
-        });
-
-        $('[name=sex]').each(function (i, item) {
-            if ($(item).val() == Sex) {
-                //更改选中值
-                $(item).prop('checked', true);
-                //重新渲染
-                layui.use('form', function () {
-                    var form = layui.form;
-                    form.render();
-                });
-            }
-        });
-
-        $('[name=specialtyType]').each(function (i, item) {
-            if ($(item).val() == SpecialtyType) {
-                //更改选中值
-                $(item).prop('checked', true);
-                //重新渲染
-                layui.use('form', function () {
-                    var form = layui.form;
-                    form.render();
-                });
-            }
-        });
-
-        form.render
+        form.render()
         //日期
         laydate.render({
             elem: '#joinTime'
             , trigger: 'click'
         });
+        
 
         //创建一个编辑器
         var editIndex = layedit.build('LAY_demo_editor');
 
         //自定义验证规则
         form.verify({
-            title: function (value) {
-                if (value.length < 5) {
+            title: function(value){
+                if(value.length < 5){
                     return '标题至少得5个字符啊';
                 }
             }
-            , pass: [
+            ,pass: [
                 /^[\S]{6,12}$/
-                , '密码必须6到12位，且不能出现空格'
+                ,'密码必须6到12位，且不能出现空格'
             ]
-            , content: function (value) {
+            ,content: function(value){
                 layedit.sync(editIndex);
             }
         })
@@ -205,7 +151,7 @@
          * 监听表单的submit事件
          * form.on('submit(按钮元素的lay-filter属性值)',function (data){    })
          */
-        form.on('submit(demo1)', function (data) {
+        form.on('submit(demo1)',function (data){
             var index = layer.msg("数据提交中，请稍候...", {
                 icon: 16,   //图标
                 time: false,  //不关闭
@@ -213,13 +159,13 @@
             });
 
             //发送ajax请求
-            var url = "/general/update/"+id ;   //更新操作
-            $.get(url, data.field, function (result) {
+            var url = "/general/add/" + id;   //添加操作
+            $.post(url,data.field,function (result){
                 //判断操作是否执行成功 200=成功
-                if (result.code == 200) {
+                if (result.code == 200){
                     //成功
                     //提示成功
-                    layer.msg("操作成功！", {icon: 6})
+                    layer.msg("操作成功！",{icon:6})
                     //关闭加载层
                     layer.close(index)
                     //关闭弹出层
@@ -228,15 +174,85 @@
                     parent.location.reload()
                 } else {
                     //失败
-                    layer.msg(result.msg, {icon: 5})
+                    // layer.msg(result.msg,{icon:5})
                 }
             });
-
 
             //组织表单提交
             return false;
         })
+
+
+
+
+
+
+
+        // 监听指定开关
+        // form.on('switch(switchTest)', function(data){
+        //     layer.msg('开关checked：'+ (this.checked ? 'true' : 'false'), {
+        //         offset: '6px'
+        //     });
+        //     layer.tips('温馨提示：请注意开关状态的文字可以随意定义，而不仅仅是ON|OFF', data.othis)
+        // });
+        //
+
+        // doAdd = function(artMemberDTO) {
+        //     layui.use('layer','form', function (artMemberDTO) {
+        //         $.ajax({
+        //             url: '/member/add',
+        //             method: 'get',
+        //             data: JSON.parse(artMemberDTO),
+        //             success: function (res) {
+        //                 console.log(res);
+        //                 if (res.code == 200) {
+        //                     parent.window.location.href = "/index.ftl";
+        //                 } else {
+        //                     parent.window.location.href = "/addmember_view.ftl";
+        //                 }
+        //                 //parent.window.location.href = "/";
+        //             }
+        //         });
+        //     });
+        //
+        // }
+        // $(document).ready(function (data) {
+        //     $("#add").click(function (data) {
+        //        doAdd(data)
+        //     });
+        // });
+
+        // 监听提交
+        // form.on('submit(demo1)', function(data){
+        //     layer.alert(JSON.stringify(data.field), {
+        //         title: '最终的提交信息'
+        //     })
+        //     return false;
+        // });
+
+
+        //
+        // //表单赋值
+        // layui.$('#LAY-component-form-setval').on('click', function(){
+        //     form.val('example', {
+        //         "username": "贤心" // "name": "value"
+        //         ,"password": "123456"
+        //         ,"interest": 1
+        //         ,"like[write]": true //复选框选中状态
+        //         ,"close": true //开关状态
+        //         ,"sex": "女"
+        //         ,"desc": "我爱 layui"
+        //     });
+        // });
+
+        //表单取值
+    //     layui.$('#LAY-component-form-getval').on('click', function(){
+    //         var data = form.val('example');
+    //         alert(JSON.stringify(data));
+    //     });
+
     });
 </script>
+
 </body>
 </html>

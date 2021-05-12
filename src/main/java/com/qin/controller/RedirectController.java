@@ -184,9 +184,19 @@ public class RedirectController {
         ArtMemberExample.Criteria cr = ex.createCriteria();
         cr.andUsernameEqualTo(username);
         List<ArtMember> members = artMemberMapper.selectByExample(ex);
-        ArtMember member = members.get(0);
-        model.addAttribute("member",member);
-        return "general/information_view";
+        if (!members.isEmpty()) {
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "general/information_view";
+        }
+       else  return "general/generaledit_view";
+    }
+
+    @GetMapping("/generaledit")
+    public String togeneralEdit_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        return "general/generaledit_view";
     }
 
     @GetMapping("/generalupdate")
@@ -198,8 +208,10 @@ public class RedirectController {
         ArtMemberExample.Criteria cr = ex.createCriteria();
         cr.andUsernameEqualTo(username);
         List<ArtMember> members = artMemberMapper.selectByExample(ex);
-        ArtMember member = members.get(0);
-        model.addAttribute("member",member);
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+        }
         return "general/generalupdate_view";
     }
 
@@ -219,9 +231,12 @@ public class RedirectController {
         ArtMemberExample.Criteria cr = ex.createCriteria();
         cr.andUsernameEqualTo(username);
         List<ArtMember> members = artMemberMapper.selectByExample(ex);
-        ArtMember member = members.get(0);
-        model.addAttribute("member",member);
-        return "general/generalattendance_view";
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "general/generalattendance_view";
+        }
+       else return "general/generalnull_view";
     }
 
     @GetMapping("/attendancecount")
@@ -233,9 +248,12 @@ public class RedirectController {
         ArtMemberExample.Criteria cr = ex.createCriteria();
         cr.andUsernameEqualTo(username);
         List<ArtMember> members = artMemberMapper.selectByExample(ex);
-        ArtMember member = members.get(0);
-        model.addAttribute("member",member);
-        return "general/attendancecount_view";
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "general/attendancecount_view";
+        }
+        else return "general/generalnull_view";
     }
 
     @GetMapping("/generalsocre")
@@ -247,8 +265,11 @@ public class RedirectController {
         ArtMemberExample.Criteria cr = ex.createCriteria();
         cr.andUsernameEqualTo(username);
         List<ArtMember> members = artMemberMapper.selectByExample(ex);
-        ArtMember member = members.get(0);
-        model.addAttribute("member",member);
-        return "general/generalsocre_view";
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "general/generalsocre_view";
+        }
+        else return "general/generalnull_view";
     }
 }

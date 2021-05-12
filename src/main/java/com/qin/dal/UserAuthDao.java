@@ -33,4 +33,9 @@ public class UserAuthDao extends BaseRepository {
         int i = updateByPrimaryKeySelective(userAuth.getUsername(), namespace);
         return i;
     }
+
+    public UserAuth selectById(Integer id) {
+        UserAuth userAuth = (UserAuth) selectOneByPrimaryKey(id, namespace);
+        return userAuth;
+    }
 }

@@ -1,6 +1,7 @@
 package com.qin.service.impl;
 
 import com.qin.dal.UserAuthDao;
+import com.qin.domain.ArtMember;
 import com.qin.domain.UserAuth;
 import com.qin.service.IUserAuthService;
 import com.qin.util.UserContext;
@@ -11,6 +12,8 @@ import org.springframework.stereotype.Service;
 public class UserAuthServiceImpl extends BaseServiceImpl<UserAuth> implements IUserAuthService {
     @Autowired
     private UserAuthDao dao;
+
+    private final String namespace = "com.qin.domain.UserAuth.";
 
     @Override
     public UserAuth login(String username, String password) {
@@ -34,4 +37,13 @@ public class UserAuthServiceImpl extends BaseServiceImpl<UserAuth> implements IU
         return i;
     }
 
+    @Override
+    public int updateById(Integer id, ArtMember artMember) {
+        UserAuth auth = dao.selectById(id);
+        auth.setUsername(artMember.getStudentId());
+        auth.setPassword(auth.getPassword());
+        auth.setAdmin(false);
+        int i = dao.updateUser(auth);
+        return i;
+    }
 }

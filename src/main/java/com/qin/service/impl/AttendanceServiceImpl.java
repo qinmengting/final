@@ -77,6 +77,7 @@ public class AttendanceServiceImpl implements AttendanceService {
     public int deleteById(Long id) {
         //删除考勤记录
         int i = attendanceMapper.deleteByPrimaryKey(id);
+
         //用户考勤记录-1
         Attendance attendance = attendanceMapper.selectByPrimaryKey(id);
         String studentId = attendance.getStudentId();

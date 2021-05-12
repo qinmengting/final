@@ -51,6 +51,7 @@ public class UserAuth {
         return isAdmin;
     }
 
+    @JsonProperty(value = "isAdmin")
     public void setAdmin(boolean isAdmin) {
         this.isAdmin = isAdmin;
     }
@@ -70,6 +71,7 @@ public class UserAuth {
         this.isAdmin = isAdmin;
         this.createdTime = createdTime;
     }
+
 
     public UserAuth() {
     }

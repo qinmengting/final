@@ -36,7 +36,7 @@
                 }
             }
             ,cols: [[
-                {field:'id', width:60, title: 'ID'},
+                // {field:'id', width:60, title: 'ID'},
                 {field:'title', width:200, title: '公告名称', templet: function (row) {
                         return row.title;
                     }},

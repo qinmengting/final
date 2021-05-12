@@ -402,4 +402,12 @@ public class ArtMemberServiceImpl implements ArtMemberService {
         dataVO.setData(members);
         return dataVO;
     }
+
+    @Override
+    public int addGeneral(ArtMember artMember) {
+        String s = artMember.getStudentId();
+        artMember.setUsername(s);
+        int i = artMemberMapper.insert(artMember);
+        return i;
+    }
 }

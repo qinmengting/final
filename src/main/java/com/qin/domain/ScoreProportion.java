@@ -13,7 +13,7 @@ public class ScoreProportion {
 
     private Double workProp;
 
-    private Integer totalAttendance;
+    private Integer totalAttendance = 1;
 
     private String remark;
 

@@ -56,7 +56,8 @@
                 data: {
                     username: $("#auth-username").val(),
                     password: $("#auth-password").val(),
-                    isAdmin: $("input[type='checkbox']").prop("checked"),
+                    isAdmin: $("input[type='checkbox']"),
+                        // .prop("checked"),
                     createdTime: nowDate
                 },
                 success: function (res) {

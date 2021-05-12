@@ -14,7 +14,7 @@ public class ArtMember {
 
     private String password;
 
-    private Byte accountType;
+    private Byte accountType = 2;
 
     private String accountName;
 
@@ -30,13 +30,13 @@ public class ArtMember {
 
     private String teacher;
 
-    private Byte specialtyType;
+    private Byte specialtyType = 0;
 
-    private Date joinTime;
+    private Date joinTime = new Date();
 
-    private Byte inGroupTime;
+    private Byte inGroupTime = 0;
 
-    private Integer attendanceCount;
+    private Integer attendanceCount = 0;
 
     private String remark;
 
@@ -44,15 +44,15 @@ public class ArtMember {
 
     private Date gmtModify;
 
-    private Integer performanceCount;
+    private Integer performanceCount = 0;
 
-    private Double attendanceScore;
+    private Double attendanceScore = 0.0;
 
-    private Double usuallyScore;
+    private Double usuallyScore = 0.0;
 
-    private Double workScore;
+    private Double workScore = 0.0 ;
 
-    private Double totalScore;
+    private Double totalScore = 0.0;
 
     public Long getId() {
         return id;

@@ -130,6 +130,14 @@
             // ,limit:5
         });
 
+        var confirmTrans = function(){
+            //配置一个透明的询问框
+            layer.msg('请先设置分团各分数比例，再录入成绩<br>总成绩为【各分数占比*成绩】之和<br>总成绩由系统生成，不可直接更改', {
+                time: 20000, //20s后自动关闭
+                btn: ['明白了', '好的']
+            });
+        }
+
         //搜索
         $(".search_btn").click(function (){
             tableIns.reload({
