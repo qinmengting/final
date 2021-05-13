@@ -1,0 +1,371 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.qin.dal.mapper.ActivityMapper">
+  <resultMap id="BaseResultMap" type="com.qin.domain.Activity">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="status" jdbcType="TINYINT" property="status" />
+    <result column="activity_name" jdbcType="VARCHAR" property="activityName" />
+    <result column="applicant" jdbcType="VARCHAR" property="applicant" />
+    <result column="location" jdbcType="VARCHAR" property="location" />
+    <result column="activity_time" jdbcType="TIMESTAMP" property="activityTime" />
+    <result column="subgroup" jdbcType="VARCHAR" property="subgroup" />
+    <result column="subgroup_admin" jdbcType="VARCHAR" property="subgroupAdmin" />
+    <result column="admin_student_id" jdbcType="VARCHAR" property="adminStudentId" />
+    <result column="applicant_name" jdbcType="VARCHAR" property="applicantName" />
+    <result column="applicant_phone" jdbcType="VARCHAR" property="applicantPhone" />
+    <result column="activity_information" jdbcType="VARCHAR" property="activityInformation" />
+    <result column="remark" jdbcType="VARCHAR" property="remark" />
+    <result column="gmt_create" jdbcType="TIMESTAMP" property="gmtCreate" />
+    <result column="gmt_modify" jdbcType="TIMESTAMP" property="gmtModify" />
+  </resultMap>
+  <sql id="Example_Where_Clause">
+    <where>
+      <foreach collection="oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Update_By_Example_Where_Clause">
+    <where>
+      <foreach collection="example.oredCriteria" item="criteria" separator="or">
+        <if test="criteria.valid">
+          <trim prefix="(" prefixOverrides="and" suffix=")">
+            <foreach collection="criteria.criteria" item="criterion">
+              <choose>
+                <when test="criterion.noValue">
+                  and ${criterion.condition}
+                </when>
+                <when test="criterion.singleValue">
+                  and ${criterion.condition} #{criterion.value}
+                </when>
+                <when test="criterion.betweenValue">
+                  and ${criterion.condition} #{criterion.value} and #{criterion.secondValue}
+                </when>
+                <when test="criterion.listValue">
+                  and ${criterion.condition}
+                  <foreach close=")" collection="criterion.value" item="listItem" open="(" separator=",">
+                    #{listItem}
+                  </foreach>
+                </when>
+              </choose>
+            </foreach>
+          </trim>
+        </if>
+      </foreach>
+    </where>
+  </sql>
+  <sql id="Base_Column_List">
+    id, status, activity_name, applicant, location, activity_time, subgroup, subgroup_admin, 
+    admin_student_id, applicant_name, applicant_phone, activity_information, remark, 
+    gmt_create, gmt_modify
+  </sql>
+  <select id="selectByExample" parameterType="com.qin.domain.ActivityExample" resultMap="BaseResultMap">
+    select
+    <if test="distinct">
+      distinct
+    </if>
+    <include refid="Base_Column_List" />
+    from activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+    <if test="orderByClause != null">
+      order by ${orderByClause}
+    </if>
+  </select>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from activity
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from activity
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <delete id="deleteByExample" parameterType="com.qin.domain.ActivityExample">
+    delete from activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </delete>
+  <insert id="insert" parameterType="com.qin.domain.Activity">
+    insert into activity (id, status, activity_name, 
+      applicant, location, activity_time, 
+      subgroup, subgroup_admin, admin_student_id, 
+      applicant_name, applicant_phone, activity_information, 
+      remark, gmt_create, gmt_modify
+      )
+    values (#{id,jdbcType=BIGINT}, #{status,jdbcType=TINYINT}, #{activityName,jdbcType=VARCHAR}, 
+      #{applicant,jdbcType=VARCHAR}, #{location,jdbcType=VARCHAR}, #{activityTime,jdbcType=TIMESTAMP}, 
+      #{subgroup,jdbcType=VARCHAR}, #{subgroupAdmin,jdbcType=VARCHAR}, #{adminStudentId,jdbcType=VARCHAR}, 
+      #{applicantName,jdbcType=VARCHAR}, #{applicantPhone,jdbcType=VARCHAR}, #{activityInformation,jdbcType=VARCHAR}, 
+      #{remark,jdbcType=VARCHAR}, #{gmtCreate,jdbcType=TIMESTAMP}, #{gmtModify,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.qin.domain.Activity">
+    insert into activity
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="activityName != null">
+        activity_name,
+      </if>
+      <if test="applicant != null">
+        applicant,
+      </if>
+      <if test="location != null">
+        location,
+      </if>
+      <if test="activityTime != null">
+        activity_time,
+      </if>
+      <if test="subgroup != null">
+        subgroup,
+      </if>
+      <if test="subgroupAdmin != null">
+        subgroup_admin,
+      </if>
+      <if test="adminStudentId != null">
+        admin_student_id,
+      </if>
+      <if test="applicantName != null">
+        applicant_name,
+      </if>
+      <if test="applicantPhone != null">
+        applicant_phone,
+      </if>
+      <if test="activityInformation != null">
+        activity_information,
+      </if>
+      <if test="remark != null">
+        remark,
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create,
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=TINYINT},
+      </if>
+      <if test="activityName != null">
+        #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicant != null">
+        #{applicant,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTime != null">
+        #{activityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subgroup != null">
+        #{subgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="subgroupAdmin != null">
+        #{subgroupAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="adminStudentId != null">
+        #{adminStudentId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantName != null">
+        #{applicantName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantPhone != null">
+        #{applicantPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="activityInformation != null">
+        #{activityInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <select id="countByExample" parameterType="com.qin.domain.ActivityExample" resultType="java.lang.Long">
+    select count(*) from activity
+    <if test="_parameter != null">
+      <include refid="Example_Where_Clause" />
+    </if>
+  </select>
+  <update id="updateByExampleSelective" parameterType="map">
+    update activity
+    <set>
+      <if test="record.id != null">
+        id = #{record.id,jdbcType=BIGINT},
+      </if>
+      <if test="record.status != null">
+        status = #{record.status,jdbcType=TINYINT},
+      </if>
+      <if test="record.activityName != null">
+        activity_name = #{record.activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicant != null">
+        applicant = #{record.applicant,jdbcType=VARCHAR},
+      </if>
+      <if test="record.location != null">
+        location = #{record.location,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityTime != null">
+        activity_time = #{record.activityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.subgroup != null">
+        subgroup = #{record.subgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="record.subgroupAdmin != null">
+        subgroup_admin = #{record.subgroupAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="record.adminStudentId != null">
+        admin_student_id = #{record.adminStudentId,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicantName != null">
+        applicant_name = #{record.applicantName,jdbcType=VARCHAR},
+      </if>
+      <if test="record.applicantPhone != null">
+        applicant_phone = #{record.applicantPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="record.activityInformation != null">
+        activity_information = #{record.activityInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="record.remark != null">
+        remark = #{record.remark,jdbcType=VARCHAR},
+      </if>
+      <if test="record.gmtCreate != null">
+        gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="record.gmtModify != null">
+        gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByExample" parameterType="map">
+    update activity
+    set id = #{record.id,jdbcType=BIGINT},
+      status = #{record.status,jdbcType=TINYINT},
+      activity_name = #{record.activityName,jdbcType=VARCHAR},
+      applicant = #{record.applicant,jdbcType=VARCHAR},
+      location = #{record.location,jdbcType=VARCHAR},
+      activity_time = #{record.activityTime,jdbcType=TIMESTAMP},
+      subgroup = #{record.subgroup,jdbcType=VARCHAR},
+      subgroup_admin = #{record.subgroupAdmin,jdbcType=VARCHAR},
+      admin_student_id = #{record.adminStudentId,jdbcType=VARCHAR},
+      applicant_name = #{record.applicantName,jdbcType=VARCHAR},
+      applicant_phone = #{record.applicantPhone,jdbcType=VARCHAR},
+      activity_information = #{record.activityInformation,jdbcType=VARCHAR},
+      remark = #{record.remark,jdbcType=VARCHAR},
+      gmt_create = #{record.gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{record.gmtModify,jdbcType=TIMESTAMP}
+    <if test="_parameter != null">
+      <include refid="Update_By_Example_Where_Clause" />
+    </if>
+  </update>
+  <update id="updateByPrimaryKeySelective" parameterType="com.qin.domain.Activity">
+    update activity
+    <set>
+      <if test="status != null">
+        status = #{status,jdbcType=TINYINT},
+      </if>
+      <if test="activityName != null">
+        activity_name = #{activityName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicant != null">
+        applicant = #{applicant,jdbcType=VARCHAR},
+      </if>
+      <if test="location != null">
+        location = #{location,jdbcType=VARCHAR},
+      </if>
+      <if test="activityTime != null">
+        activity_time = #{activityTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="subgroup != null">
+        subgroup = #{subgroup,jdbcType=VARCHAR},
+      </if>
+      <if test="subgroupAdmin != null">
+        subgroup_admin = #{subgroupAdmin,jdbcType=VARCHAR},
+      </if>
+      <if test="adminStudentId != null">
+        admin_student_id = #{adminStudentId,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantName != null">
+        applicant_name = #{applicantName,jdbcType=VARCHAR},
+      </if>
+      <if test="applicantPhone != null">
+        applicant_phone = #{applicantPhone,jdbcType=VARCHAR},
+      </if>
+      <if test="activityInformation != null">
+        activity_information = #{activityInformation,jdbcType=VARCHAR},
+      </if>
+      <if test="remark != null">
+        remark = #{remark,jdbcType=VARCHAR},
+      </if>
+      <if test="gmtCreate != null">
+        gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="gmtModify != null">
+        gmt_modify = #{gmtModify,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.qin.domain.Activity">
+    update activity
+    set status = #{status,jdbcType=TINYINT},
+      activity_name = #{activityName,jdbcType=VARCHAR},
+      applicant = #{applicant,jdbcType=VARCHAR},
+      location = #{location,jdbcType=VARCHAR},
+      activity_time = #{activityTime,jdbcType=TIMESTAMP},
+      subgroup = #{subgroup,jdbcType=VARCHAR},
+      subgroup_admin = #{subgroupAdmin,jdbcType=VARCHAR},
+      admin_student_id = #{adminStudentId,jdbcType=VARCHAR},
+      applicant_name = #{applicantName,jdbcType=VARCHAR},
+      applicant_phone = #{applicantPhone,jdbcType=VARCHAR},
+      activity_information = #{activityInformation,jdbcType=VARCHAR},
+      remark = #{remark,jdbcType=VARCHAR},
+      gmt_create = #{gmtCreate,jdbcType=TIMESTAMP},
+      gmt_modify = #{gmtModify,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

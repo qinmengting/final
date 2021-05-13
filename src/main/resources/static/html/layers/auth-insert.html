@@ -30,7 +30,7 @@
     <div class="layui-form-item" style="padding-right: 50px; width: 300px; margin: 0 auto; margin-top: 15px ">
         <label class="layui-form-label">管理员</label>
         <div class="layui-input-block">
-            <input id="auth-isAdmin" type="checkbox" lay-filter="insert_switch" lay-skin="switch" name="close" lay-text="是|否" checked>
+            <input id="auth-isAdmin" type="checkbox" lay-filter="insert_switch" lay-skin="switch" name="close" lay-text="是|否">
         </div>
     </div>
 
@@ -56,8 +56,7 @@
                 data: {
                     username: $("#auth-username").val(),
                     password: $("#auth-password").val(),
-                    isAdmin: $("input[type='checkbox']"),
-                        // .prop("checked"),
+                    isAdmin: $("input[type='checkbox']").prop("checked"),
                     createdTime: nowDate
                 },
                 success: function (res) {

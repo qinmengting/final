@@ -39,7 +39,7 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-this">
-                    <a href="/subdaminmember" target="admin-list">成员管理</a>
+                    <a href="/subadminmember" target="admin-list">成员管理</a>
                 </li>
                 <li class="layui-nav-item">
                     <a href="/subadminaddattendance" target="admin-list">考勤管理</a>
@@ -57,7 +57,7 @@
                     </dl>
                 </li>
 
-<#--                <li class="layui-nav-item"><a href="/scoreindex" target="admin-list">绩效管理</a></li>-->
+                <li class="layui-nav-item"><a href="/subadminactivity" target="admin-list">活动申请</a></li>
                 <li class="layui-nav-item"><a href="/post" target="admin-list">公告管理</a></li>
                 <li class="layui-nav-item"><a href="/download" target="admin-list">下载中心</a></li>
             </ul>
@@ -67,7 +67,7 @@
     <div class="layui-body">
         <!-- 内容主体区域 - 局部刷新, 使用iframe进行实现 -->
         <div style="padding: 15px; width: 100%; height: 100%">
-            <iframe style="width: 100%; height: 100%;" name="admin-list" scrolling="yes" src="/subdaminmember" frameborder="0"></iframe>
+            <iframe style="width: 100%; height: 100%;" name="admin-list" scrolling="yes" src="/subadminmember" frameborder="0"></iframe>
         </div>
     </div>
 </div>

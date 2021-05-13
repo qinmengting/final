@@ -1,6 +1,7 @@
 package com.qin.controller;
 
 import com.qin.common.DTO.ArtMemberDTO;
+import com.qin.dal.mapper.ActivityMapper;
 import com.qin.dal.mapper.ArtMemberMapper;
 import com.qin.domain.*;
 import com.qin.service.ArtMemberService;
@@ -32,6 +33,9 @@ public class RedirectController {
 
     @Autowired
     private ArtMemberMapper artMemberMapper;
+
+    @Autowired
+    private ActivityMapper activityMapper;
 
     @GetMapping("/login")
     public String toLogin() {
@@ -282,7 +286,9 @@ public class RedirectController {
         else return "general/generalnull_view";
     }
 
-    @GetMapping("/subdaminmember")
+    //以下为分团管理员重定向
+
+    @GetMapping("/subadminmember")
     public String tosubadminmember_view(Model model) {
         UserAuth user = UserContext.getCurrentUser();
         model.addAttribute("user", user);
@@ -294,9 +300,9 @@ public class RedirectController {
         if (!members.isEmpty()){
             ArtMember member = members.get(0);
             model.addAttribute("member",member);
-            return "subadmin/subdaminmember_view";
+            return "subadmin/subadminmember_view";
         }
-        else return "subadmin/subdaminmember_view";
+        else return "subadmin/subadminmember_view";
     }
 
     @GetMapping("/subadminaddattendance")
@@ -382,5 +388,59 @@ public class RedirectController {
             return "subadmin/score/subadminscoreindex_view";
         }
         else return "subadmin/score/subadminscoreindex_view";
+    }
+
+    @GetMapping("/subadminactivity")
+    public String tosubadminactivity_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "subadmin/activity/subadminactivity_view";
+        }
+        else return "subadmin/activity/subadminactivity_view";
+    }
+
+    @GetMapping("/addactivity")
+    public String toaddactivity_view(Model model) {
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "subadmin/activity/addactivity_view";
+        }
+        else return "subadmin/activity/addactivity_view";
+    }
+
+    @GetMapping("/updateactivity/{id}")
+    public String toupdateactivity(Model model, @PathVariable("id") Long id, HttpServletRequest request) {
+        Activity activity = activityMapper.selectByPrimaryKey(id);
+        request.setAttribute("activity",activity);
+        UserAuth user = UserContext.getCurrentUser();
+        model.addAttribute("user", user);
+        String username = user.getUsername();
+        ArtMemberExample ex = new ArtMemberExample();
+        ArtMemberExample.Criteria cr = ex.createCriteria();
+        cr.andUsernameEqualTo(username);
+        List<ArtMember> members = artMemberMapper.selectByExample(ex);
+        if (!members.isEmpty()){
+            ArtMember member = members.get(0);
+            model.addAttribute("member",member);
+            return "subadmin/activity/addactivity_view";
+        }
+        else
+            return "subadmin/activity/addactivity_view";
     }
 }

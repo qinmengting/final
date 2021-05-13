@@ -181,3 +181,24 @@ CREATE TABLE `score_proportion` (
                                     `gmt_modify` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
                                     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
+
+
+DROP TABLE IF EXISTS `activity`;
+CREATE TABLE `activity` (
+                            `id` bigint(20) unsigned NOT NULL AUTO_INCREMENT,
+                            `status` tinyint(2) NOT NULL DEFAULT 0 COMMENT '审批状态 0 审批中 1 通过 2 未通过',
+                            `activity_name` varchar(255) NOT NULL DEFAULT '' COMMENT '活动名称',
+                            `applicant` varchar(255) NOT NULL DEFAULT '' COMMENT '申请单位',
+                            `location` varchar(255) NOT NULL DEFAULT '' COMMENT '活动地点',
+                            `activity_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '演出时间',
+                            `subgroup` varchar(63) NOT NULL DEFAULT '' COMMENT '所属分团',
+                            `subgroup_admin` varchar(63) NOT NULL DEFAULT '' COMMENT '分团负责人（accountName）',
+                            `admin_student_id` varchar(63) NOT NULL DEFAULT '' COMMENT '分团负责人学号',
+                            `applicant_name` varchar(63) NOT NULL DEFAULT '' COMMENT '申请人',
+                            `applicant_phone` varchar(63) NOT NULL DEFAULT '' COMMENT '申请人联系方式',
+                            `activity_information` varchar(255) DEFAULT NULL COMMENT '节目信息',
+                            `remark` varchar(255) DEFAULT NULL COMMENT '备注',
+                            `gmt_create` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '创建时间',
+                            `gmt_modify` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '修改时间',
+                            PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8mb4;
