@@ -8,10 +8,43 @@
 </head>
 <body>
 <div style="padding: 20px; background-color: #F2F2F2;">
-    <form class="layui-form" id="addform" method="get">
-        <input type="hidden" name="subgroup" value="${(member.subgroup)}" id="getSubgroup">
-        <input type="hidden" name="adminStudentId" value="${(member.studentId)}" id="getStudentId">
-    </form>
+    <div class="layui-row layui-col-space15">
+        <div class="layui-col-md10">
+            <div class="layui-card">
+                <div class="layui-card-header"><span style="margin-right: 10px; margin-bottom: 2px" class="layui-badge-dot"></span>请选择查询条件</div>
+                <div class="layui-card-body">
+                    <form class="layui-form" id="addform" method="get">
+                        <div class="layui-form-item">
+                            <label class="layui-form-label">分团</label>
+                            <div class="layui-inline">
+                                <select name="subgroup" lay-search="" id="subgroup">
+                                    <option value="">直接选择或搜索选择</option>
+                                    <option value="合唱团">合唱团</option>
+                                    <option value="话剧团">话剧团</option>
+                                    <option value="舞蹈团">舞蹈团</option>
+                                    <option value="打击乐团">打击乐团</option>
+                                    <option value="民乐团">民乐团</option>
+                                    <option value="室内乐团">室内乐团</option>
+                                    <option value="主持部">主持部</option>
+                                    <option value="礼仪部">礼仪部</option>
+                                    <option value="造型设计部">造型设计部</option>
+                                    <option value="办公室">办公室</option>
+                                    <option value="演出中心">演出中心</option>
+                                    <option value="训练管理">训练管理</option>
+                                    <option value="传媒中心">传媒中心</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="layui-form-item">
+                            <div class="layui-input-block">
+                                <a class="layui-btn search_btn" datatype="reload"><i class="layui-icon">&#xe615</i>搜索</a>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 <div class="layui-form-item" style="padding-right: 0px">
@@ -21,15 +54,15 @@
 
 <#--    工具栏-->
 </div>
-<script type="text/html" id="toolbarDemo">
-    <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="add">活动申请</button>
-    </div>
-</script>
+<#--<script type="text/html" id="toolbarDemo">-->
+<#--    <div class="layui-btn-container">-->
+<#--        <button class="layui-btn layui-btn-sm" lay-event="add">活动申请</button>-->
+<#--    </div>-->
+<#--</script>-->
 
 <script type="text/html" id="barDemo">
-    <a class="layui-btn layui-btn-xs" lay-event="edit">编辑</a>
-    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="del">删除</a>
+    <a class="layui-btn layui-btn-xs" lay-event="ok">通过</a>
+    <a class="layui-btn layui-btn-danger layui-btn-xs" lay-event="no">拒绝</a>
 </script>
 
 <script>
@@ -37,18 +70,18 @@
         var table = layui.table;
         var form = layui.form;
 
-        var subgroup = $('#getSubgroup').val()
+        var subgroup = $('#subgroup').val()
 
         var tableIns = table.render({
             elem: '#test'
-            ,url:'/activity/queryByParams/' + subgroup
+            ,url:'/activity/queryByParams'
             ,toolbar: '#toolbarDemo'
             ,title: '活动审批信息表'
             // ,totalRow: true
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 // , sort: true, totalRowText: '合计'
-                ,{field:'id', title:'ID', width:80, fixed: 'left', sort: true,unresize: true}
+                ,{field:'id', title:'ID', width:80, fixed: 'left', sort: true, unresize: true}
                 ,{field:'status', title:'审批状态',templet:function (res) {
                     if (res.status == 0){
                         return "<a style='color: orange'>审批中</a>";
@@ -77,6 +110,18 @@
             // ,limits:[5,10,15,20,50,100]
             // ,limit:5
         });
+
+        //搜索
+        $(".search_btn").click(function (){
+            tableIns.reload({
+                where: {
+                    subgroup:$("[name='subgroup']").val()
+                }
+                ,page: {
+                    curr:1
+                }
+            })
+        })
 
         //工具栏事件
         //监听数据表格的头部工具栏
@@ -136,41 +181,59 @@
         table.on('tool(test)', function(obj){
             var data = obj.data;
             var status = data.status; //获取审批状态
-            if(obj.event === 'del'){ //删除
+            if(obj.event === 'no'){ //删除
                 if (status == 1 ){
-                    layer.confirm("审批已通过，无法删除")
+                    layer.confirm("审批已通过，无法操作")
                 }
                 else {
-                    layer.confirm('删除该活动申请?', {
+                    layer.confirm('拒绝该活动申请?', {
                         skin: 'layui-layer-molv',
                         offset: 'c',
                         icon: '0'
                     }, function (index) {
-                        obj.del(); //删除对应行（tr）的DOM结构，并更新缓存
                         layer.close(index);
                         //向服务端发送删除指令
                         $.ajax({
-                            url: '/activity/delete/' + data.id,
-                            type: 'delete',
+                            url: '/activity/refuse/' + data.id,
+                            type: 'put',
                             success: function (res) {
                                 console.log(res);
                                 if (res.code == 200) {
-                                    layer.msg('删除成功', {icon: 1, skin: 'layui-layer-molv', offset: 'c'});
+                                    layer.msg('操作成功', {icon: 1, skin: 'layui-layer-molv', offset: 'c'});
                                 } else {
-                                    layer.msg('删除失败', {icon: 2, skin: 'layui-layer-molv', offset: 'c'});
+                                    layer.msg('操作失败', {icon: 2, skin: 'layui-layer-molv', offset: 'c'});
                                 }
                             }
                         })
                     });
                 }
             }
-            else if(obj.event === 'edit'){
+            else if(obj.event === 'ok'){
+                var data = obj.data;
+                var status = data.status; //获取审批状态
                 if (status == 1) {
-                    layer.confirm("审批已通过，无法编辑");
+                    layer.confirm("审批已通过，无法操作");
                 }
                 else {
-                    var id = data.id
-                    openUpdateActivity(id)
+                    layer.confirm('同意该活动申请?', {
+                        skin: 'layui-layer-molv',
+                        offset: 'c',
+                        icon: '0'
+                    }, function (index) {
+                        layer.close(index);
+                        $.ajax({
+                            url: '/activity/approve/' + data.id,
+                            type: 'put',
+                            success: function (res) {
+                                console.log(res);
+                                if (res.code == 200) {
+                                    layer.msg('操作成功', {icon: 1, skin: 'layui-layer-molv', offset: 'c'});
+                                } else {
+                                    layer.msg('操作失败', {icon: 2, skin: 'layui-layer-molv', offset: 'c'});
+                                }
+                            }
+                        })
+                    });
                 }
             }
         });

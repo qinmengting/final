@@ -18,13 +18,21 @@ public class ActivityServiceImpl implements ActivityService {
     @Autowired
     private ActivityMapper activityMapper;
 
+    //申请通过状态
+     private static Byte STATUS_APPROVE = (byte)1;
+
+     //申请拒绝状态
+    private static Byte STATUS_REFUSE = (byte)2;
+
     @Override
     public DataVO<Activity> queryByParams(ActivityQuery activityQuery) {
         PageHelper.startPage(activityQuery.getPage(),activityQuery.getLimit());
 
         ActivityExample ex = new ActivityExample();
         ActivityExample.Criteria cr = ex.createCriteria();
-        cr.andSubgroupEqualTo(activityQuery.getSubgroup());
+        if (activityQuery.getSubgroup() != null && activityQuery.getSubgroup() != "") {
+            cr.andSubgroupEqualTo(activityQuery.getSubgroup());
+        }
         List<Activity> activities = activityMapper.selectByExample(ex);
 
         PageInfo pageInfo = new PageInfo(activities, activityQuery.getLimit());
@@ -83,7 +91,28 @@ public class ActivityServiceImpl implements ActivityService {
         if (activity.getActivityInformation() != null && activity.getActivityInformation() != "") {
             select.setActivityInformation(activity.getActivityInformation());
         }
+        if (activity.getRemark() != null && activity.getRemark() != "") {
+            select.setRemark(activity.getRemark());
+        }
         select.setStatus((byte) 0);
+        int i = activityMapper.updateByPrimaryKey(select);
+        return i;
+    }
+
+    @Override
+    public int refuse(Long id) {
+        Activity select = activityMapper.selectByPrimaryKey(id);
+        select.setId(id);
+        select.setStatus((byte) 2);
+        int i = activityMapper.updateByPrimaryKey(select);
+        return i;
+    }
+
+    @Override
+    public int approve(Long id) {
+        Activity select = activityMapper.selectByPrimaryKey(id);
+        select.setId(id);
+        select.setStatus((byte) 1);
         int i = activityMapper.updateByPrimaryKey(select);
         return i;
     }

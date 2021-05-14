@@ -30,4 +30,18 @@ public interface ActivityService {
     public int deleteById(Long id,Activity activity);
 
     public int updateById(Long id, Activity activity);
+
+    /**
+     * 拒绝申请
+     * @param id
+     * @return
+     */
+    public int refuse(Long id);
+
+    /**
+     * 同意申请
+     * @param id
+     * @return
+     */
+    public int approve(Long id);
 }

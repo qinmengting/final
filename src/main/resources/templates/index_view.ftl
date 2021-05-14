@@ -64,8 +64,7 @@
                         <dd><a href="/countattendance" target="admin-list">比例统计</a></dd>
                     </dl>
                 </li>
-
-<#--                <li class="layui-nav-item"><a href="/scoreindex" target="admin-list">绩效管理</a></li>-->
+                <li class="layui-nav-item"><a href="/activity" target="admin-list">活动审批</a></li>
                 <li class="layui-nav-item"><a href="/post" target="admin-list">公告管理</a></li>
                 <li class="layui-nav-item"><a href="/download" target="admin-list">下载中心</a></li>
             </ul>

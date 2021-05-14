@@ -52,7 +52,6 @@
                         <div class="layui-form-item">
                             <div class="layui-input-block">
                                 <a class="layui-btn search_btn" datatype="reload"><i class="layui-icon">&#xe615</i>搜索</a>
-<#--                                <button type="submit" class="layui-btn" lay-submit="" lay-filter="demo1" id="add">搜索</button>-->
                             </div>
                         </div>
                     </form>

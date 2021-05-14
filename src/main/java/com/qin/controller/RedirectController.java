@@ -425,9 +425,9 @@ public class RedirectController {
     }
 
     @GetMapping("/updateactivity/{id}")
-    public String toupdateactivity(Model model, @PathVariable("id") Long id, HttpServletRequest request) {
+    public String toupdateactivity(Model model, @PathVariable("id") Long id) {
         Activity activity = activityMapper.selectByPrimaryKey(id);
-        request.setAttribute("activity",activity);
+        model.addAttribute("activity",activity);
         UserAuth user = UserContext.getCurrentUser();
         model.addAttribute("user", user);
         String username = user.getUsername();
@@ -438,9 +438,14 @@ public class RedirectController {
         if (!members.isEmpty()){
             ArtMember member = members.get(0);
             model.addAttribute("member",member);
-            return "subadmin/activity/addactivity_view";
+            return "subadmin/activity/updateactivity_view";
         }
         else
-            return "subadmin/activity/addactivity_view";
+            return "subadmin/activity/updateactivity_view";
+    }
+
+    @GetMapping("/activity")
+    public String toactivity(Model model) {
+            return "activity/activity_view";
     }
 }

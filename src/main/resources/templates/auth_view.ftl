@@ -89,7 +89,7 @@
                     }},
                 {field:'password', width:150, title: '密码', edit: 'text'},
 
-                {field:'isAdmin', width:130, title: '是否为管理员', templet : function (row) {
+                {field:'isAdmin', width:130, title: '是否为管理员',sort: true, templet : function (row) {
                     if (row.isAdmin){
                         return '<input type="checkbox" lay-filter="isAdmin_switch" name="isAdmin_switch" id="isAdmin_switch" lay-skin="switch" lay-text="是|否" checked/>'
                     }

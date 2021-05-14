@@ -50,4 +50,31 @@ public class ActivityController {
         else
             return ResponseUtil.general_response("编辑失败");
     }
+
+    @GetMapping("/activity/queryByParams")
+    public Object queryByParams( ActivityQuery activityQuery){
+        activityQuery.setSubgroup(activityQuery.getSubgroup());
+        DataVO<Activity> vo = activityService.queryByParams(activityQuery);
+        return vo;
+    }
+
+    @PutMapping("/activity/refuse/{id}")
+    public Object refuse(@PathVariable("id")Long id) {
+        int i = activityService.refuse(id);
+        if (i != 0) {
+            return ResponseUtil.general_response("操作成功");
+        }
+        else
+            return ResponseUtil.general_response("操作失败");
+    }
+
+    @PutMapping("/activity/approve/{id}")
+    public Object approve(@PathVariable("id")Long id) {
+        int i = activityService.approve(id);
+        if (i != 0) {
+            return ResponseUtil.general_response("操作成功");
+        }
+        else
+            return ResponseUtil.general_response("操作失败");
+    }
 }

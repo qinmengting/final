@@ -1,14 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <script src="static/js/jquery-3.4.1.min.js"></script>
-    <script src="static/layui/layui.js"></script>
-    <link rel="stylesheet" href="static/layui/css/layui.css" media="all">
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <script src="/static/js/jquery-3.4.1.min.js"></script>
+    <script src="/static/layui/layui.js"></script>
+    <link rel="stylesheet" href="/static/layui/css/layui.css">
 </head>
 <body>
 <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
-    <legend>添加成员信息</legend>
+    <legend>编辑活动信息</legend>
 </fieldset>
 <form class="layui-form" id="addform" method="get">
     <input type="hidden" name="status" value="0" id="getSubgroup">
@@ -34,17 +33,21 @@
     </div>
 
     <div class="layui-form-item">
-        <label class="layui-form-label">活动地点</label>
+            <label class="layui-form-label">活动地点</label>
             <div class="layui-input-block">
                 <input type="text" name="location"  value="${(activity.location)!}" lay-verify="required" lay-reqtext="活动地点是必填项，不能为空！" placeholder="请输入" autocomplete="off" class="layui-input">
             </div>
     </div>
+
     <div class="layui-form-item">
-        <label class="layui-form-label">活动时间</label>
-        <div class="layui-input-inline">
-            <input type="text" name="activityTime"  value="${(activity.activityTime)!}" id="activityTime" lay-verify="date" placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+        <div class="layui-inline">
+            <label class="layui-form-label">入团时间</label>
+            <div class="layui-input-inline">
+                <input type="text" name="activityTime" value="${activity.activityTime?string('yyyy-MM-dd')}" id="activityTime" lay-verify="date" timeFormat="yyyy-MM-dd"  placeholder="yyyy-MM-dd" autocomplete="off" class="layui-input">
+            </div>
         </div>
     </div>
+
     <div class="layui-form-item">
             <label class="layui-form-label">所属分团</label>
             <div class="layui-input-inline">
@@ -87,13 +90,13 @@
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">节目信息</label>
         <div class="layui-input-block">
-            <textarea name="activityInformation" value="${(activity.activityInformation)!}" placeholder="请输入内容" class="layui-textarea"></textarea>
+            <input name="activityInformation" id="activityInformation" value="${(activity.activityInformation)!}" placeholder="请输入内容" class="layui-textarea"></input>
         </div>
     </div>
     <div class="layui-form-item layui-form-text">
         <label class="layui-form-label">备注</label>
         <div class="layui-input-block">
-            <textarea name="remark" value="${(activity.remark)!}" placeholder="请输入内容" class="layui-textarea"></textarea>
+            <input name="remark" id="remark" value="${(activity.remark)!}" placeholder="请输入内容" class="layui-textarea"></input>
         </div>
     </div>
     <div class="layui-form-item">
@@ -106,7 +109,7 @@
 
 <script>
 
-    layui.use(['form', 'layedit', 'laydate'], function(){
+    layui.use(['form', 'layedit', 'laydate', 'element'], function(){
         var form = layui.form
             ,layer = layui.layer
             ,layedit = layui.layedit
@@ -120,8 +123,6 @@
             elem: '#joinTime'
             , trigger: 'click'
         });
-
-        form.render()
 
         //创建一个编辑器
         var editIndex = layedit.build('LAY_demo_editor');
