@@ -15,13 +15,13 @@
     <div class="layui-form-item">
         <label class="layui-form-label">学号</label>
         <div class="layui-input-block">
-            <input type="text" name="studentId" value="${(dto.studentId)!}" lay-verify="required" lay-reqtext="学号是必填项，不能为空！" placeholder="请输入" autocomplete="off" class="layui-input">
+            <input type="text" name="studentId" value="${(dto.studentId)!}" lay-verify="required" lay-reqtext="学号是必填项，不能为空！" placeholder="请输入" autocomplete="off" class="layui-input" disabled>
         </div>
     </div>
     <div class="layui-form-item">
         <label class="layui-form-label">密码</label>
         <div class="layui-input-inline">
-            <input type="password" name="password" value="${(dto.password)!}" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input">
+            <input type="password" name="password" value="${(dto.password)!}" lay-verify="pass" placeholder="请输入密码" autocomplete="off" class="layui-input" disabled>
         </div>
         <div class="layui-form-mid layui-word-aux">请填写6到12位密码</div>
     </div>

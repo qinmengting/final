@@ -119,8 +119,6 @@
         var table = layui.table;
         var form = layui.form;
 
-        //温馨提示：默认由前端自动合计当前行数据。从 layui 2.5.6 开始： 若接口直接返回了合计行数据，则优先读取接口合计行数据。
-        //详见：https://www.layui.com/doc/modules/table.html#totalRow
         var tableIns = table.render({
             elem: '#test'
             ,url:'/member/queryBySelect'
@@ -132,7 +130,7 @@
                 // , sort: true, totalRowText: '合计'
                 ,{field:'id', title:'ID', width:80, fixed: 'left', sort: true,unresize: true}
                 ,{field:'username', title:'用户名', width:120}
-                ,{field:'password', title:'密码', width:120}
+                // ,{field:'password', title:'密码', width:120}
                 ,{field:'accountName', title:'姓名', width:100}
                 ,{field:'accountType', title:'学生类型', templet:function (res) {
                     if (res.accountType == 0)

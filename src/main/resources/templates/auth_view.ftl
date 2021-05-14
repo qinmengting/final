@@ -79,7 +79,7 @@
             }
             ,cols: [[
                 <!--{type:'checkbox', fixed:'left'},-->
-                {field:'id', width:60, title: 'ID'},
+                {field:'id', width:60, title: 'ID', sort: true},
                 {field:'username', width:120, title: '登录名', edit: 'text', templet:function (row) {
                         return [
                             '<div>',

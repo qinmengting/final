@@ -120,7 +120,7 @@ public class RedirectController {
     public String toMain(Model model) {
         UserAuth user = UserContext.getCurrentUser();
         model.addAttribute("user", user);
-        return "index_view";
+        return "view";
     }
 
     @GetMapping("/performance")
