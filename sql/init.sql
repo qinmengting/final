@@ -36,7 +36,7 @@ CREATE TABLE `art_user` (
   `mobile` varchar(16) DEFAULT '' COMMENT '电话号码',
   `student_ID` char(10) DEFAULT '' COMMENT '学号',
   `teacher` varchar(16) DEFAULT '' COMMENT '指导老师',
-  `Specialty_type` tinyint(2) NOT NULL DEFAULT 0 COMMENT '是否为特长生 0 不是 1 是',
+  `specialty_type` tinyint(2) NOT NULL DEFAULT 0 COMMENT '是否为特长生 0 不是 1 是',
   `join_time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT '入团时间',
   `in_group_time` tinyint(2) NOT NULL DEFAULT 0 COMMENT '在团学期',
   `remark` varchar(255) DEFAULT NULL COMMENT '备注',

@@ -39,10 +39,10 @@
             <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-this">
-                    <a href="/subadminmember" target="admin-list">成员管理</a>
+                    <a href="javascript:;" target="admin-list">成员管理</a>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/subadminaddattendance" target="admin-list">考勤管理</a>
+                    <a href="javascript:;" target="admin-list">考勤管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/subadminaddattendance" target="admin-list">添加考勤</a></dd>
                         <dd><a href="/subadminqueryattendance" target="admin-list">考勤记录查询</a></dd>
@@ -50,7 +50,7 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/subadminscoreindex" target="admin-list">绩效管理</a>
+                    <a href="javascript:;" target="admin-list">绩效管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/subadminscoreindex" target="admin-list">绩效比例录入</a></dd>
                         <dd><a href="/subadminaddscore" target="admin-list">成绩录入</a></dd>

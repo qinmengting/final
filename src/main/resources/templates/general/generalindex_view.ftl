@@ -40,7 +40,7 @@
                 <li class="layui-nav-item layui-this"><a href="/generalpost" target="admin-list">艺术团公告</a></li>
                 <li class="layui-nav-item"><a href="/information" target="admin-list">个人信息</a></li>
                 <li class="layui-nav-item">
-                    <a href="/generalattendance" target="admin-list">考勤记录</a>
+                    <a href="javascript:;" target="admin-list">考勤记录</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/generalattendance" target="admin-list">考勤记录</a></dd>
                         <dd><a href="/attendancecount" target="admin-list">考勤次数统计</a></dd>

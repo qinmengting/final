@@ -41,7 +41,7 @@
                 <li class="layui-nav-item layui-this"><a href="/auth" target="admin-list">权限管理</a></li>
                 <li class="layui-nav-item"><a href="javascript:;" target="admin-list">分团管理</a></li>
                 <li class="layui-nav-item">
-                    <a href="/allmembers" target="admin-list">成员管理</a>
+                    <a href="javascript:;" target="admin-list">成员管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/allmembers" target="admin-list">所有成员</a></dd>
                         <dd><a href="/addmember" target="admin-list">添加成员</a></dd>
@@ -49,7 +49,7 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/addattendance" target="admin-list">考勤管理</a>
+                    <a href="javascript:;" target="admin-list">考勤管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/addattendance" target="admin-list">添加考勤</a></dd>
                         <dd><a href="/queryattendance" target="admin-list">考勤记录查询</a></dd>
@@ -57,7 +57,7 @@
                     </dl>
                 </li>
                 <li class="layui-nav-item">
-                    <a href="/scoreindex" target="admin-list">绩效管理</a>
+                    <a href="javascript:;" target="admin-list">绩效管理</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/scoreindex" target="admin-list">绩效比例录入</a></dd>
                         <dd><a href="/addscore" target="admin-list">成绩录入</a></dd>
