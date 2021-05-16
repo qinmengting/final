@@ -41,7 +41,7 @@
                 }
             }
             ,cols: [[
-                {field:'id', width:60, title: 'ID'},
+                // {field:'id', width:60, title: 'ID'},
                 {field:'title', width:200, title: '文件名称', edit: true},
                 {field:'description', width:300, title:'描述', edit: true},
                 {field:'username', width:150, title: '创建者'},

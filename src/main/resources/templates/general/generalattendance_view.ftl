@@ -62,7 +62,7 @@
             ,cols: [[
                 {type: 'checkbox', fixed: 'left'}
                 // , sort: true, totalRowText: '合计'
-                ,{field:'id', title:'ID', width:80, fixed: 'left', sort: true,unresize: true}
+                // ,{field:'id', title:'ID', width:80, fixed: 'left', sort: true,unresize: true}
                 ,{field:'accountName', title:'姓名', width:100}
                 ,{field:'studentId', title:'学号', width:120, sort: true}
                 ,{field:'subgroup', title:'所属分团', width:120, sort: true}
