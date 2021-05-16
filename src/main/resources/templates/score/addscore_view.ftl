@@ -123,7 +123,7 @@
                         else if (res.attendanceCount >= 6 )
                             return  "<a style='color: forestgreen'>"+res.attendanceCount+"</a>";
                     },width:120, sort: true}
-                ,{fixed: 'right', title:'操作', toolbar: '#barDemo', width:150}
+                ,{fixed: 'right', title:'操作',  align:"center", toolbar: '#barDemo', width:150}
             ]]
             ,page: true
             // ,limits:[5,10,15,20,50,100]
