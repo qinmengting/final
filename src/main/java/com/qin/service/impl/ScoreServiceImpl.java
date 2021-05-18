@@ -36,9 +36,32 @@ public class ScoreServiceImpl implements ScoreService {
             proportion.setWorkProp(scoreProportion.getWorkProp());
         }
         if (scoreProportion.getRemark()!=null){
-            proportion.setSubgroup(scoreProportion.getRemark());
+            proportion.setRemark(scoreProportion.getRemark());
         }
-        int i = scoreProportionMapper.updateByExample(proportion, ex);
+
+        int i = scoreProportionMapper.updateByPrimaryKey(proportion);
         return i;
     }
+
+//    @Override
+//    public int addById(Long id, ScoreProportion scoreProportion) {
+//        ScoreProportion proportion = scoreProportionMapper.selectByPrimaryKey(id);
+//        if (scoreProportion.getAttendanceProp()!=null){
+//            proportion.setAttendanceProp(scoreProportion.getAttendanceProp());
+//        }
+//        if (scoreProportion.getTotalAttendance()!=null){
+//            proportion.setTotalAttendance(scoreProportion.getTotalAttendance());
+//        }
+//        if (scoreProportion.getUsuallyProp()!=null){
+//            proportion.setUsuallyProp(scoreProportion.getUsuallyProp());
+//        }
+//        if (scoreProportion.getWorkProp()!=null){
+//            proportion.setWorkProp(scoreProportion.getWorkProp());
+//        }
+//        if (scoreProportion.getRemark()!=null){
+//            proportion.setSubgroup(scoreProportion.getRemark());
+//        }
+//        int i = scoreProportionMapper.updateByPrimaryKey(proportion);
+//        return i;
+//    }
 }

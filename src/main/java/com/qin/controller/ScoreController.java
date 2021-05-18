@@ -18,8 +18,7 @@ public class ScoreController {
     private ArtMemberService artMemberService;
 
     @RequestMapping("/score/addprop")
-    public Object addProp(ScoreProportion scoreProportion) {
-
+    public Object addProp( ScoreProportion scoreProportion) {
         //保存各项分数占比
         int i = scoreService.addScoreBySubgroup(scoreProportion);
 
@@ -44,4 +43,5 @@ public class ScoreController {
         } else
             return ResponseUtil.general_response("保存失败！");
     }
+
 }

@@ -10,4 +10,6 @@ public interface ScoreService {
      */
     public int addScoreBySubgroup(ScoreProportion scoreProportion);
 
+//    public int addById(Long id, ScoreProportion scoreProportion);
+
 }

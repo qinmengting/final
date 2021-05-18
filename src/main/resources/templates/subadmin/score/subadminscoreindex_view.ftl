@@ -87,8 +87,6 @@
 
         form.render()
 
-        var subgroup = $('#getSubgroup').val()
-
         var confirmTrans = function(){
             //配置一个透明的询问框
             layer.msg('考勤成绩为【成员考勤次数/考勤总次数*100】<br>当所属分团考勤总次数设置后，考勤分由系统生成', {

@@ -15,17 +15,17 @@
     <div class="layui-form-item">
             <label class="layui-form-label">进行绩效核算的分团</label>
             <div class="layui-input-inline">
-                <select name="subgroup" lay-verify="required" lay-search="">
+                <select name="subgroup" id="subgroup" lay-verify="required" lay-search="">
                     <option value="">直接选择或搜索选择</option>
                     <option value="合唱团">合唱团</option>
                     <option value="话剧团">话剧团</option>
                     <option value="舞蹈团">舞蹈团</option>
-                    <option value="打击乐团">打击乐团</option>
+                    <option value="打击乐团" >打击乐团</option>
                     <option value="民乐团">民乐团</option>
                     <option value="室内乐团">室内乐团</option>
                     <option value="主持部">主持部</option>
                     <option value="礼仪部">礼仪部</option>
-                    <option value="造型设计部">造型设计部</option>
+                    <option value="造型设计部" >造型设计部</option>
                     <option value="办公室">办公室</option>
                     <option value="演出中心">演出中心</option>
                     <option value="训练管理">训练管理</option>
@@ -101,6 +101,8 @@
 
         form.render()
 
+        var sid = $('#sid').val();
+
         var confirmTrans = function(){
             //配置一个透明的询问框
             layer.msg('考勤成绩为【成员考勤次数/考勤总次数*100】<br>当所属分团考勤总次数设置后，考勤分由系统生成', {
@@ -127,9 +129,9 @@
                 shade: 0.8  //设置遮罩的透明度
             });
 
-            //发送ajax请求
-            var url = "/score/addprop";   //添加操作
-            $.post(url,data.field,function (result){
+
+            var url = "/score/addprop"
+            $.post( url, data.field,function (result){
                 //判断操作是否执行成功 200=成功
                 if (result.code == 200){
                     //成功
@@ -145,20 +147,14 @@
                     //失败
                     layer.msg(result.msg,{icon:5})
                 }
-            });
+            }
+            );
 
-            //组织表单提交
+            //阻止表单提交
             return false;
         })
 
 
-
-
-        //表单取值
-        //     layui.$('#LAY-component-form-getval').on('click', function(){
-        //         var data = form.val('example');
-        //         alert(JSON.stringify(data));
-        //     });
 
     });
 </script>
