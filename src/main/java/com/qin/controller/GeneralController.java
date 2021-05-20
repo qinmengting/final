@@ -1,6 +1,5 @@
 package com.qin.controller;
 
-import com.qin.common.DTO.ArtMemberDTO;
 import com.qin.common.VO.DataVO;
 import com.qin.common.base.BaseQuery;
 import com.qin.domain.ArtMember;
@@ -10,14 +9,12 @@ import com.qin.service.ArtMemberService;
 import com.qin.service.AttendanceService;
 import com.qin.service.IUserAuthService;
 import com.qin.util.ResponseUtil;
-import org.apache.catalina.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import java.util.Map;
 
 @RestController
 public class GeneralController {

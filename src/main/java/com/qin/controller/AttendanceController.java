@@ -1,11 +1,9 @@
 package com.qin.controller;
 
-import com.alibaba.fastjson.JSON;
 import com.qin.common.VO.ArtMemberVO;
 import com.qin.common.VO.DataVO;
 import com.qin.common.query.AttendanceQuery;
 import com.qin.domain.Attendance;
-import com.qin.domain.UserAuth;
 import com.qin.service.AttendanceService;
 import com.qin.util.ResponseUtil;
 import org.springframework.beans.factory.annotation.Autowired;
