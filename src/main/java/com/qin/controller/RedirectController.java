@@ -448,4 +448,9 @@ public class RedirectController {
     public String toactivity(Model model) {
             return "activity/activity_view";
     }
+
+    @GetMapping("/echarts")
+    public String toecharts(Model model) {
+        return "echarts/echarts_view";
+    }
 }
