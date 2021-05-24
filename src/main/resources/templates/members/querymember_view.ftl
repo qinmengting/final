@@ -17,7 +17,7 @@
                         <div class="layui-form-item">
                             <div class="layui-inline">
                                 <label class="layui-form-label">姓名</label>
-                                <div class="layui-input-block" style="width: 218.67px">
+                                <div class="layui-input-block" style="width: 205px">
                                     <input type="text" name="accountName" placeholder="请输入" autocomplete="off" class="layui-input">
                                 </div>
                             </div>

@@ -40,10 +40,10 @@
             <ul class="layui-nav layui-nav-tree"  lay-filter="test">
                 <li class="layui-nav-item layui-this"><a href="/auth" target="admin-list">权限管理</a></li>
                 <li class="layui-nav-item">
-                    <a href="javascript:;" target="admin-list">分团管理</a>
+                    <a href="javascript:;" target="admin-list">图表统计</a>
                     <dl class="layui-nav-child">
                         <dd><a href="/echarts" target="admin-list">分团成员柱状图</a></dd>
-                        <dd><a href="/addmember" target="admin-list">添加成员</a></dd>
+                        <dd><a href="/sector" target="admin-list">分团成员玫瑰图</a></dd>
                         <dd><a href="/querymember" target="admin-list">条件查询</a></dd>
                     </dl>
                 </li>

@@ -453,4 +453,9 @@ public class RedirectController {
     public String toecharts(Model model) {
         return "echarts/echarts_view";
     }
+
+    @GetMapping("/sector")
+    public String tosector(Model model) {
+        return "echarts/SectorGraph,_view";
+    }
 }
